@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ramblings on Rails</title>
+  <meta name="author" content="Gary Traffanstedt">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://traffan.com/3/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Ramblings on Rails" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://traffan.com/3/">
+  <meta property="og:title" content="Ramblings on Rails">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ramblings on Rails</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <div class="blog-index" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Ramblings on Rails" />
+    
+    <meta itemprop="url" content="http://traffan.com" />
+      
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-15T09:39:44-04:00"  data-updated="true" itemprop="datePublished dateCreated">Mon 15 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/who-died-and-left-you-brew-master/" itemprop="url">Who Died and Left You Brew Master?</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>I’ve recently started a new project and I’m finding the most difficult aspect has nothing to do with the actual coding but instead, is deciding which features to include and/or how to include them. It’s the top-level stuff that is difficult, not the nitty gritty. You want to be able to login via Facebook? That’s an easy thing to add but with adding that comes the question of what other sites should we integrate with? Twitter? Google? Bob’s House of BBQ? I opted for the big three: Facebook, Twitter, and Google. And with Google came the question of do I include <em>just</em> Google or also Google+? What about Google Apps? Apparently these three all have different authentication methods.</p>
+
+<p>When setting up the profile page I had a bunch of questions about what I should include. Do I include Gender? If so, what options do I want to have? Male, Female, Other? But other might offend some people. While considering this particular question I did a quick Google and found that there are actually a LOT of people that are offended by the term other in this context. So what then? And do I add an option saying they didn’t want to say? Or maybe I make it so you can hide your gender so others can’t see it.</p>
+
+<p>So now we’re going to allow people to hide parts of their profile? Well, we also ask for <strong>first name</strong> and <strong>last name</strong> as well as each user having a <strong>username</strong> so we’ll want to allow them to hide their real names. And since we are asking their real names, do we want a way to verify their real names? I’ve seen that done on some sites.</p>
+
+<p>And we want to allow people to list their Facebook and Twitter accounts but what about Google+? I don’t use it but I know a lot of people do. And Pinterest is popular. As is Instagram. As is… see where this leads? Maybe we set this up so it’s free form… they enter whatever site in one field and their username in a second field. But then how do we link it? Better to make it a drop down where they can select the ones they want.</p>
+
+<p>So again, the most difficult aspect isn’t the actual code. I can write great code and add features until the cows come home, but knowing which features to include and which aren’t worth the time or even worse, will become problematic, that’s the difference between great sites and crap sites.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-12T09:41:56-04:00"  data-updated="true" itemprop="datePublished dateCreated">Fri 12 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/the-joys-of-coffeescript/" itemprop="url">The Joys of Coffeescript</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>I just used Coffeescript for the first time. I’ve copied and pasted Coffeescript code before, of course, but this was the first time I had used it with my own code. And I’ll admit I cheated. I started with JQuery and then ran it through a converter (<a href="http://js2coffee.org/">http://js2coffee.org/</a>).</p>
+
+<p><strong>JQuery</strong>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[type=&#39;checkbox&#39;]#goal_completed&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.goal_completed_on&#39;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Coffeescript</strong>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[type=&#39;checkbox&#39;]#goal_completed&quot;</span><span class="p">).</span><span class="nx">on</span> <span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.goal_completed_on&quot;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For writing the code I was doing a simple <code>&lt;script&gt; &lt;/script&gt;</code> block at the bottom of my <code>_form.html.erb</code> file but found that because I’m loading my JS files at the bottom of my layout, my JQuery wasn’t working. JQuery hadn’t loaded yet. Now that I have it as proper Coffeescript and in the propper assets file, <code>assets/javascripts/goals.coffee.js</code> in this case, everything is working great.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-11T09:45:15-04:00"  data-updated="true" itemprop="datePublished dateCreated">Thu 11 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/trying-appfog-for-project-deployment/" itemprop="url">Trying AppFog for Project Deployment.</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>I’ve been playing around with Node.js a bit and was wanting to find a hosting service where I could deploy my little test apps for testing and for showing friends. I read some good things about AppFog and felt the price was right (they offer a free intro-level service that lets you get your feet wet with minimal financial risk). Signup took just a minute and I had my basic Rails app deployed five minutes later.</p>
+
+<p>Interesting how they handle databases. My deploy happened entirely on the command line:</p>
+
+<pre><code class="plain">af login
+(email prompt)
+(password prompt)
+af deploy
+</code></pre>
+
+<p>And then I answered a few questions and the app was running. One of those questions is where I indicated that I wanted a MySQL database. I was not given a user/pass for MySQL, nor do I needed to handle any db related setup at all. AppFog uses some sort of auto-configuration and I’ve gotta say, it’s pretty cool.</p>
+
+<p>No issues during the first deployment. Tonight after a few hours spent working on my app I did an update to AppFog and encountered my first issue. Two minutes later I’d figured out how to view the log file and saw it was an asset compilation issue. Googled that and then:</p>
+
+<pre><code class="ruby">rake db:setup RAILS_ENV=production
+rake assets:precompile --trace RAILS_ENV=production
+</code></pre>
+
+<p>Had me ready for a second attempt. Apparently the issue had to do with one of my <code>.js</code> files not being in the assets folder where it should be. Instead it’s in <code>public/javascripts/</code>. I’ll get that moved tomorrow or the next time I get a chance to work more on my project.</p>
+
+<p>It’s only been one day, and two pushes, but so far I’m quite impressed with AppFog. I especially like how easy it is to roll updates. Will come in quite handy with my project is a little farther along and I have friends testing things for me.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-10T09:51:18-04:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 10 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/defaulting-to-puma/" itemprop="url">Defaulting to Puma</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>For whatever reason I’ve switched from Webrick to Puma as my default development server. At one time I was getting some odd errors with Webrick and my cursory Google searches indicated it was an issue with Webrick itself. I assume since Webrick is bundled with Rails that it’s decent but I really haven’t heard any compelling reason to run it. Whatever the case, I made the switch to Puma but found that when I would type <code>rails s</code> Puma wouldn’t boot. I had to instead type <code>bundle exec puma</code> which of course was completely unacceptable!</p>
+
+<p>If like me, you’d rather be able to use the shorter command, do this:</p>
+
+<p>Inside your project folder find <code>/script/rails</code> and add the following:</p>
+
+<pre><code class="ruby">require 'rack/handler'
+Rack::Handler::WEBrick = Rack::Handler.get(:puma)
+</code></pre>
+
+<p>That’s all it takes. Now when you type <code>rails s</code> you’ll get Puma.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-07T09:55:32-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sun  7 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/issues-with-my-path/" itemprop="url">Issues With My Path</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>When you modify your path and add things to it, do the items read first or last take precedence? By this I mean, if I have a set of say 5 items, and they are read in order from left to right, does the first item take precedence over the last, or does the last overwrite the first? If I had a variable and defined it twice, the second one would take precedence but it appears that when defining your path, it works in reverse. Whatever is defined first is what gets used.</p>
+
+<p>Yesterday I had issues getting the PostgreSQL commands to work on the command line. I was hitting the ones in <code>/usr/bin/</code> or <code>/usr/local/bin</code> and since I had installed the PostgresAPP, I wanted to use the commnads that come with that. I thought by appending the new location to my path this would override anything already loaded. Instead I needed to prepend the new location. Once I did that, it worked perfectly.</p>
+
+<p><strong>Note</strong>: You also need to make sure you restart ALL of your consoles. I use a lot of split screens, tabs, and windows and after a few hours I happened to be in one that I had NOT restarted so the path issues were back. A quick restart of my console app (<a href="http://www.iterm2.com/#/section/home">iTerm 2</a> in this case) resolved this for me.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+    </div>
+
+    <ul class="pager">
+      
+        <li class="previous"><a href="/4">&larr;&nbsp;Older</a></li>
+      
+      <li><a href="/archives">Blog Archives</a></li>
+      
+        <li class="next"><a href="/2">Newer&nbsp;&rarr;</a></li>
+      
+    </ul>
+  </div>
+
+  
+    <aside class="sidebar col-md-3">
+      
+        <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/bug-in-apples-command-line-tools-6-dot-3/">Bug in Apple&#8217;s Command Line Tools 6.3</a>
+    
+    <a class="list-group-item " href="/the-return-of-the-great-white-hope/">The Return of the Great White Hope.</a>
+    
+    <a class="list-group-item " href="/haml-is-not-for-assets/">HAML Is Not for ASSETS</a>
+    
+    <a class="list-group-item " href="/counter-caching/">Counter Caching</a>
+    
+    <a class="list-group-item " href="/rails-counter-cache-frustrations/">Rails Counter_cache Frustrations</a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/categories/delayed_job/index.html">
+      <span class="badge">1</span>
+      delayed_job
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/development/index.html">
+      <span class="badge">13</span>
+      development
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/rails/index.html">
+      <span class="badge">7</span>
+      rails
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/ruby/index.html">
+      <span class="badge">1</span>
+      ruby
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/apple/index.html">
+      <span class="badge">2</span>
+      apple
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/shiny/index.html">
+      <span class="badge">1</span>
+      shiny
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/toys/index.html">
+      <span class="badge">1</span>
+      toys
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/brew/index.html">
+      <span class="badge">1</span>
+      brew
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/mac/index.html">
+      <span class="badge">1</span>
+      mac
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/mysql/index.html">
+      <span class="badge">1</span>
+      mysql
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/postgresql/index.html">
+      <span class="badge">2</span>
+      postgresql
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/path/index.html">
+      <span class="badge">1</span>
+      path
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/puma/index.html">
+      <span class="badge">1</span>
+      puma
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/appfog/index.html">
+      <span class="badge">1</span>
+      appfog
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/coffeescript/index.html">
+      <span class="badge">1</span>
+      coffeescript
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/jquery/index.html">
+      <span class="badge">1</span>
+      jquery
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/features/index.html">
+      <span class="badge">1</span>
+      features
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/gems/index.html">
+      <span class="badge">2</span>
+      gems
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/blogging/index.html">
+      <span class="badge">2</span>
+      blogging
+    </a>
+    
+  </div>
+</section>
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/blimey85">@blimey85</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'blimey85',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+      
+    </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2015 - Gary Traffanstedt<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
+</html>

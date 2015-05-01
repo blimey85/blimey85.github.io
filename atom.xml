@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Ramblings on Rails]]></title>
+  <link href="http://traffan.com/atom.xml" rel="self"/>
+  <link href="http://traffan.com/"/>
+  <updated>2015-05-01T09:29:52-04:00</updated>
+  <id>http://traffan.com/</id>
+  <author>
+    <name><![CDATA[Gary Traffanstedt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Bug in Apple's Command Line Tools 6.3]]></title>
+    <link href="http://traffan.com/bug-in-apples-command-line-tools-6-dot-3/"/>
+    <updated>2015-04-21T02:38:07-04:00</updated>
+    <id>http://traffan.com/bug-in-apples-command-line-tools-6-dot-3</id>
+    <content type="html"><![CDATA[<p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on [<a href="http://stackoverflow.com/a/29576048">http://stackoverflow.com/a/29576048</a>])(StackOverflow) found a workaround.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>echo '#define _LIBCPP_ASSERT(x, m) ((void)0)' | sudo tee -a /Library/Developer/CommandLineTools/usr/include/c++/v1/__debug &gt; /dev/null</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Never one to be afraid of messing with my system because hey, it&rsquo;s 2am, I&rsquo;m tired, and furthermore, what could possibly go wrong? I ran the command, typed in my system password, and all seemed well. I then tried <code>gem install therubyracer</code> and it installed, finally.</p>
+
+<p>I don&rsquo;t use XCode much and didn&rsquo;t actually know the Command Line Tools were/are used by Ruby so that&rsquo;s something new to me. I also didn&rsquo;t knwo that the might Apple ever makes mistakes. Ok, I actually knew that part. They don&rsquo;t make a lot of mistakes, but not everything can be magical and just work. Thankfully I found a solution and was able to get the gems installed. Now back to my regularly scheduled late-night coding.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Return of the Great White Hope.]]></title>
+    <link href="http://traffan.com/the-return-of-the-great-white-hope/"/>
+    <updated>2015-04-15T14:25:27-04:00</updated>
+    <id>http://traffan.com/the-return-of-the-great-white-hope</id>
+    <content type="html"><![CDATA[<p>After two years of taking a step back and trying other things, I&rsquo;ve returned to the land of the living and have dived head first back into all things technical. Too many years of mediocrity had taken their toll on the passion for programming I once had. First computer when I was three, second when I was eight, first website in &lsquo;96 when I was 18, and first programing job a couple years later. The journey from novice to professional was a quick one. I went from basic html to installing scripts, then to modifying scripts, then to writing custom code. From there it wasn&rsquo;t long until I was programming large sites and doing everything else involved in maintaining large high-traffic sites. I learned on the job and learned just enough as I needed it. Never getting to use the latest and greatest but always stuck with old PHP and Perl code. I knew PHP pretty well, Javascript less well, a bit of Linux, some FreeBSD, quite a bit of MySQL, and on and on. I knew enough and it got me by.</p>
+
+<p>Later I would leave the self-employed world for a jaunt on the corporate side of things, where what little passion I had left would die. Working on 10 year old code that had been touched by at least as many people. Cajoling it into doing things it was never designed to do. Never able to take the time for a decent rewrite because hey, it works well enough. Well, no, it doesn&rsquo;t. It has more bugs than a crack den in the ghetto but that&rsquo;s ok. I&rsquo;ll add in some new code and try my best to patch it together. Who care&rsquo;s about quality, right?</p>
+
+<p>But that was then, this is now, and a two year respite has allowed me to reset mentally. Thanks to sites like <a href="http://www.freecodecamp.com/learn-to-code">Free Code Camp</a>, <a href="http://www.codecademy.com/learn">Codecademy</a>, and <a href="http://www.theodinproject.com/">The Odin Project</a> I&rsquo;m all-in and learning very quickly. My overall plan includes the MEAN stack, Ruby, Rails, and then later Objective-C and Swift. Right now I&rsquo;m working through an Angular tutorial as well as the Learn You Node stuff. I like to work through two at the same time so I can switch back and forth to keep my mind fresh. I also take a quick walk if I get stuck to do a quick reset on my thinking and not just keep beating my head against a wall.</p>
+
+<p>That said, I&rsquo;ll end this here and see if I can get it posted. It&rsquo;s been two years since I&rsquo;ve attempted a blog post and I&rsquo;m having to relearn how to use Octopress. I have the source code to the page but not the source of my previous posts or how I had it set up. Yea, I&rsquo;m regretting deleting all of my programming stuff way back when. Would be nice to have it now.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HAML Is Not for ASSETS]]></title>
+    <link href="http://traffan.com/haml-is-not-for-assets/"/>
+    <updated>2013-04-26T08:45:00-04:00</updated>
+    <id>http://traffan.com/haml-is-not-for-assets</id>
+    <content type="html"><![CDATA[<p>So in my gem file I had gem &lsquo;haml&rsquo; inside my assets block like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">gem</span> <span class="s1">&#39;haml&#39;</span>
+</span><span class='line'>    <span class="o">---</span> <span class="n">other</span> <span class="n">gems</span> <span class="n">here</span> <span class="o">---</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This worked fine locally and all was well. Then I tried to push an update to AppFog and none of my HAML files loaded. Nothing showed up in the error log but there was an obvious problem. A site without any layout isn’t much of a site. I tried a few things but couldn’t get it to work so I bitched about it on Twitter:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Deff something up with @appfog not supporting haml. Works 
+</span><span class='line'>swimmingly on local but shits the bed after deploy. #frustrated</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Yea, I was a little frustrated. So converted my files over to erb and left it at that. Then I was contacted via Twitter by Alex Parkinson from AppFog who asked me about the issue. This prompted me to look into it a bit more and right off the bat I noticed my issue with the gem file. I tried moving the HAML gem outside of the assets block and what do you know? That worked.</p>
+
+<p>Thanks to GIT it was trivial to track down my previous files, merge in some changes I had made, and then push the latest up to AppFog and now all is well and I’m able to use HAML.</p>
+
+<p>I apologized to AppFog via Twitter and also Tweeted about my mistake. I have to admit, I’m impressed Mr. Parkinson took the time to Tweet me about this. Had he not I likely would have just stuck with erb files and would have presumed that AppFog had an issue with HAML when all along it was my own ignorance that was screwing me up.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Counter Caching]]></title>
+    <link href="http://traffan.com/counter-caching/"/>
+    <updated>2013-04-24T08:54:13-04:00</updated>
+    <id>http://traffan.com/counter-caching</id>
+    <content type="html"><![CDATA[<p>As promised, a blog post detailing the proper way to handle your counter_cache columns. A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
+
+<p>So we decide to use a <code>counter_cache</code> column but discover that apparently the fine folks behind Rails don’t actually ever use this feature, or if they do, they are using it in some manner unbeknown to me as for my needs, I’m almost always going to need to know more than just one count on a particular model. Goals and completed goals or books and how many of those have been read or well, you get the idea.</p>
+
+<p>After a bit of time spent googling and researching this I came across a gem that is, as far as I can tell, exactly what should be in the Rails code itself. This is how it should work by default since the norm, again just my opinion is multiple columns rather than just one. The gem is called <a href="https://github.com/magnusvk/counter_culture">counter_culture</a> and if you have use for a <code>counter_cache</code> column, and I think a lot of you will, then you owe it to yourself to give this a try.</p>
+
+<p><strong>INSTALL</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;counter_culture&#39;</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://github.com/magnusvk/counter_culture.git&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then run bundle install to install the new gem.</p>
+
+<p><strong>DATABASE</strong></p>
+
+<p>The standard rails migration generator is only going to get you so far on setting up your new files. You can go ahead and generate the migration scaffold but then you’ll need to manually add some code to that. For my needs I used:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:goals_count</span><span class="p">,</span> <span class="ss">:integer</span><span class="p">,</span> <span class="ss">:null</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:goals_completed_count</span><span class="p">,</span> <span class="ss">:integer</span><span class="p">,</span> <span class="ss">:null</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We want the field(s) to be integers and for this to work properly, you need to set null to false and default them to 0. These settings are why the migration generator isn’t able to generate the entire thing for us. Once you have your migration setup, you’ll of course want to run <code>rake db:migrate</code> to get your new fields added.</p>
+
+<p><strong>CODE</strong></p>
+
+<p>Next you need to add some code to your model. This is as they say, where the magic happens.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">counter_culture</span> <span class="ss">:user</span><span class="p">,</span>
+</span><span class='line'>                <span class="ss">:column_name</span> <span class="o">=&gt;</span> <span class="s1">&#39;goals_count&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">counter_culture</span> <span class="ss">:user</span><span class="p">,</span>
+</span><span class='line'>                <span class="ss">:column_name</span> <span class="o">=&gt;</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span><span class="o">|</span><span class="n">model</span><span class="o">|</span> <span class="n">model</span><span class="o">.</span><span class="n">completed</span> <span class="p">?</span> <span class="s1">&#39;goals_completed_count&#39;</span> <span class="p">:</span> <span class="kp">nil</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first line is our standard <code>belongs_to</code> and there’s nothing special about it here. Next we have my first <code>counter_cache</code> column being setup. This is the standard one that will give us the total count of goals for each user. We are calling <code>counter_culture</code> on the model and then giving it the column we want it to keep updated. Simple enough I think.</p>
+
+<p>The next block sets up my other <code>counter_cache</code> column and this one is a bit more involved. It starts the same with setting up the model followed by the column name, but when we define the column name we’re using a <code>Proc</code> so that we can dynamically determine when the column needs to be incremented or decremented. In this case <code>model.completed</code> is a boolean and will return true or false depending on whether or not this goal is completed. If you have a more complex situation, you can instead do something like <code>model.completed?</code> and then def <code>completed?</code> however you want. Just keep in mind that your <code>completed?</code> method needs to return true or false and it should work fine.</p>
+
+<p><strong>DONE</strong></p>
+
+<p>So there you have it. Simple once you get the hang of it. I actually had some trouble getting this setup initially and received assistance from <a href="https://twitter.com/magnusvk">@magnusvk</a>, the creator of the gem, who responded immediately and was quite helpful. I think you’d be hard pressed to find a friendlier community than what Rails has. People really seem to go out of their way to help each other and it’s because of that, Rails continues to thrive.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Counter_cache Frustrations]]></title>
+    <link href="http://traffan.com/rails-counter-cache-frustrations/"/>
+    <updated>2013-04-23T09:04:16-04:00</updated>
+    <id>http://traffan.com/rails-counter-cache-frustrations</id>
+    <content type="html"><![CDATA[<p>For my bucket list site I need to know how many goals each user has and of those, how many are completed. Doing this with eager loading is easy but less than optimal. After watching the RailsCast on the subject (<a href="http://railscasts.com/episodes/23-counter-cache-column">#23 Counter Cache Column - RailsCasts</a>), I was intrigued. This seemed like the ideal way to efficiently solve my problem.</p>
+
+<p>I quickly set things up and for total goals, it worked perfect. Create a new goal and the counter would increment. Delete a goal and the counter would decrement. Get the count for goals for a particular user and it would only hit the user table. Nice, clean, efficient. Great, I was half way home. Went to do the same thing for the second column, the counter for completed goals and ran into a problem. You apparently can’t have more than one counter cache column like this.</p>
+
+<p>Normally you set up the counter cache column with the name and then <code>_count</code> so <code>goals_count</code> would be the name if you were getting the count for goals. I thought <code>goals_count</code> and <code>goals_completed_count</code> would be ideal but no dice.</p>
+
+<p>After a bit of research I found a gem that does exactly what I want. I’m still in the process of implementing this gem but expect a future blog post on how to use this gem in the next few days.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Auto-Tweet Octopress Blog Posts Using IFTTT]]></title>
+    <link href="http://traffan.com/auto-tweet-octopress-blog-posts-using-ifttt/"/>
+    <updated>2013-04-21T09:06:42-04:00</updated>
+    <id>http://traffan.com/auto-tweet-octopress-blog-posts-using-ifttt</id>
+    <content type="html"><![CDATA[<p>When using a blogging platform such as Wordpress, you can typically find a plugin that will do pretty much anything. With Octopress you’re a bit more on your own. Thankfully there are services that assist with much of this. Today I setup an account on <a href="https://ifttt.com/">IFTTT</a> which stands for If This, Then That. Once you have an account on here, setting up automatic tweets is trivial.</p>
+
+<p><strong>Easy Steps:</strong></p>
+
+<ol>
+<li>Create a free account on <a href="https://ifttt.com/">IFTTT</a></li>
+<li>You’ll want to check your email and verify your email address by clicking the link in that email. I didn’t do this step initially and it took me a bit to figure out why my recipe wasn’t running.</li>
+<li>Click on Create a <code>recipe</code></li>
+<li>Click on <code>this</code> (only option on this page)</li>
+<li>We’re going to be using our <code>atom.xml</code> file so click <code>Feed</code></li>
+<li>Now click on <code>New feed item</code> so we get 1 tweet for each new blog post</li>
+<li><code>Feed URL</code> is the path to our <code>atom.xml</code> such as: <code>http://traffan.com/atom.xml</code></li>
+<li>Now click on <code>that</code> (only option on this page)</li>
+<li>Select <code>Twitter</code> since we are setting up a tweet.</li>
+<li>Here you’ll be asked to activate your Twitter account. This just means you are giving IFTTT access to post on your behalf. Don’t worry about this step. IFTTT is quite popular and well respected. They won’t do anything malicious.</li>
+<li>Now click on <code>Post a tweet</code></li>
+<li>Now you need to tell it what you want your tweets to look like. I’m using: `New blog post: ’ for mine, but you can put whatever you want in yours.</li>
+<li>Last step asks you to enter the description you want to use for your new task and then click <code>Create Recipe</code> to save your new masterpiece.</li>
+</ol>
+
+
+<p>Provided you set things up correctly and remembered to verify your email address, your new recipe should now be running every 15 minutes checking for new posts and tweeting about them.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress Tapir]]></title>
+    <link href="http://traffan.com/octopress-tapir/"/>
+    <updated>2013-04-21T06:17:11-04:00</updated>
+    <id>http://traffan.com/octopress-tapir</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> You can find the relevant files on GitHub here: <a href="https://github.com/blimey85/octopress-tapir">octopress-tapir</a></p>
+
+<p><a href="http://tapirgo.com/">Tapir</a> search for your <a href="http://octopress.org/">Octopress</a> blog!</p>
+
+<p>Tapir works by indexing your RSS feed. Only what is included within this file will be indexed. For RSS purposes you most likely only want the last 20 or so articles but for search, you want all of them included. To handle this, we simply create a second xml file to use for search.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>atom.xml</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>the original file</li>
+<li>limited to 20 most recent posts</li>
+<li>we use this for RSS</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>atom_search.xml</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>the new file</li>
+<li>a modified version of atom.xml</li>
+<li>includes all posts</li>
+<li>added summary field</li>
+</ul>
+
+
+<p><strong>Install</strong></p>
+
+<ol>
+<li>Visit <a href="http://tapirgo.com/">Tapirgo.com</a> and enter the url to your <code>atom_search.xml</code> like: <code>http://yoursite.com/atom_search.xml</code>
+After you enter your email and click the big <code>GO</code> button, you’ll be given both a public and a private token.</li>
+<li>Open your <code>_config.yml</code> and include the public token: <code>tapir_token: your_id_here</code></li>
+<li>Copy <code>loading.gif</code> to your <code>source/images/</code> folder.</li>
+<li>Copy <code>jquery-tapir.js</code> to your <code>source/javascripts/</code> folder.</li>
+<li>Copy <code>search.html</code> to your <code>source/</code> folder.</li>
+<li>Open <code>source/_includes/navigation.html</code> and add:</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.tapir_token %}
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">&quot;get&quot;</span> <span class="na">action=</span><span class="s">&quot;/search.html&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;fieldset</span> <span class="na">role=</span><span class="s">&quot;search&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">&quot;search&quot;</span> <span class="na">name=</span><span class="s">&quot;query&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;Search...&quot;</span> <span class="na">x-webkit-speech</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/fieldset&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/form&gt;</span>
+</span><span class='line'>
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That’s all there is to it. You should now be able to search your content using the wonderful <a href="http://tapirgo.com/">Tapir</a> service. :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Gem: Consistency_fail]]></title>
+    <link href="http://traffan.com/gem-consistency-fail/"/>
+    <updated>2013-04-20T09:24:09-04:00</updated>
+    <id>http://traffan.com/gem-consistency-fail</id>
+    <content type="html"><![CDATA[<p>In rails it’s common to add a <code>validates_uniqueness_of</code> validation to models for any fields that you want to be unique. Most of the time this is sufficient and will catch when a record is submitted that already exists. But what if two submissions come in at the same time? What if a user while registering clicks the submit button multiple times? You could run into a case where rails checks for uniqueness multiple times before the first record has time to be saved in the database, sees that they are in fact, at that point in time, unique, and allows them to go through. The database doesn’t know you want them to be unique so it gladly accepts them, and now your formerly pristine database is pristine no more.</p>
+
+<p>Enter this nifty little gem: <a href="https://github.com/trptcolin/consistency_fail">consistency_fail</a>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install consistency_fail</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>➜  bucketlist git:(master) ✗ consistency_fail
+</span><span class='line'>
+</span><span class='line'>There are calls to validates_uniqueness_of that aren't backed by unique indexes.
+</span><span class='line'>--------------------------------------------------------------------------------
+</span><span class='line'>Model                      Table Columns
+</span><span class='line'>--------------------------------------------------------------------------------
+</span><span class='line'>ActsAsTaggableOn::Tag      tags (name)
+</span><span class='line'>ActsAsTaggableOn::Tagging  taggings (tag_id, taggable_type, taggable_id, context, tagger_id, tagger_type)
+</span><span class='line'>User                       users (username)
+</span><span class='line'>--------------------------------------------------------------------------------
+</span><span class='line'>
+</span><span class='line'>Hooray! All calls to has_one are correctly backed by a unique index.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In my initial usage I had three indices that needed to be added. I quickly created two migrations (one for tags and taggings as they are related, and one for users) and then ran the tool again:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>➜  bucketlist git:(master) ✗ consistency_fail
+</span><span class='line'>Hooray! All calls to validates_uniqueness_of are correctly backed by a unique index.
+</span><span class='line'>
+</span><span class='line'>Hooray! All calls to has_one are correctly backed by a unique index.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now sure, I know some of you will say that these indices should be created when you add the validation to the model and by doing that you don’t need a gem such as this one, but who among us is 100% effective in never forgetting little things like this? You create your table, build out a form, realize you want a couple of fields unique so you update your model, “oh, I need to add an index to the db… I’ll do that as soon as I’m done with…” and you forget all about it. We’ve all been there. But now we have <a href="https://github.com/trptcolin/consistency_fail">consistency_fail</a> to help us with such things.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Nested Models vs Monolithic]]></title>
+    <link href="http://traffan.com/nested-models-vs-monolithic/"/>
+    <updated>2013-04-16T09:29:29-04:00</updated>
+    <id>http://traffan.com/nested-models-vs-monolithic</id>
+    <content type="html"><![CDATA[<p>We start with a user table that contains the usual suspects. The user can login, enter their basic info, and even a blurb about themselves. Then they want to link their profile to various social sites. Simple enough, on the surface.</p>
+
+<p>Beyond deciding which sites to support, we have to decide how we want to handle things on the back end. Do we want to go the proper router and employ nested models, or do we cram everything into the user table?</p>
+
+<table border=1 cellpadding=0 cellspacing=0>
+    <tr><th>Monolithic</th><th>Nested</th></tr>
+    <tr><td>id</td><td>id</td></tr>
+    <tr><td>email</td><td>email</td></tr>
+    <tr><td>username</td><td>username</td></tr>
+    <tr><td>…</td><td>…</td></tr>
+    <tr><td>facebook</td><td>&nbsp;</td></tr>
+    <tr><td>flickr</td><td>&nbsp;</td></tr>
+    <tr><td>youtube</td><td>&nbsp;</td></tr>
+</table>
+
+
+<p>With the monolithc setup, that’s all you need. If the user wants to link to Facebook, they enter thier Facebook username and you store in the field apropriately called Facebook. Simple, straightforward, and ultimately the fastest since it requires no joins in the database.</p>
+
+<p>For the nested model method we’ll need to add two additional tables. One for our networks, and one for our associations between users and those networks.</p>
+
+<table border=1 cellpadding=0 cellspacing=0>
+    <tr><th>Networks</th><th>User_Networks</tr>
+    <tr><td>id</td><td>id</td></tr>
+    <tr><td>name</td><td>user_id</td></tr>
+    <tr><td>url</td><td>network_id</td></tr>
+    <tr><td>&nbsp;</td><td>username</td></tr>
+</table>
+
+
+<p>Nothing complex between these. Networks table has the name for each of our social sites and also the url to the profile page for each site. User_Networks has the association for each user to whichever social sites they’ve enabled and then their username for that site.</p>
+
+<p>The problem happens when you go to setup all the code that is required to use nested models on the front end. You first set up your associations in the models and then you have to setup your nested attributes. Once that’s done and Rails is able to link the models together, you need to set thigns up in your controller and views. That’s where I ran into problems. I was able to use the <code>cocoon</code> gem and get things working fairly well, however while I was able to add social sites to my profile, I was NOT able to add the username for each one. I had a drop down list for the various social sites but couldn’t determine how to add an input box that would allow a user to enter their username. In the end I reverted back to the monolithic method.</p>
+
+<p>As I stated earlier, the monolithic method has the bennefit of being faster. It’s impossible to get joins and associations to be as fast as having everything in one table. I don’t anticipate ever having thousands of concurrent users on this site, but in the event it gets popular, this decision here might really help me. Or at least that’s what I’m going to keep telling myself since I couldn’t get the other way working satisfactorily. :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Destroy Scaffold]]></title>
+    <link href="http://traffan.com/rails-destroy-scaffold/"/>
+    <updated>2013-04-16T06:37:51-04:00</updated>
+    <id>http://traffan.com/rails-destroy-scaffold</id>
+    <content type="html"><![CDATA[<p>Over the years I’ve generated a scaffold a time or two but until tonight the fact that you can reverse this with <code>rails destroy scaffold ModelName</code> had escaped me. Such a simple thing and quite the time saver. Combined with <code>rake db:rollback</code>, Rails makes it very easy to try new ideas and if they don’t work out, you can quickly reverse course.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Who Died and Left You Brew Master?]]></title>
+    <link href="http://traffan.com/who-died-and-left-you-brew-master/"/>
+    <updated>2013-04-15T09:39:44-04:00</updated>
+    <id>http://traffan.com/who-died-and-left-you-brew-master</id>
+    <content type="html"><![CDATA[<p>I’ve recently started a new project and I’m finding the most difficult aspect has nothing to do with the actual coding but instead, is deciding which features to include and/or how to include them. It’s the top-level stuff that is difficult, not the nitty gritty. You want to be able to login via Facebook? That’s an easy thing to add but with adding that comes the question of what other sites should we integrate with? Twitter? Google? Bob’s House of BBQ? I opted for the big three: Facebook, Twitter, and Google. And with Google came the question of do I include <em>just</em> Google or also Google+? What about Google Apps? Apparently these three all have different authentication methods.</p>
+
+<p>When setting up the profile page I had a bunch of questions about what I should include. Do I include Gender? If so, what options do I want to have? Male, Female, Other? But other might offend some people. While considering this particular question I did a quick Google and found that there are actually a LOT of people that are offended by the term other in this context. So what then? And do I add an option saying they didn’t want to say? Or maybe I make it so you can hide your gender so others can’t see it.</p>
+
+<p>So now we’re going to allow people to hide parts of their profile? Well, we also ask for <strong>first name</strong> and <strong>last name</strong> as well as each user having a <strong>username</strong> so we’ll want to allow them to hide their real names. And since we are asking their real names, do we want a way to verify their real names? I’ve seen that done on some sites.</p>
+
+<p>And we want to allow people to list their Facebook and Twitter accounts but what about Google+? I don’t use it but I know a lot of people do. And Pinterest is popular. As is Instagram. As is… see where this leads? Maybe we set this up so it’s free form… they enter whatever site in one field and their username in a second field. But then how do we link it? Better to make it a drop down where they can select the ones they want.</p>
+
+<p>So again, the most difficult aspect isn’t the actual code. I can write great code and add features until the cows come home, but knowing which features to include and which aren’t worth the time or even worse, will become problematic, that’s the difference between great sites and crap sites.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Joys of Coffeescript]]></title>
+    <link href="http://traffan.com/the-joys-of-coffeescript/"/>
+    <updated>2013-04-12T09:41:56-04:00</updated>
+    <id>http://traffan.com/the-joys-of-coffeescript</id>
+    <content type="html"><![CDATA[<p>I just used Coffeescript for the first time. I’ve copied and pasted Coffeescript code before, of course, but this was the first time I had used it with my own code. And I’ll admit I cheated. I started with JQuery and then ran it through a converter (<a href="http://js2coffee.org/">http://js2coffee.org/</a>).</p>
+
+<p><strong>JQuery</strong>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[type=&#39;checkbox&#39;]#goal_completed&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.goal_completed_on&#39;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Coffeescript</strong>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[type=&#39;checkbox&#39;]#goal_completed&quot;</span><span class="p">).</span><span class="nx">on</span> <span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.goal_completed_on&quot;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For writing the code I was doing a simple <code>&lt;script&gt; &lt;/script&gt;</code> block at the bottom of my <code>_form.html.erb</code> file but found that because I’m loading my JS files at the bottom of my layout, my JQuery wasn’t working. JQuery hadn’t loaded yet. Now that I have it as proper Coffeescript and in the propper assets file, <code>assets/javascripts/goals.coffee.js</code> in this case, everything is working great.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Trying AppFog for Project Deployment.]]></title>
+    <link href="http://traffan.com/trying-appfog-for-project-deployment/"/>
+    <updated>2013-04-11T09:45:15-04:00</updated>
+    <id>http://traffan.com/trying-appfog-for-project-deployment</id>
+    <content type="html"><![CDATA[<p>I’ve been playing around with Node.js a bit and was wanting to find a hosting service where I could deploy my little test apps for testing and for showing friends. I read some good things about AppFog and felt the price was right (they offer a free intro-level service that lets you get your feet wet with minimal financial risk). Signup took just a minute and I had my basic Rails app deployed five minutes later.</p>
+
+<p>Interesting how they handle databases. My deploy happened entirely on the command line:</p>
+
+<pre><code class="plain">af login
+(email prompt)
+(password prompt)
+af deploy
+</code></pre>
+
+<p>And then I answered a few questions and the app was running. One of those questions is where I indicated that I wanted a MySQL database. I was not given a user/pass for MySQL, nor do I needed to handle any db related setup at all. AppFog uses some sort of auto-configuration and I’ve gotta say, it’s pretty cool.</p>
+
+<p>No issues during the first deployment. Tonight after a few hours spent working on my app I did an update to AppFog and encountered my first issue. Two minutes later I’d figured out how to view the log file and saw it was an asset compilation issue. Googled that and then:</p>
+
+<pre><code class="ruby">rake db:setup RAILS_ENV=production
+rake assets:precompile --trace RAILS_ENV=production
+</code></pre>
+
+<p>Had me ready for a second attempt. Apparently the issue had to do with one of my <code>.js</code> files not being in the assets folder where it should be. Instead it’s in <code>public/javascripts/</code>. I’ll get that moved tomorrow or the next time I get a chance to work more on my project.</p>
+
+<p>It’s only been one day, and two pushes, but so far I’m quite impressed with AppFog. I especially like how easy it is to roll updates. Will come in quite handy with my project is a little farther along and I have friends testing things for me.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Defaulting to Puma]]></title>
+    <link href="http://traffan.com/defaulting-to-puma/"/>
+    <updated>2013-04-10T09:51:18-04:00</updated>
+    <id>http://traffan.com/defaulting-to-puma</id>
+    <content type="html"><![CDATA[<p>For whatever reason I’ve switched from Webrick to Puma as my default development server. At one time I was getting some odd errors with Webrick and my cursory Google searches indicated it was an issue with Webrick itself. I assume since Webrick is bundled with Rails that it’s decent but I really haven’t heard any compelling reason to run it. Whatever the case, I made the switch to Puma but found that when I would type <code>rails s</code> Puma wouldn’t boot. I had to instead type <code>bundle exec puma</code> which of course was completely unacceptable!</p>
+
+<p>If like me, you’d rather be able to use the shorter command, do this:</p>
+
+<p>Inside your project folder find <code>/script/rails</code> and add the following:</p>
+
+<pre><code class="ruby">require 'rack/handler'
+Rack::Handler::WEBrick = Rack::Handler.get(:puma)
+</code></pre>
+
+<p>That’s all it takes. Now when you type <code>rails s</code> you’ll get Puma.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Issues With My Path]]></title>
+    <link href="http://traffan.com/issues-with-my-path/"/>
+    <updated>2013-04-07T09:55:32-04:00</updated>
+    <id>http://traffan.com/issues-with-my-path</id>
+    <content type="html"><![CDATA[<p>When you modify your path and add things to it, do the items read first or last take precedence? By this I mean, if I have a set of say 5 items, and they are read in order from left to right, does the first item take precedence over the last, or does the last overwrite the first? If I had a variable and defined it twice, the second one would take precedence but it appears that when defining your path, it works in reverse. Whatever is defined first is what gets used.</p>
+
+<p>Yesterday I had issues getting the PostgreSQL commands to work on the command line. I was hitting the ones in <code>/usr/bin/</code> or <code>/usr/local/bin</code> and since I had installed the PostgresAPP, I wanted to use the commnads that come with that. I thought by appending the new location to my path this would override anything already loaded. Instead I needed to prepend the new location. Once I did that, it worked perfectly.</p>
+
+<p><strong>Note</strong>: You also need to make sure you restart ALL of your consoles. I use a lot of split screens, tabs, and windows and after a few hours I happened to be in one that I had NOT restarted so the path issues were back. A quick restart of my console app (<a href="http://www.iterm2.com/#/section/home">iTerm 2</a> in this case) resolved this for me.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Installing, Reinstalling, and Then Reinstalling Again.]]></title>
+    <link href="http://traffan.com/installing-reinstalling-and-then-reinstalling-again/"/>
+    <updated>2013-04-06T09:59:13-04:00</updated>
+    <id>http://traffan.com/installing-reinstalling-and-then-reinstalling-again</id>
+    <content type="html"><![CDATA[<p>When setting up any development environment, you strive to get everying working just right. I’ve only had my mac for around five weeks now and in that time, I’ve installed and reinstalled things more often than I care to admit. I think tonight I may have finally succeeded in getting a workable setup accomplished.</p>
+
+<p>Since I’m using Octopress rather than Wordpress, I no longer have a need for Mamp so I’ve gone ahead and removed that. I was then able to go back to useing the MySQL that is installed via Brew. By switching back, I resolved the issues I was having previously with both command line tools not always working just right, and sockets not being utilized. Tools wanted to use /tmp/mysql.sock by default but the MAMP version had it’s own location for files, and it’s own way of doing things. Now I don’t fault MAMP for this and in fact feel it’s the right way for them do it. This keeps what they are installing completely separate from everything else, minimizing the possibility of conflicts. If you have the experience and know-how to integrate the install with the rest of the system, adding the new path to your existing path and so on, then you shouldn’t have any issues. I, however, had some issues with doing that.</p>
+
+<p>One thing I think I was doing wrong was adding my new path to the end of the existing path when I should have done the opposite. I was trying to get it to overwrite anything else but it seems, unless I’m mistaken, that the first setting is what actually gets accepted and kept. I’ll play with this more later just so I know for sure which way actually works. I deff still have quite a bit to learn about the OS X command line and paths.</p>
+
+<p>So MySQL is installed via Brew and seems setup corretly. PostgreSQL is installed via the <a href="http://postgresapp.com/">Heroku Postgres.app</a>. I wanted to install this via Brew only to be consistent with how I have MySQL installed but I ran into a number of issues trying to get the PostGIS extension installed. First an issue with libgeotiff not finding libtiff properly. I managed to resolve that by passing in the path to libtiff. Then a few steps in the process later, gdal (I believe that’s waht it’s called) didn’t want to install.</p>
+
+<p>Next I tried the <a href="http://www.enterprisedb.com/">http://www.enterprisedb.com/</a> installer and that worked fine, installing first the db and then a second included installer was used to install PostGIS. The problem came after the installation was completed. When I created my test database, connected to it, and then attempted to <code>CREATE EXTENSION postgis;</code> it failed stating that <code>postgis.control</code> could not be found.</p>
+
+<p>I still have an issue with the PostgreSQL install not using sockets in the standard manner. When I try <code>psql</code> on the command line, I get an error related to the Unix domain socket. If I instead use <code>psql -h localhost</code> it connects fine. One of the same issues I was having with MySQL before swtiching back to the installation via Brew. But thankfully the PostGIS stuff is working and I can figure out the socket issue when I have more time.</p>
+
+<p><strong>Edit</strong>: I just added the Postgres.app path to my .zshrc file and now the socket issue is resolved. I’m able to log in to my database without passing in the host. So my issue earlier was that I was adding this to the end of the path, rather than to the beginning. That’s good to know. Obviously makes a huge difference sometimes.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Apple 15-inch MacBook Pro With Retina Display]]></title>
+    <link href="http://traffan.com/apple-15-inch-macbook-pro-with-retina-display/"/>
+    <updated>2013-04-06T06:03:00-04:00</updated>
+    <id>http://traffan.com/apple-15-inch-macbook-pro-with-retina-display</id>
+    <content type="html"><![CDATA[<p><img src="http://traffan.com/images/macbook-pro-with-retina-display.jpg" alt="image" />{: .center-image }</p>
+
+<p>After lots of fun trying to get Windows to work well with my Ruby on Rails development setup, I ended up facing not one, but two hardware failures. My Dell all-in-one machine decided it no longer wanted to turn on. Pushing the power button did absolutely nothing. No sound, no flashing lights, no dancing, singing, or putting on any kind of show. I took it to a local repair shop, thinking it’s most likely just the power switch and should be a cheap and easy fix. Nope. Because it’s an all-in-one machine, it’s nearly impossible to repair, apparently. So I called up Dell, re-upped my warranty which had expired a month or so back, and they dispatched parts and a repair man. Couple days later, we were back up and running. Six days after this, the train once again derailed. Same exact problem. Push the power button and nada. Zilch. No song and dance. So back on the phone to Dell and once again they dispatched parts and a repair man.</p>
+
+<p>This was not the first time I had encountered the dark-side of Dell. I had previously purchased a nice 17” laptop form them and it eventually had a screen failure. Sent it in, they replaced the screen, and all was well for about 9 months until the screen failed in the exact same manner. Of course the second failure was after the warranty had expired and so now it serves as my media center pc, connected to my tv so the monitor isn’t needed.</p>
+
+<p>Dell used to build quality machines, and maybe they still do. Maybe I just had bad luck on two machines in a row. I dunno. And I understand that hardware will inevitably fail. I go in expecting that and am not the least bit surprised when it happens. But when it happens twice, in exactly the same manner, I start to wonder about the quality of the items I’m spending my hard earned cash on.</p>
+
+<p>And this is where Apple comes in. I had been to the Apple store numerous times, fawning over their impressive machines. I had even nearly proved their laptops waterproof with how much drooling I’ve done upon them. They build a helluva machine in the MacBook Pro, especially with the beautiful Retina displays. Until now I had been fairly-well served by my Dell machines but with four failures in a row, I was ready for a change. I was ready to spend quite a bit more in the hope that maybe, just maybe, this time I’d get a machine that not only kicked the bejesus out of machines I’ve had in the past, but also actually perform trouble-free for a couple years. Am I really asking too much? Is 2 years of worry-free service too much from a modern computer? I think not. But to be sure, I bought the 3 year warranty which covers everything except physical damage, expecting I’ll want to trade-in for whatever new and shiny thing Apple comes up with by then.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How I Kinda Sorda Create Batches for Delayed_job.]]></title>
+    <link href="http://traffan.com/how-i-kinda-sorda-create-batches-for-delayed-job/"/>
+    <updated>2013-04-06T03:05:41-04:00</updated>
+    <id>http://traffan.com/how-i-kinda-sorda-create-batches-for-delayed-job</id>
+    <content type="html"><![CDATA[<p>For a recent project I found myself needing to batch process a large number of images twice per week. On average I’d be processing around 4,000 images and once processed, would need to tar these up and then upload them to the data center. Now we could debate the merits of this approach and I believe we’d be in complete agreement that there absolutely must, and is, many different ways to achieve the same end result, but that was beyond my control. My task was to process and upload the images.</p>
+
+<p>The current setup was/is php and if you know me, you know that while I’m a php dev, I’ve never really cared for the language. I started this journey into code poetry with perl which I still to this day have much love and respect for. Well, to be honest, I started many years prior in other languages besides perl. Something on my Texas Instrument machine back in ‘81 or ‘82. Applesoft Basic around ‘87. Dabbled a bit with Pascal back then too. But anyway, Perl was the first language I really dug into and used professionally. When php came around I started using it and eventually it became my primary language for everything. This was a conscious decision I made, but then again, being a programmer was never a conscious choice I made either.</p>
+
+<p>But getting back on point, the current setup was php and worked fairly well. It was slow and if anything went wrong, the network connection dropped, database dropped a connection, or the wind blew a bit too strong or from the wrong direction, all hell would silently break loose. There is single log file which awesomely only gets generated at the very end of the run and obviously only if the run succeeds. if anything goes wrong, good luck figuring out where the problem occurred and how much of the process was completed. Those before me apparently didn’t care much for things like logging or real-time stats. So I set out to write something much more robust in my fave language, Rails. Ok fine, Rails is a framework, not a language… but this is my blog and I’ll call it what I want. :)</p>
+
+<p>Skipping ahead to the point of this post, I had a rake task that could process my images and do what I needed with them and it worked pretty well. My only issue was that things weren’t very fast. I scanned the directories, grabbed all the tif files, and one by one generated the png files and saved them to my target directory. Enter delayed_job. With a few tweaks of the code I was able to process my images 8 at a time. This made an incredible difference with how fast I could process a batch of images. But there was one issue. At the end of processing I need to tar up the target folder and then upload it to the data center. Initially I had, since everything was sequential, had the necessary code for archiving the folder, and then uploading it, right in the same script. It would loop through the images and then do the rest. Now that delayed_job was getting all of the image conversion stuff, the folder was getting compressed much too soon. I had no way to tell when the conversions were done. I researched the issue and could find no way to setup any sort of batch with delayed_job so I looked at some other similar tools. Nothing jumped out at me. Surely there must be a way to create some sort of batch-like something. I couldn’t be the only one that needed to know when a group of jobs had completed. And then it struck me, what if I created a job that monitored the other jobs and when it detected it was the only job remaining, would wrap things up?</p>
+
+<p>Here is the rake task that handles processing the images:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:comments</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">desc</span> <span class="s2">&quot;Prepare comment images for upload&quot;</span>
+</span><span class='line'>    <span class="n">task</span> <span class="ss">process_images</span><span class="p">:</span> <span class="ss">:environment</span> <span class="k">do</span>
+</span><span class='line'>        <span class="c1"># lets get our conversion on</span>
+</span><span class='line'>        <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">COMMENTS_PATH</span><span class="si">}</span><span class="s2">/*/*/*/*.tif&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">tif_file</span><span class="o">|</span>
+</span><span class='line'>            <span class="no">Comment</span><span class="o">.</span><span class="n">delay</span><span class="o">.</span><span class="n">tif_to_png</span><span class="p">(</span><span class="n">tif_file</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1"># and now add a job to check on the other jobs</span>
+</span><span class='line'>        <span class="no">Comment</span><span class="o">.</span><span class="n">delay</span><span class="o">.</span><span class="n">tif_to_png_completed</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1"># and now lets write home about it</span>
+</span><span class='line'>        <span class="nb">puts</span> <span class="s2">&quot;Busy day at the factory! Many jobs queued up.&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And here are the two methods from my Comments model:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># method for converting tif to png</span>
+</span><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">tif_to_png</span><span class="p">(</span><span class="n">tif_file</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">image</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">tif_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;.tif&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="sx">%x[ convert &quot;</span><span class="si">#{</span><span class="n">tif_file</span><span class="si">}</span><span class="sx">&quot; -resize &#39;800x800&gt;&#39; -quality 9 -type Grayscale -depth 4 &quot;</span><span class="si">#{</span><span class="no">COMMENTS_PATH</span><span class="si">}</span><span class="sx">/comment_images/</span><span class="si">#{</span><span class="n">image</span><span class="si">}</span><span class="sx">.png&quot; ]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># method for determining if all tif_to_png() jobs have completed</span>
+</span><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">tif_to_png_completed</span>
+</span><span class='line'>    <span class="vi">@running_jobs</span><span class="o">=</span><span class="no">Delayed</span><span class="o">::</span><span class="no">Job</span><span class="o">.</span><span class="n">count</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@running_jobs</span> <span class="o">&gt;</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span> <span class="c1"># fail so delayed job will retry</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>        <span class="c1"># jobs have wrapped up - assume images have been converted - toss &#39;em in the tar pits</span>
+</span><span class='line'>        <span class="sx">%x[ tar -C </span><span class="si">#{</span><span class="no">COMMENTS_PATH</span><span class="si">}</span><span class="sx">/comment_images -czf </span><span class="si">#{</span><span class="no">COMMENTS_PATH</span><span class="si">}</span><span class="sx">/comments.tgz . ]</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">require</span> <span class="s1">&#39;net/sftp&#39;</span>
+</span><span class='line'>        <span class="no">Net</span><span class="o">::</span><span class="no">SSH</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="no">REMOTE_SERVER_IP</span><span class="p">,</span> <span class="no">REMOTE_SERVER_USER</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="no">REMOTE_SERVER_PASSWORD</span><span class="p">)</span>  <span class="k">do</span> <span class="o">|</span><span class="n">ssh</span><span class="o">|</span>
+</span><span class='line'>            <span class="n">ssh</span><span class="o">.</span><span class="n">exec!</span> <span class="s2">&quot; mkdir /home/gary/testing/ &quot;</span>
+</span><span class='line'>            <span class="n">ssh</span><span class="o">.</span><span class="n">sftp</span><span class="o">.</span><span class="n">upload!</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">COMMENTS_PATH</span><span class="si">}</span><span class="s2">/comments.tgz&quot;</span><span class="p">,</span> <span class="s2">&quot;/home/gary/testing/comments.tgz&quot;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">ssh</span><span class="o">.</span><span class="n">exec!</span> <span class="s2">&quot; tar -zxf /home/gary/testing/comments.tgz -C /home/gary/testing &quot;</span>
+</span><span class='line'>            <span class="n">ssh</span><span class="o">.</span><span class="n">exec!</span> <span class="s2">&quot; rm -f /home/gary/testing/comments.tgz &quot;</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">#TODO: send out email with stats</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The interesting bits are lines 9 through 11 of the second code block. Line 9 simply checks to see how many currently running jobs there are. In this particular case the only jobs running on this machine are from this one task so I’m not using a named queue or anything fancy. I just want to know how many are currently active. If any jobs have errored out, then they will remain active in the queue and my task will effectively stall at this point, which is what I want. If even one image fails to process, I want to know about that, and resolve it, before continuing on. Now you’ll notice that I’m not doing anything sophisticated here. I’m not specifically checking for errors because again, this is a very simple setup for a task that I manually check each time it runs. It would be trivial to add in additional checks for things like errors, and then have it notify you that something went wrong.</p>
+
+<p>So line 9 gets the count and then line 10 is where the magic happens. Delayed_job will retry a failed job over and over until it succeeds or it hits the max retries which I think is something like 25 times. In this case, we load up the queue and our little checker job goes in last. Running 8 workers means that there will be roughly 7 other jobs in the queue the first time the checker job executes. It will fail at this point with a “return 0” making delayed_job requeue it. 5 seconds later it runs again, and in my testing, fails again so back into the queue. Third time around there aren’t any other jobs in the queue besides the checker job so it now succeeds and the rest of the code executes.</p>
+
+<p>I find it odd that there is no built in way to specify that a particular job is part of a batch. As I stated early, I’m quite certain I’m not the first person who has wanted to do something like this. I also realize that I’m still fairly new to Rails and there may be a very good reason for NOT doing what I’ve done here but until I figure out what that reason is, or someone is kind enough to point it out to me, this seems to work and work quite well for my needs.</p>
+]]></content>
+  </entry>
+  
+</feed>

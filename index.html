@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ramblings on Rails</title>
+  <meta name="author" content="Gary Traffanstedt">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://traffan.com/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Ramblings on Rails" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://traffan.com/">
+  <meta property="og:title" content="Ramblings on Rails">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ramblings on Rails</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <div class="blog-index" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Ramblings on Rails" />
+    
+    <meta itemprop="url" content="http://traffan.com" />
+      
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-21T02:38:07-04:00"  data-updated="true" itemprop="datePublished dateCreated">Tue 21 Apr 2015</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/bug-in-apples-command-line-tools-6-dot-3/" itemprop="url">Bug in Apple&#8217;s Command Line Tools 6.3</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on [<a href="http://stackoverflow.com/a/29576048">http://stackoverflow.com/a/29576048</a>])(StackOverflow) found a workaround.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>echo '#define _LIBCPP_ASSERT(x, m) ((void)0)' | sudo tee -a /Library/Developer/CommandLineTools/usr/include/c++/v1/__debug &gt; /dev/null</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Never one to be afraid of messing with my system because hey, it&rsquo;s 2am, I&rsquo;m tired, and furthermore, what could possibly go wrong? I ran the command, typed in my system password, and all seemed well. I then tried <code>gem install therubyracer</code> and it installed, finally.</p>
+
+<p>I don&rsquo;t use XCode much and didn&rsquo;t actually know the Command Line Tools were/are used by Ruby so that&rsquo;s something new to me. I also didn&rsquo;t knwo that the might Apple ever makes mistakes. Ok, I actually knew that part. They don&rsquo;t make a lot of mistakes, but not everything can be magical and just work. Thankfully I found a solution and was able to get the gems installed. Now back to my regularly scheduled late-night coding.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-15T14:25:27-04:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 15 Apr 2015</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/the-return-of-the-great-white-hope/" itemprop="url">The Return of the Great White Hope.</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>After two years of taking a step back and trying other things, I&rsquo;ve returned to the land of the living and have dived head first back into all things technical. Too many years of mediocrity had taken their toll on the passion for programming I once had. First computer when I was three, second when I was eight, first website in &lsquo;96 when I was 18, and first programing job a couple years later. The journey from novice to professional was a quick one. I went from basic html to installing scripts, then to modifying scripts, then to writing custom code. From there it wasn&rsquo;t long until I was programming large sites and doing everything else involved in maintaining large high-traffic sites. I learned on the job and learned just enough as I needed it. Never getting to use the latest and greatest but always stuck with old PHP and Perl code. I knew PHP pretty well, Javascript less well, a bit of Linux, some FreeBSD, quite a bit of MySQL, and on and on. I knew enough and it got me by.</p>
+
+<p>Later I would leave the self-employed world for a jaunt on the corporate side of things, where what little passion I had left would die. Working on 10 year old code that had been touched by at least as many people. Cajoling it into doing things it was never designed to do. Never able to take the time for a decent rewrite because hey, it works well enough. Well, no, it doesn&rsquo;t. It has more bugs than a crack den in the ghetto but that&rsquo;s ok. I&rsquo;ll add in some new code and try my best to patch it together. Who care&rsquo;s about quality, right?</p>
+
+<p>But that was then, this is now, and a two year respite has allowed me to reset mentally. Thanks to sites like <a href="http://www.freecodecamp.com/learn-to-code">Free Code Camp</a>, <a href="http://www.codecademy.com/learn">Codecademy</a>, and <a href="http://www.theodinproject.com/">The Odin Project</a> I&rsquo;m all-in and learning very quickly. My overall plan includes the MEAN stack, Ruby, Rails, and then later Objective-C and Swift. Right now I&rsquo;m working through an Angular tutorial as well as the Learn You Node stuff. I like to work through two at the same time so I can switch back and forth to keep my mind fresh. I also take a quick walk if I get stuck to do a quick reset on my thinking and not just keep beating my head against a wall.</p>
+
+<p>That said, I&rsquo;ll end this here and see if I can get it posted. It&rsquo;s been two years since I&rsquo;ve attempted a blog post and I&rsquo;m having to relearn how to use Octopress. I have the source code to the page but not the source of my previous posts or how I had it set up. Yea, I&rsquo;m regretting deleting all of my programming stuff way back when. Would be nice to have it now.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-26T08:45:00-04:00"  data-updated="true" itemprop="datePublished dateCreated">Fri 26 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/haml-is-not-for-assets/" itemprop="url">HAML Is Not for ASSETS</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>So in my gem file I had gem &lsquo;haml&rsquo; inside my assets block like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">gem</span> <span class="s1">&#39;haml&#39;</span>
+</span><span class='line'>    <span class="o">---</span> <span class="n">other</span> <span class="n">gems</span> <span class="n">here</span> <span class="o">---</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This worked fine locally and all was well. Then I tried to push an update to AppFog and none of my HAML files loaded. Nothing showed up in the error log but there was an obvious problem. A site without any layout isn’t much of a site. I tried a few things but couldn’t get it to work so I bitched about it on Twitter:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Deff something up with @appfog not supporting haml. Works 
+</span><span class='line'>swimmingly on local but shits the bed after deploy. #frustrated</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Yea, I was a little frustrated. So converted my files over to erb and left it at that. Then I was contacted via Twitter by Alex Parkinson from AppFog who asked me about the issue. This prompted me to look into it a bit more and right off the bat I noticed my issue with the gem file. I tried moving the HAML gem outside of the assets block and what do you know? That worked.</p>
+
+<p>Thanks to GIT it was trivial to track down my previous files, merge in some changes I had made, and then push the latest up to AppFog and now all is well and I’m able to use HAML.</p>
+
+<p>I apologized to AppFog via Twitter and also Tweeted about my mistake. I have to admit, I’m impressed Mr. Parkinson took the time to Tweet me about this. Had he not I likely would have just stuck with erb files and would have presumed that AppFog had an issue with HAML when all along it was my own ignorance that was screwing me up.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-24T08:54:13-04:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 24 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/counter-caching/" itemprop="url">Counter Caching</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>As promised, a blog post detailing the proper way to handle your counter_cache columns. A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
+
+<p>So we decide to use a <code>counter_cache</code> column but discover that apparently the fine folks behind Rails don’t actually ever use this feature, or if they do, they are using it in some manner unbeknown to me as for my needs, I’m almost always going to need to know more than just one count on a particular model. Goals and completed goals or books and how many of those have been read or well, you get the idea.</p>
+
+<p>After a bit of time spent googling and researching this I came across a gem that is, as far as I can tell, exactly what should be in the Rails code itself. This is how it should work by default since the norm, again just my opinion is multiple columns rather than just one. The gem is called <a href="https://github.com/magnusvk/counter_culture">counter_culture</a> and if you have use for a <code>counter_cache</code> column, and I think a lot of you will, then you owe it to yourself to give this a try.</p>
+
+<p><strong>INSTALL</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;counter_culture&#39;</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://github.com/magnusvk/counter_culture.git&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then run bundle install to install the new gem.</p>
+
+<p><strong>DATABASE</strong></p>
+
+<p>The standard rails migration generator is only going to get you so far on setting up your new files. You can go ahead and generate the migration scaffold but then you’ll need to manually add some code to that. For my needs I used:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:goals_count</span><span class="p">,</span> <span class="ss">:integer</span><span class="p">,</span> <span class="ss">:null</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:goals_completed_count</span><span class="p">,</span> <span class="ss">:integer</span><span class="p">,</span> <span class="ss">:null</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We want the field(s) to be integers and for this to work properly, you need to set null to false and default them to 0. These settings are why the migration generator isn’t able to generate the entire thing for us. Once you have your migration setup, you’ll of course want to run <code>rake db:migrate</code> to get your new fields added.</p>
+
+<p><strong>CODE</strong></p>
+
+<p>Next you need to add some code to your model. This is as they say, where the magic happens.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">counter_culture</span> <span class="ss">:user</span><span class="p">,</span>
+</span><span class='line'>                <span class="ss">:column_name</span> <span class="o">=&gt;</span> <span class="s1">&#39;goals_count&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">counter_culture</span> <span class="ss">:user</span><span class="p">,</span>
+</span><span class='line'>                <span class="ss">:column_name</span> <span class="o">=&gt;</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span><span class="o">|</span><span class="n">model</span><span class="o">|</span> <span class="n">model</span><span class="o">.</span><span class="n">completed</span> <span class="p">?</span> <span class="s1">&#39;goals_completed_count&#39;</span> <span class="p">:</span> <span class="kp">nil</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first line is our standard <code>belongs_to</code> and there’s nothing special about it here. Next we have my first <code>counter_cache</code> column being setup. This is the standard one that will give us the total count of goals for each user. We are calling <code>counter_culture</code> on the model and then giving it the column we want it to keep updated. Simple enough I think.</p>
+
+<p>The next block sets up my other <code>counter_cache</code> column and this one is a bit more involved. It starts the same with setting up the model followed by the column name, but when we define the column name we’re using a <code>Proc</code> so that we can dynamically determine when the column needs to be incremented or decremented. In this case <code>model.completed</code> is a boolean and will return true or false depending on whether or not this goal is completed. If you have a more complex situation, you can instead do something like <code>model.completed?</code> and then def <code>completed?</code> however you want. Just keep in mind that your <code>completed?</code> method needs to return true or false and it should work fine.</p>
+
+<p><strong>DONE</strong></p>
+
+<p>So there you have it. Simple once you get the hang of it. I actually had some trouble getting this setup initially and received assistance from <a href="https://twitter.com/magnusvk">@magnusvk</a>, the creator of the gem, who responded immediately and was quite helpful. I think you’d be hard pressed to find a friendlier community than what Rails has. People really seem to go out of their way to help each other and it’s because of that, Rails continues to thrive.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-23T09:04:16-04:00"  data-updated="true" itemprop="datePublished dateCreated">Tue 23 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/rails-counter-cache-frustrations/" itemprop="url">Rails Counter_cache Frustrations</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>For my bucket list site I need to know how many goals each user has and of those, how many are completed. Doing this with eager loading is easy but less than optimal. After watching the RailsCast on the subject (<a href="http://railscasts.com/episodes/23-counter-cache-column">#23 Counter Cache Column - RailsCasts</a>), I was intrigued. This seemed like the ideal way to efficiently solve my problem.</p>
+
+<p>I quickly set things up and for total goals, it worked perfect. Create a new goal and the counter would increment. Delete a goal and the counter would decrement. Get the count for goals for a particular user and it would only hit the user table. Nice, clean, efficient. Great, I was half way home. Went to do the same thing for the second column, the counter for completed goals and ran into a problem. You apparently can’t have more than one counter cache column like this.</p>
+
+<p>Normally you set up the counter cache column with the name and then <code>_count</code> so <code>goals_count</code> would be the name if you were getting the count for goals. I thought <code>goals_count</code> and <code>goals_completed_count</code> would be ideal but no dice.</p>
+
+<p>After a bit of research I found a gem that does exactly what I want. I’m still in the process of implementing this gem but expect a future blog post on how to use this gem in the next few days.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+    </div>
+
+    <ul class="pager">
+      
+        <li class="previous"><a href="/2">&larr;&nbsp;Older</a></li>
+      
+      <li><a href="/archives">Blog Archives</a></li>
+      
+        <li class="next disabled"><a href="#">Newer&nbsp;&rarr;</a></li>
+      
+    </ul>
+  </div>
+
+  
+    <aside class="sidebar col-md-3">
+      
+        <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/bug-in-apples-command-line-tools-6-dot-3/">Bug in Apple&#8217;s Command Line Tools 6.3</a>
+    
+    <a class="list-group-item " href="/the-return-of-the-great-white-hope/">The Return of the Great White Hope.</a>
+    
+    <a class="list-group-item " href="/haml-is-not-for-assets/">HAML Is Not for ASSETS</a>
+    
+    <a class="list-group-item " href="/counter-caching/">Counter Caching</a>
+    
+    <a class="list-group-item " href="/rails-counter-cache-frustrations/">Rails Counter_cache Frustrations</a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/categories/delayed_job/index.html">
+      <span class="badge">1</span>
+      delayed_job
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/development/index.html">
+      <span class="badge">13</span>
+      development
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/rails/index.html">
+      <span class="badge">7</span>
+      rails
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/ruby/index.html">
+      <span class="badge">1</span>
+      ruby
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/apple/index.html">
+      <span class="badge">2</span>
+      apple
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/shiny/index.html">
+      <span class="badge">1</span>
+      shiny
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/toys/index.html">
+      <span class="badge">1</span>
+      toys
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/brew/index.html">
+      <span class="badge">1</span>
+      brew
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/mac/index.html">
+      <span class="badge">1</span>
+      mac
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/mysql/index.html">
+      <span class="badge">1</span>
+      mysql
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/postgresql/index.html">
+      <span class="badge">2</span>
+      postgresql
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/path/index.html">
+      <span class="badge">1</span>
+      path
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/puma/index.html">
+      <span class="badge">1</span>
+      puma
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/appfog/index.html">
+      <span class="badge">1</span>
+      appfog
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/coffeescript/index.html">
+      <span class="badge">1</span>
+      coffeescript
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/jquery/index.html">
+      <span class="badge">1</span>
+      jquery
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/features/index.html">
+      <span class="badge">1</span>
+      features
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/gems/index.html">
+      <span class="badge">2</span>
+      gems
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/blogging/index.html">
+      <span class="badge">2</span>
+      blogging
+    </a>
+    
+  </div>
+</section>
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/blimey85">@blimey85</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'blimey85',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+      
+    </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2015 - Gary Traffanstedt<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
+</html>

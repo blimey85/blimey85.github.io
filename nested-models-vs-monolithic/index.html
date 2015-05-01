@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Nested Models vs Monolithic - Ramblings on Rails</title>
+  <meta name="author" content="Gary Traffanstedt">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://traffan.com/nested-models-vs-monolithic/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Ramblings on Rails" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://traffan.com/nested-models-vs-monolithic/">
+  <meta property="og:title" content="Nested Models vs Monolithic - Ramblings on Rails">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ramblings on Rails</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Ramblings on Rails" />
+    
+    <meta itemprop="url" content="http://traffan.com" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-16T09:29:29-04:00"  data-updated="true" itemprop="datePublished dateCreated">Tue 16 Apr 2013</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Nested Models vs Monolithic
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><p>We start with a user table that contains the usual suspects. The user can login, enter their basic info, and even a blurb about themselves. Then they want to link their profile to various social sites. Simple enough, on the surface.</p>
+
+<p>Beyond deciding which sites to support, we have to decide how we want to handle things on the back end. Do we want to go the proper router and employ nested models, or do we cram everything into the user table?</p>
+
+<table border=1 cellpadding=0 cellspacing=0>
+    <tr><th>Monolithic</th><th>Nested</th></tr>
+    <tr><td>id</td><td>id</td></tr>
+    <tr><td>email</td><td>email</td></tr>
+    <tr><td>username</td><td>username</td></tr>
+    <tr><td>…</td><td>…</td></tr>
+    <tr><td>facebook</td><td>&nbsp;</td></tr>
+    <tr><td>flickr</td><td>&nbsp;</td></tr>
+    <tr><td>youtube</td><td>&nbsp;</td></tr>
+</table>
+
+
+<p>With the monolithc setup, that’s all you need. If the user wants to link to Facebook, they enter thier Facebook username and you store in the field apropriately called Facebook. Simple, straightforward, and ultimately the fastest since it requires no joins in the database.</p>
+
+<p>For the nested model method we’ll need to add two additional tables. One for our networks, and one for our associations between users and those networks.</p>
+
+<table border=1 cellpadding=0 cellspacing=0>
+    <tr><th>Networks</th><th>User_Networks</tr>
+    <tr><td>id</td><td>id</td></tr>
+    <tr><td>name</td><td>user_id</td></tr>
+    <tr><td>url</td><td>network_id</td></tr>
+    <tr><td>&nbsp;</td><td>username</td></tr>
+</table>
+
+
+<p>Nothing complex between these. Networks table has the name for each of our social sites and also the url to the profile page for each site. User_Networks has the association for each user to whichever social sites they’ve enabled and then their username for that site.</p>
+
+<p>The problem happens when you go to setup all the code that is required to use nested models on the front end. You first set up your associations in the models and then you have to setup your nested attributes. Once that’s done and Rails is able to link the models together, you need to set thigns up in your controller and views. That’s where I ran into problems. I was able to use the <code>cocoon</code> gem and get things working fairly well, however while I was able to add social sites to my profile, I was NOT able to add the username for each one. I had a drop down list for the various social sites but couldn’t determine how to add an input box that would allow a user to enter their username. In the end I reverted back to the monolithic method.</p>
+
+<p>As I stated earlier, the monolithic method has the bennefit of being faster. It’s impossible to get joins and associations to be as fast as having everything in one table. I don’t anticipate ever having thousands of concurrent users on this site, but in the event it gets popular, this decision here might really help me. Or at least that’s what I’m going to keep telling myself since I couldn’t get the other way working satisfactorily. :)</p>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Gary Traffanstedt</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-16T09:29:29-04:00"  data-updated="true" itemprop="datePublished dateCreated">Tue 16 Apr 2013</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/development/'>development</a>, <a class='category' href='/categories/rails/'>rails</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/rails-destroy-scaffold/" title="Previous Post: Rails Destroy Scaffold">&laquo; Rails Destroy Scaffold</a></li>
+            
+            
+            <li class="next"><a href="/gem-consistency-fail/" title="Next Post: Gem: Consistency_fail">Gem: Consistency_fail &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/bug-in-apples-command-line-tools-6-dot-3/">Bug in Apple&#8217;s Command Line Tools 6.3</a>
+    
+    <a class="list-group-item " href="/the-return-of-the-great-white-hope/">The Return of the Great White Hope.</a>
+    
+    <a class="list-group-item " href="/haml-is-not-for-assets/">HAML Is Not for ASSETS</a>
+    
+    <a class="list-group-item " href="/counter-caching/">Counter Caching</a>
+    
+    <a class="list-group-item " href="/rails-counter-cache-frustrations/">Rails Counter_cache Frustrations</a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/categories/delayed_job/index.html">
+      <span class="badge">1</span>
+      delayed_job
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/development/index.html">
+      <span class="badge">13</span>
+      development
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/rails/index.html">
+      <span class="badge">7</span>
+      rails
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/ruby/index.html">
+      <span class="badge">1</span>
+      ruby
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/apple/index.html">
+      <span class="badge">2</span>
+      apple
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/shiny/index.html">
+      <span class="badge">1</span>
+      shiny
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/toys/index.html">
+      <span class="badge">1</span>
+      toys
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/brew/index.html">
+      <span class="badge">1</span>
+      brew
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/mac/index.html">
+      <span class="badge">1</span>
+      mac
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/mysql/index.html">
+      <span class="badge">1</span>
+      mysql
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/postgresql/index.html">
+      <span class="badge">2</span>
+      postgresql
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/path/index.html">
+      <span class="badge">1</span>
+      path
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/puma/index.html">
+      <span class="badge">1</span>
+      puma
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/appfog/index.html">
+      <span class="badge">1</span>
+      appfog
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/coffeescript/index.html">
+      <span class="badge">1</span>
+      coffeescript
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/jquery/index.html">
+      <span class="badge">1</span>
+      jquery
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/features/index.html">
+      <span class="badge">1</span>
+      features
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/gems/index.html">
+      <span class="badge">2</span>
+      gems
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/blogging/index.html">
+      <span class="badge">2</span>
+      blogging
+    </a>
+    
+  </div>
+</section>
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/blimey85">@blimey85</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'blimey85',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2015 - Gary Traffanstedt<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ramblings on Rails</title>
+  <meta name="author" content="Gary Traffanstedt">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://traffan.com/4/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Ramblings on Rails" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://traffan.com/4/">
+  <meta property="og:title" content="Ramblings on Rails">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ramblings on Rails</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <div class="blog-index" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Ramblings on Rails" />
+    
+    <meta itemprop="url" content="http://traffan.com" />
+      
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-06T09:59:13-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sat  6 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/installing-reinstalling-and-then-reinstalling-again/" itemprop="url">Installing, Reinstalling, and Then Reinstalling Again.</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>When setting up any development environment, you strive to get everying working just right. I’ve only had my mac for around five weeks now and in that time, I’ve installed and reinstalled things more often than I care to admit. I think tonight I may have finally succeeded in getting a workable setup accomplished.</p>
+
+<p>Since I’m using Octopress rather than Wordpress, I no longer have a need for Mamp so I’ve gone ahead and removed that. I was then able to go back to useing the MySQL that is installed via Brew. By switching back, I resolved the issues I was having previously with both command line tools not always working just right, and sockets not being utilized. Tools wanted to use /tmp/mysql.sock by default but the MAMP version had it’s own location for files, and it’s own way of doing things. Now I don’t fault MAMP for this and in fact feel it’s the right way for them do it. This keeps what they are installing completely separate from everything else, minimizing the possibility of conflicts. If you have the experience and know-how to integrate the install with the rest of the system, adding the new path to your existing path and so on, then you shouldn’t have any issues. I, however, had some issues with doing that.</p>
+
+<p>One thing I think I was doing wrong was adding my new path to the end of the existing path when I should have done the opposite. I was trying to get it to overwrite anything else but it seems, unless I’m mistaken, that the first setting is what actually gets accepted and kept. I’ll play with this more later just so I know for sure which way actually works. I deff still have quite a bit to learn about the OS X command line and paths.</p>
+
+<p>So MySQL is installed via Brew and seems setup corretly. PostgreSQL is installed via the <a href="http://postgresapp.com/">Heroku Postgres.app</a>. I wanted to install this via Brew only to be consistent with how I have MySQL installed but I ran into a number of issues trying to get the PostGIS extension installed. First an issue with libgeotiff not finding libtiff properly. I managed to resolve that by passing in the path to libtiff. Then a few steps in the process later, gdal (I believe that’s waht it’s called) didn’t want to install.</p>
+
+<p>Next I tried the <a href="http://www.enterprisedb.com/">http://www.enterprisedb.com/</a> installer and that worked fine, installing first the db and then a second included installer was used to install PostGIS. The problem came after the installation was completed. When I created my test database, connected to it, and then attempted to <code>CREATE EXTENSION postgis;</code> it failed stating that <code>postgis.control</code> could not be found.</p>
+
+<p>I still have an issue with the PostgreSQL install not using sockets in the standard manner. When I try <code>psql</code> on the command line, I get an error related to the Unix domain socket. If I instead use <code>psql -h localhost</code> it connects fine. One of the same issues I was having with MySQL before swtiching back to the installation via Brew. But thankfully the PostGIS stuff is working and I can figure out the socket issue when I have more time.</p>
+
+<p><strong>Edit</strong>: I just added the Postgres.app path to my .zshrc file and now the socket issue is resolved. I’m able to log in to my database without passing in the host. So my issue earlier was that I was adding this to the end of the path, rather than to the beginning. That’s good to know. Obviously makes a huge difference sometimes.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-06T06:03:00-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sat  6 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/apple-15-inch-macbook-pro-with-retina-display/" itemprop="url">Apple 15-inch MacBook Pro With Retina Display</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://traffan.com/images/macbook-pro-with-retina-display.jpg" alt="image" />{: .center-image }</p>
+
+<p>After lots of fun trying to get Windows to work well with my Ruby on Rails development setup, I ended up facing not one, but two hardware failures. My Dell all-in-one machine decided it no longer wanted to turn on. Pushing the power button did absolutely nothing. No sound, no flashing lights, no dancing, singing, or putting on any kind of show. I took it to a local repair shop, thinking it’s most likely just the power switch and should be a cheap and easy fix. Nope. Because it’s an all-in-one machine, it’s nearly impossible to repair, apparently. So I called up Dell, re-upped my warranty which had expired a month or so back, and they dispatched parts and a repair man. Couple days later, we were back up and running. Six days after this, the train once again derailed. Same exact problem. Push the power button and nada. Zilch. No song and dance. So back on the phone to Dell and once again they dispatched parts and a repair man.</p>
+
+<p>This was not the first time I had encountered the dark-side of Dell. I had previously purchased a nice 17” laptop form them and it eventually had a screen failure. Sent it in, they replaced the screen, and all was well for about 9 months until the screen failed in the exact same manner. Of course the second failure was after the warranty had expired and so now it serves as my media center pc, connected to my tv so the monitor isn’t needed.</p>
+
+<p>Dell used to build quality machines, and maybe they still do. Maybe I just had bad luck on two machines in a row. I dunno. And I understand that hardware will inevitably fail. I go in expecting that and am not the least bit surprised when it happens. But when it happens twice, in exactly the same manner, I start to wonder about the quality of the items I’m spending my hard earned cash on.</p>
+
+<p>And this is where Apple comes in. I had been to the Apple store numerous times, fawning over their impressive machines. I had even nearly proved their laptops waterproof with how much drooling I’ve done upon them. They build a helluva machine in the MacBook Pro, especially with the beautiful Retina displays. Until now I had been fairly-well served by my Dell machines but with four failures in a row, I was ready for a change. I was ready to spend quite a bit more in the hope that maybe, just maybe, this time I’d get a machine that not only kicked the bejesus out of machines I’ve had in the past, but also actually perform trouble-free for a couple years. Am I really asking too much? Is 2 years of worry-free service too much from a modern computer? I think not. But to be sure, I bought the 3 year warranty which covers everything except physical damage, expecting I’ll want to trade-in for whatever new and shiny thing Apple comes up with by then.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-06T03:05:41-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sat  6 Apr 2013</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/how-i-kinda-sorda-create-batches-for-delayed-job/" itemprop="url">How I Kinda Sorda Create Batches for Delayed_job.</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>For a recent project I found myself needing to batch process a large number of images twice per week. On average I’d be processing around 4,000 images and once processed, would need to tar these up and then upload them to the data center. Now we could debate the merits of this approach and I believe we’d be in complete agreement that there absolutely must, and is, many different ways to achieve the same end result, but that was beyond my control. My task was to process and upload the images.</p>
+
+<p>The current setup was/is php and if you know me, you know that while I’m a php dev, I’ve never really cared for the language. I started this journey into code poetry with perl which I still to this day have much love and respect for. Well, to be honest, I started many years prior in other languages besides perl. Something on my Texas Instrument machine back in ‘81 or ‘82. Applesoft Basic around ‘87. Dabbled a bit with Pascal back then too. But anyway, Perl was the first language I really dug into and used professionally. When php came around I started using it and eventually it became my primary language for everything. This was a conscious decision I made, but then again, being a programmer was never a conscious choice I made either.</p>
+
+<p>But getting back on point, the current setup was php and worked fairly well. It was slow and if anything went wrong, the network connection dropped, database dropped a connection, or the wind blew a bit too strong or from the wrong direction, all hell would silently break loose. There is single log file which awesomely only gets generated at the very end of the run and obviously only if the run succeeds. if anything goes wrong, good luck figuring out where the problem occurred and how much of the process was completed. Those before me apparently didn’t care much for things like logging or real-time stats. So I set out to write something much more robust in my fave language, Rails. Ok fine, Rails is a framework, not a language… but this is my blog and I’ll call it what I want. :)</p>
+
+<p>Skipping ahead to the point of this post, I had a rake task that could process my images and do what I needed with them and it worked pretty well. My only issue was that things weren’t very fast. I scanned the directories, grabbed all the tif files, and one by one generated the png files and saved them to my target directory. Enter delayed_job. With a few tweaks of the code I was able to process my images 8 at a time. This made an incredible difference with how fast I could process a batch of images. But there was one issue. At the end of processing I need to tar up the target folder and then upload it to the data center. Initially I had, since everything was sequential, had the necessary code for archiving the folder, and then uploading it, right in the same script. It would loop through the images and then do the rest. Now that delayed_job was getting all of the image conversion stuff, the folder was getting compressed much too soon. I had no way to tell when the conversions were done. I researched the issue and could find no way to setup any sort of batch with delayed_job so I looked at some other similar tools. Nothing jumped out at me. Surely there must be a way to create some sort of batch-like something. I couldn’t be the only one that needed to know when a group of jobs had completed. And then it struck me, what if I created a job that monitored the other jobs and when it detected it was the only job remaining, would wrap things up?</p>
+
+<p>Here is the rake task that handles processing the images:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:comments</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">desc</span> <span class="s2">&quot;Prepare comment images for upload&quot;</span>
+</span><span class='line'>    <span class="n">task</span> <span class="ss">process_images</span><span class="p">:</span> <span class="ss">:environment</span> <span class="k">do</span>
+</span><span class='line'>        <span class="c1"># lets get our conversion on</span>
+</span><span class='line'>        <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">COMMENTS_PATH</span><span class="si">}</span><span class="s2">/*/*/*/*.tif&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">tif_file</span><span class="o">|</span>
+</span><span class='line'>            <span class="no">Comment</span><span class="o">.</span><span class="n">delay</span><span class="o">.</span><span class="n">tif_to_png</span><span class="p">(</span><span class="n">tif_file</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1"># and now add a job to check on the other jobs</span>
+</span><span class='line'>        <span class="no">Comment</span><span class="o">.</span><span class="n">delay</span><span class="o">.</span><span class="n">tif_to_png_completed</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1"># and now lets write home about it</span>
+</span><span class='line'>        <span class="nb">puts</span> <span class="s2">&quot;Busy day at the factory! Many jobs queued up.&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And here are the two methods from my Comments model:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># method for converting tif to png</span>
+</span><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">tif_to_png</span><span class="p">(</span><span class="n">tif_file</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">image</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">tif_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;.tif&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="sx">%x[ convert &quot;</span><span class="si">#{</span><span class="n">tif_file</span><span class="si">}</span><span class="sx">&quot; -resize &#39;800x800&gt;&#39; -quality 9 -type Grayscale -depth 4 &quot;</span><span class="si">#{</span><span class="no">COMMENTS_PATH</span><span class="si">}</span><span class="sx">/comment_images/</span><span class="si">#{</span><span class="n">image</span><span class="si">}</span><span class="sx">.png&quot; ]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># method for determining if all tif_to_png() jobs have completed</span>
+</span><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">tif_to_png_completed</span>
+</span><span class='line'>    <span class="vi">@running_jobs</span><span class="o">=</span><span class="no">Delayed</span><span class="o">::</span><span class="no">Job</span><span class="o">.</span><span class="n">count</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@running_jobs</span> <span class="o">&gt;</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span> <span class="c1"># fail so delayed job will retry</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>        <span class="c1"># jobs have wrapped up - assume images have been converted - toss &#39;em in the tar pits</span>
+</span><span class='line'>        <span class="sx">%x[ tar -C </span><span class="si">#{</span><span class="no">COMMENTS_PATH</span><span class="si">}</span><span class="sx">/comment_images -czf </span><span class="si">#{</span><span class="no">COMMENTS_PATH</span><span class="si">}</span><span class="sx">/comments.tgz . ]</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">require</span> <span class="s1">&#39;net/sftp&#39;</span>
+</span><span class='line'>        <span class="no">Net</span><span class="o">::</span><span class="no">SSH</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="no">REMOTE_SERVER_IP</span><span class="p">,</span> <span class="no">REMOTE_SERVER_USER</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="no">REMOTE_SERVER_PASSWORD</span><span class="p">)</span>  <span class="k">do</span> <span class="o">|</span><span class="n">ssh</span><span class="o">|</span>
+</span><span class='line'>            <span class="n">ssh</span><span class="o">.</span><span class="n">exec!</span> <span class="s2">&quot; mkdir /home/gary/testing/ &quot;</span>
+</span><span class='line'>            <span class="n">ssh</span><span class="o">.</span><span class="n">sftp</span><span class="o">.</span><span class="n">upload!</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">COMMENTS_PATH</span><span class="si">}</span><span class="s2">/comments.tgz&quot;</span><span class="p">,</span> <span class="s2">&quot;/home/gary/testing/comments.tgz&quot;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">ssh</span><span class="o">.</span><span class="n">exec!</span> <span class="s2">&quot; tar -zxf /home/gary/testing/comments.tgz -C /home/gary/testing &quot;</span>
+</span><span class='line'>            <span class="n">ssh</span><span class="o">.</span><span class="n">exec!</span> <span class="s2">&quot; rm -f /home/gary/testing/comments.tgz &quot;</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">#TODO: send out email with stats</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The interesting bits are lines 9 through 11 of the second code block. Line 9 simply checks to see how many currently running jobs there are. In this particular case the only jobs running on this machine are from this one task so I’m not using a named queue or anything fancy. I just want to know how many are currently active. If any jobs have errored out, then they will remain active in the queue and my task will effectively stall at this point, which is what I want. If even one image fails to process, I want to know about that, and resolve it, before continuing on. Now you’ll notice that I’m not doing anything sophisticated here. I’m not specifically checking for errors because again, this is a very simple setup for a task that I manually check each time it runs. It would be trivial to add in additional checks for things like errors, and then have it notify you that something went wrong.</p>
+
+<p>So line 9 gets the count and then line 10 is where the magic happens. Delayed_job will retry a failed job over and over until it succeeds or it hits the max retries which I think is something like 25 times. In this case, we load up the queue and our little checker job goes in last. Running 8 workers means that there will be roughly 7 other jobs in the queue the first time the checker job executes. It will fail at this point with a “return 0” making delayed_job requeue it. 5 seconds later it runs again, and in my testing, fails again so back into the queue. Third time around there aren’t any other jobs in the queue besides the checker job so it now succeeds and the rest of the code executes.</p>
+
+<p>I find it odd that there is no built in way to specify that a particular job is part of a batch. As I stated early, I’m quite certain I’m not the first person who has wanted to do something like this. I also realize that I’m still fairly new to Rails and there may be a very good reason for NOT doing what I’ve done here but until I figure out what that reason is, or someone is kind enough to point it out to me, this seems to work and work quite well for my needs.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+    </div>
+
+    <ul class="pager">
+      
+        <li class="previous disabled"><a href="#">&larr;&nbsp;Older</a></li>
+      
+      <li><a href="/archives">Blog Archives</a></li>
+      
+        <li class="next"><a href="/3">Newer&nbsp;&rarr;</a></li>
+      
+    </ul>
+  </div>
+
+  
+    <aside class="sidebar col-md-3">
+      
+        <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/bug-in-apples-command-line-tools-6-dot-3/">Bug in Apple&#8217;s Command Line Tools 6.3</a>
+    
+    <a class="list-group-item " href="/the-return-of-the-great-white-hope/">The Return of the Great White Hope.</a>
+    
+    <a class="list-group-item " href="/haml-is-not-for-assets/">HAML Is Not for ASSETS</a>
+    
+    <a class="list-group-item " href="/counter-caching/">Counter Caching</a>
+    
+    <a class="list-group-item " href="/rails-counter-cache-frustrations/">Rails Counter_cache Frustrations</a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/categories/delayed_job/index.html">
+      <span class="badge">1</span>
+      delayed_job
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/development/index.html">
+      <span class="badge">13</span>
+      development
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/rails/index.html">
+      <span class="badge">7</span>
+      rails
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/ruby/index.html">
+      <span class="badge">1</span>
+      ruby
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/apple/index.html">
+      <span class="badge">2</span>
+      apple
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/shiny/index.html">
+      <span class="badge">1</span>
+      shiny
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/toys/index.html">
+      <span class="badge">1</span>
+      toys
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/brew/index.html">
+      <span class="badge">1</span>
+      brew
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/mac/index.html">
+      <span class="badge">1</span>
+      mac
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/mysql/index.html">
+      <span class="badge">1</span>
+      mysql
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/postgresql/index.html">
+      <span class="badge">2</span>
+      postgresql
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/path/index.html">
+      <span class="badge">1</span>
+      path
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/puma/index.html">
+      <span class="badge">1</span>
+      puma
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/appfog/index.html">
+      <span class="badge">1</span>
+      appfog
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/coffeescript/index.html">
+      <span class="badge">1</span>
+      coffeescript
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/jquery/index.html">
+      <span class="badge">1</span>
+      jquery
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/features/index.html">
+      <span class="badge">1</span>
+      features
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/gems/index.html">
+      <span class="badge">2</span>
+      gems
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/blogging/index.html">
+      <span class="badge">2</span>
+      blogging
+    </a>
+    
+  </div>
+</section>
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/blimey85">@blimey85</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'blimey85',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+      
+    </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2015 - Gary Traffanstedt<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
+</html>

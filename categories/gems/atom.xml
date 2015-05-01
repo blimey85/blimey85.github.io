@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gems | Ramblings on Rails]]></title>
+  <link href="http://traffan.com/categories/gems/atom.xml" rel="self"/>
+  <link href="http://traffan.com/"/>
+  <updated>2015-05-01T09:29:52-04:00</updated>
+  <id>http://traffan.com/</id>
+  <author>
+    <name><![CDATA[Gary Traffanstedt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Counter Caching]]></title>
+    <link href="http://traffan.com/counter-caching/"/>
+    <updated>2013-04-24T08:54:13-04:00</updated>
+    <id>http://traffan.com/counter-caching</id>
+    <content type="html"><![CDATA[<p>As promised, a blog post detailing the proper way to handle your counter_cache columns. A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
+
+<p>So we decide to use a <code>counter_cache</code> column but discover that apparently the fine folks behind Rails don’t actually ever use this feature, or if they do, they are using it in some manner unbeknown to me as for my needs, I’m almost always going to need to know more than just one count on a particular model. Goals and completed goals or books and how many of those have been read or well, you get the idea.</p>
+
+<p>After a bit of time spent googling and researching this I came across a gem that is, as far as I can tell, exactly what should be in the Rails code itself. This is how it should work by default since the norm, again just my opinion is multiple columns rather than just one. The gem is called <a href="https://github.com/magnusvk/counter_culture">counter_culture</a> and if you have use for a <code>counter_cache</code> column, and I think a lot of you will, then you owe it to yourself to give this a try.</p>
+
+<p><strong>INSTALL</strong></p>
+
+<pre><code class="ruby">gem 'counter_culture', :git =&gt; 'https://github.com/magnusvk/counter_culture.git'
+</code></pre>
+
+<p>Then run bundle install to install the new gem.</p>
+
+<p><strong>DATABASE</strong></p>
+
+<p>The standard rails migration generator is only going to get you so far on setting up your new files. You can go ahead and generate the migration scaffold but then you’ll need to manually add some code to that. For my needs I used:</p>
+
+<pre><code class="ruby">add_column :users, :goals_count, :integer, :null =&gt; false, :default =&gt; 0
+add_column :users, :goals_completed_count, :integer, :null =&gt; false, :default =&gt; 0
+</code></pre>
+
+<p>We want the field(s) to be integers and for this to work properly, you need to set null to false and default them to 0. These settings are why the migration generator isn’t able to generate the entire thing for us. Once you have your migration setup, you’ll of course want to run <code>rake db:migrate</code> to get your new fields added.</p>
+
+<p><strong>CODE</strong></p>
+
+<p>Next you need to add some code to your model. This is as they say, where the magic happens.</p>
+
+<pre><code class="ruby">belongs_to :user
+
+counter_culture :user,
+                :column_name =&gt; 'goals_count'
+
+counter_culture :user,
+                :column_name =&gt; Proc.new {|model| model.completed ? 'goals_completed_count' : nil}
+</code></pre>
+
+<p>The first line is our standard <code>belongs_to</code> and there’s nothing special about it here. Next we have my first <code>counter_cache</code> column being setup. This is the standard one that will give us the total count of goals for each user. We are calling <code>counter_culture</code> on the model and then giving it the column we want it to keep updated. Simple enough I think.</p>
+
+<p>The next block sets up my other <code>counter_cache</code> column and this one is a bit more involved. It starts the same with setting up the model followed by the column name, but when we define the column name we’re using a <code>Proc</code> so that we can dynamically determine when the column needs to be incremented or decremented. In this case <code>model.completed</code> is a boolean and will return true or false depending on whether or not this goal is completed. If you have a more complex situation, you can instead do something like <code>model.completed?</code> and then def <code>completed?</code> however you want. Just keep in mind that your <code>completed?</code> method needs to return true or false and it should work fine.</p>
+
+<p><strong>DONE</strong></p>
+
+<p>So there you have it. Simple once you get the hang of it. I actually had some trouble getting this setup initially and received assistance from <a href="https://twitter.com/magnusvk">@magnusvk</a>, the creator of the gem, who responded immediately and was quite helpful. I think you’d be hard pressed to find a friendlier community than what Rails has. People really seem to go out of their way to help each other and it’s because of that, Rails continues to thrive.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Gem: Consistency_fail]]></title>
+    <link href="http://traffan.com/gem-consistency-fail/"/>
+    <updated>2013-04-20T09:24:09-04:00</updated>
+    <id>http://traffan.com/gem-consistency-fail</id>
+    <content type="html"><![CDATA[<p>In rails it’s common to add a <code>validates_uniqueness_of</code> validation to models for any fields that you want to be unique. Most of the time this is sufficient and will catch when a record is submitted that already exists. But what if two submissions come in at the same time? What if a user while registering clicks the submit button multiple times? You could run into a case where rails checks for uniqueness multiple times before the first record has time to be saved in the database, sees that they are in fact, at that point in time, unique, and allows them to go through. The database doesn’t know you want them to be unique so it gladly accepts them, and now your formerly pristine database is pristine no more.</p>
+
+<p>Enter this nifty little gem: <a href="https://github.com/trptcolin/consistency_fail">consistency_fail</a>.</p>
+
+<pre><code>gem install consistency_fail
+</code></pre>
+
+<pre><code class="plain">➜  bucketlist git:(master) ✗ consistency_fail
+
+There are calls to validates_uniqueness_of that aren't backed by unique indexes.
+--------------------------------------------------------------------------------
+Model                      Table Columns
+--------------------------------------------------------------------------------
+ActsAsTaggableOn::Tag      tags (name)
+ActsAsTaggableOn::Tagging  taggings (tag_id, taggable_type, taggable_id, context, tagger_id, tagger_type)
+User                       users (username)
+--------------------------------------------------------------------------------
+
+Hooray! All calls to has_one are correctly backed by a unique index.
+</code></pre>
+
+<p>In my initial usage I had three indices that needed to be added. I quickly created two migrations (one for tags and taggings as they are related, and one for users) and then ran the tool again:</p>
+
+<pre><code class="plain">➜  bucketlist git:(master) ✗ consistency_fail
+Hooray! All calls to validates_uniqueness_of are correctly backed by a unique index.
+
+Hooray! All calls to has_one are correctly backed by a unique index.
+</code></pre>
+
+<p>Now sure, I know some of you will say that these indices should be created when you add the validation to the model and by doing that you don’t need a gem such as this one, but who among us is 100% effective in never forgetting little things like this? You create your table, build out a form, realize you want a couple of fields unique so you update your model, “oh, I need to add an index to the db… I’ll do that as soon as I’m done with…” and you forget all about it. We’ve all been there. But now we have <a href="https://github.com/trptcolin/consistency_fail">consistency_fail</a> to help us with such things.</p>
+]]></content>
+  </entry>
+  
+</feed>

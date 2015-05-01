@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Octopress Tapir - Ramblings on Rails</title>
+  <meta name="author" content="Gary Traffanstedt">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://traffan.com/octopress-tapir/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Ramblings on Rails" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://traffan.com/octopress-tapir/">
+  <meta property="og:title" content="Octopress Tapir - Ramblings on Rails">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ramblings on Rails</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Ramblings on Rails" />
+    
+    <meta itemprop="url" content="http://traffan.com" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-21T06:17:11-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sun 21 Apr 2013</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Octopress Tapir
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><p><strong>Note:</strong> You can find the relevant files on GitHub here: <a href="https://github.com/blimey85/octopress-tapir">octopress-tapir</a></p>
+
+<p><a href="http://tapirgo.com/">Tapir</a> search for your <a href="http://octopress.org/">Octopress</a> blog!</p>
+
+<p>Tapir works by indexing your RSS feed. Only what is included within this file will be indexed. For RSS purposes you most likely only want the last 20 or so articles but for search, you want all of them included. To handle this, we simply create a second xml file to use for search.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>atom.xml</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>the original file</li>
+<li>limited to 20 most recent posts</li>
+<li>we use this for RSS</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>atom_search.xml</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>the new file</li>
+<li>a modified version of atom.xml</li>
+<li>includes all posts</li>
+<li>added summary field</li>
+</ul>
+
+
+<p><strong>Install</strong></p>
+
+<ol>
+<li>Visit <a href="http://tapirgo.com/">Tapirgo.com</a> and enter the url to your <code>atom_search.xml</code> like: <code>http://yoursite.com/atom_search.xml</code>
+After you enter your email and click the big <code>GO</code> button, you’ll be given both a public and a private token.</li>
+<li>Open your <code>_config.yml</code> and include the public token: <code>tapir_token: your_id_here</code></li>
+<li>Copy <code>loading.gif</code> to your <code>source/images/</code> folder.</li>
+<li>Copy <code>jquery-tapir.js</code> to your <code>source/javascripts/</code> folder.</li>
+<li>Copy <code>search.html</code> to your <code>source/</code> folder.</li>
+<li>Open <code>source/_includes/navigation.html</code> and add:</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.tapir_token %}
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">&quot;get&quot;</span> <span class="na">action=</span><span class="s">&quot;/search.html&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;fieldset</span> <span class="na">role=</span><span class="s">&quot;search&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">&quot;search&quot;</span> <span class="na">name=</span><span class="s">&quot;query&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;Search...&quot;</span> <span class="na">x-webkit-speech</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/fieldset&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/form&gt;</span>
+</span><span class='line'>
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That’s all there is to it. You should now be able to search your content using the wonderful <a href="http://tapirgo.com/">Tapir</a> service. :)</p>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Gary Traffanstedt</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-21T06:17:11-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sun 21 Apr 2013</time>
+          
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/gem-consistency-fail/" title="Previous Post: Gem: Consistency_fail">&laquo; Gem: Consistency_fail</a></li>
+            
+            
+            <li class="next"><a href="/auto-tweet-octopress-blog-posts-using-ifttt/" title="Next Post: Auto-Tweet Octopress Blog Posts Using IFTTT">Auto-Tweet Octopress Blog Posts Using IFTTT &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/bug-in-apples-command-line-tools-6-dot-3/">Bug in Apple&#8217;s Command Line Tools 6.3</a>
+    
+    <a class="list-group-item " href="/the-return-of-the-great-white-hope/">The Return of the Great White Hope.</a>
+    
+    <a class="list-group-item " href="/haml-is-not-for-assets/">HAML Is Not for ASSETS</a>
+    
+    <a class="list-group-item " href="/counter-caching/">Counter Caching</a>
+    
+    <a class="list-group-item " href="/rails-counter-cache-frustrations/">Rails Counter_cache Frustrations</a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/categories/delayed_job/index.html">
+      <span class="badge">1</span>
+      delayed_job
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/development/index.html">
+      <span class="badge">13</span>
+      development
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/rails/index.html">
+      <span class="badge">7</span>
+      rails
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/ruby/index.html">
+      <span class="badge">1</span>
+      ruby
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/apple/index.html">
+      <span class="badge">2</span>
+      apple
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/shiny/index.html">
+      <span class="badge">1</span>
+      shiny
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/toys/index.html">
+      <span class="badge">1</span>
+      toys
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/brew/index.html">
+      <span class="badge">1</span>
+      brew
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/mac/index.html">
+      <span class="badge">1</span>
+      mac
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/mysql/index.html">
+      <span class="badge">1</span>
+      mysql
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/postgresql/index.html">
+      <span class="badge">2</span>
+      postgresql
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/path/index.html">
+      <span class="badge">1</span>
+      path
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/puma/index.html">
+      <span class="badge">1</span>
+      puma
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/appfog/index.html">
+      <span class="badge">1</span>
+      appfog
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/coffeescript/index.html">
+      <span class="badge">1</span>
+      coffeescript
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/jquery/index.html">
+      <span class="badge">1</span>
+      jquery
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/features/index.html">
+      <span class="badge">1</span>
+      features
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/gems/index.html">
+      <span class="badge">2</span>
+      gems
+    </a>
+    
+    
+    <a class="list-group-item " href="/categories/blogging/index.html">
+      <span class="badge">2</span>
+      blogging
+    </a>
+    
+  </div>
+</section>
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/blimey85">@blimey85</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'blimey85',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2015 - Gary Traffanstedt<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
+</html>
