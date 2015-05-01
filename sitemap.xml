@@ -79,61 +79,16 @@
     <loc>http://traffan.com/</loc>
   </url>
   <url>
-    <loc>http://traffan.com/categories/delayed-job/</loc>
-  </url>
-  <url>
     <loc>http://traffan.com/categories/development/</loc>
   </url>
   <url>
-    <loc>http://traffan.com/categories/rails/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/ruby/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/apple/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/shiny/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/toys/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/brew/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/mac/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/mysql/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/postgresql/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/path/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/puma/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/appfog/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/coffeescript/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/jquery/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/features/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/gems/</loc>
+    <loc>http://traffan.com/categories/hardware/</loc>
   </url>
   <url>
     <loc>http://traffan.com/categories/blogging/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/categories/apple/</loc>
   </url>
   <url>
     <loc>http://traffan.com/2/</loc>

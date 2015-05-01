@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Toys | Ramblings on Rails]]></title>
-  <link href="http://traffan.com/categories/toys/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Hardware | Ramblings on Rails]]></title>
+  <link href="http://traffan.com/categories/hardware/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-01T09:33:40-04:00</updated>
+  <updated>2015-05-01T10:12:49-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/apple-15-inch-macbook-pro-with-retina-display/"/>
     <updated>2013-04-06T06:03:00-04:00</updated>
     <id>http://traffan.com/apple-15-inch-macbook-pro-with-retina-display</id>
-    <content type="html"><![CDATA[<p><img src="http://traffan.com/images/macbook-pro-with-retina-display.jpg" alt="image" />{: .center-image }</p>
+    <content type="html"><![CDATA[<p><img src="/images/macbook-pro-with-retina-display.jpg" alt="image" /></p>
 
 <p>After lots of fun trying to get Windows to work well with my Ruby on Rails development setup, I ended up facing not one, but two hardware failures. My Dell all-in-one machine decided it no longer wanted to turn on. Pushing the power button did absolutely nothing. No sound, no flashing lights, no dancing, singing, or putting on any kind of show. I took it to a local repair shop, thinking it’s most likely just the power switch and should be a cheap and easy fix. Nope. Because it’s an all-in-one machine, it’s nearly impossible to repair, apparently. So I called up Dell, re-upped my warranty which had expired a month or so back, and they dispatched parts and a repair man. Couple days later, we were back up and running. Six days after this, the train once again derailed. Same exact problem. Push the power button and nada. Zilch. No song and dance. So back on the phone to Dell and once again they dispatched parts and a repair man.</p>
 
