@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: rails | Ramblings on Rails]]></title>
+  <link href="http://traffan.com/tags/rails/atom.xml" rel="self"/>
+  <link href="http://traffan.com/"/>
+  <updated>2015-05-01T22:46:27-04:00</updated>
+  <id>http://traffan.com/</id>
+  <author>
+    <name><![CDATA[Gary Traffanstedt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[HAML Is Not for ASSETS]]></title>
+    <link href="http://traffan.com/haml-is-not-for-assets/"/>
+    <updated>2013-04-26T08:45:00-04:00</updated>
+    <id>http://traffan.com/haml-is-not-for-assets</id>
+    <content type="html"><![CDATA[<p>So in my gem file I had gem &lsquo;haml&rsquo; inside my assets block like this:</p>
+
+<pre><code class="ruby">group :assets do
+    gem 'haml'
+    --- other gems here ---
+end
+</code></pre>
+
+<p>This worked fine locally and all was well. Then I tried to push an update to AppFog and none of my HAML files loaded. Nothing showed up in the error log but there was an obvious problem. A site without any layout isn’t much of a site. I tried a few things but couldn’t get it to work so I bitched about it on Twitter:</p>
+
+<pre><code class="plain">Deff something up with @appfog not supporting haml. Works 
+swimmingly on local but shits the bed after deploy. #frustrated
+</code></pre>
+
+<p>Yea, I was a little frustrated. So converted my files over to erb and left it at that. Then I was contacted via Twitter by Alex Parkinson from AppFog who asked me about the issue. This prompted me to look into it a bit more and right off the bat I noticed my issue with the gem file. I tried moving the HAML gem outside of the assets block and what do you know? That worked.</p>
+
+<p>Thanks to GIT it was trivial to track down my previous files, merge in some changes I had made, and then push the latest up to AppFog and now all is well and I’m able to use HAML.</p>
+
+<p>I apologized to AppFog via Twitter and also Tweeted about my mistake. I have to admit, I’m impressed Mr. Parkinson took the time to Tweet me about this. Had he not I likely would have just stuck with erb files and would have presumed that AppFog had an issue with HAML when all along it was my own ignorance that was screwing me up.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Counter Caching]]></title>
+    <link href="http://traffan.com/counter-caching/"/>
+    <updated>2013-04-24T08:54:13-04:00</updated>
+    <id>http://traffan.com/counter-caching</id>
+    <content type="html"><![CDATA[<p>As promised, a blog post detailing the proper way to handle your counter_cache columns. A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
+
+<p>So we decide to use a <code>counter_cache</code> column but discover that apparently the fine folks behind Rails don’t actually ever use this feature, or if they do, they are using it in some manner unbeknown to me as for my needs, I’m almost always going to need to know more than just one count on a particular model. Goals and completed goals or books and how many of those have been read or well, you get the idea.</p>
+
+<p>After a bit of time spent googling and researching this I came across a gem that is, as far as I can tell, exactly what should be in the Rails code itself. This is how it should work by default since the norm, again just my opinion is multiple columns rather than just one. The gem is called <a href="https://github.com/magnusvk/counter_culture">counter_culture</a> and if you have use for a <code>counter_cache</code> column, and I think a lot of you will, then you owe it to yourself to give this a try.</p>
+
+<p><strong>INSTALL</strong></p>
+
+<pre><code class="ruby">gem 'counter_culture', :git =&gt; 'https://github.com/magnusvk/counter_culture.git'
+</code></pre>
+
+<p>Then run bundle install to install the new gem.</p>
+
+<p><strong>DATABASE</strong></p>
+
+<p>The standard rails migration generator is only going to get you so far on setting up your new files. You can go ahead and generate the migration scaffold but then you’ll need to manually add some code to that. For my needs I used:</p>
+
+<pre><code class="ruby">add_column :users, :goals_count, :integer, :null =&gt; false, :default =&gt; 0
+add_column :users, :goals_completed_count, :integer, :null =&gt; false, :default =&gt; 0
+</code></pre>
+
+<p>We want the field(s) to be integers and for this to work properly, you need to set null to false and default them to 0. These settings are why the migration generator isn’t able to generate the entire thing for us. Once you have your migration setup, you’ll of course want to run <code>rake db:migrate</code> to get your new fields added.</p>
+
+<p><strong>CODE</strong></p>
+
+<p>Next you need to add some code to your model. This is as they say, where the magic happens.</p>
+
+<pre><code class="ruby">belongs_to :user
+
+counter_culture :user,
+                :column_name =&gt; 'goals_count'
+
+counter_culture :user,
+                :column_name =&gt; Proc.new {|model| model.completed ? 'goals_completed_count' : nil}
+</code></pre>
+
+<p>The first line is our standard <code>belongs_to</code> and there’s nothing special about it here. Next we have my first <code>counter_cache</code> column being setup. This is the standard one that will give us the total count of goals for each user. We are calling <code>counter_culture</code> on the model and then giving it the column we want it to keep updated. Simple enough I think.</p>
+
+<p>The next block sets up my other <code>counter_cache</code> column and this one is a bit more involved. It starts the same with setting up the model followed by the column name, but when we define the column name we’re using a <code>Proc</code> so that we can dynamically determine when the column needs to be incremented or decremented. In this case <code>model.completed</code> is a boolean and will return true or false depending on whether or not this goal is completed. If you have a more complex situation, you can instead do something like <code>model.completed?</code> and then def <code>completed?</code> however you want. Just keep in mind that your <code>completed?</code> method needs to return true or false and it should work fine.</p>
+
+<p><strong>DONE</strong></p>
+
+<p>So there you have it. Simple once you get the hang of it. I actually had some trouble getting this setup initially and received assistance from <a href="https://twitter.com/magnusvk">@magnusvk</a>, the creator of the gem, who responded immediately and was quite helpful. I think you’d be hard pressed to find a friendlier community than what Rails has. People really seem to go out of their way to help each other and it’s because of that, Rails continues to thrive.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Counter_cache Frustrations]]></title>
+    <link href="http://traffan.com/rails-counter-cache-frustrations/"/>
+    <updated>2013-04-23T09:04:16-04:00</updated>
+    <id>http://traffan.com/rails-counter-cache-frustrations</id>
+    <content type="html"><![CDATA[<p>For my bucket list site I need to know how many goals each user has and of those, how many are completed. Doing this with eager loading is easy but less than optimal. After watching the RailsCast on the subject (<a href="http://railscasts.com/episodes/23-counter-cache-column">#23 Counter Cache Column - RailsCasts</a>), I was intrigued. This seemed like the ideal way to efficiently solve my problem.</p>
+
+<p>I quickly set things up and for total goals, it worked perfect. Create a new goal and the counter would increment. Delete a goal and the counter would decrement. Get the count for goals for a particular user and it would only hit the user table. Nice, clean, efficient. Great, I was half way home. Went to do the same thing for the second column, the counter for completed goals and ran into a problem. You apparently can’t have more than one counter cache column like this.</p>
+
+<p>Normally you set up the counter cache column with the name and then <code>_count</code> so <code>goals_count</code> would be the name if you were getting the count for goals. I thought <code>goals_count</code> and <code>goals_completed_count</code> would be ideal but no dice.</p>
+
+<p>After a bit of research I found a gem that does exactly what I want. I’m still in the process of implementing this gem but expect a future blog post on how to use this gem in the next few days.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Nested Models vs Monolithic]]></title>
+    <link href="http://traffan.com/nested-models-vs-monolithic/"/>
+    <updated>2013-04-16T09:29:29-04:00</updated>
+    <id>http://traffan.com/nested-models-vs-monolithic</id>
+    <content type="html"><![CDATA[<p>We start with a user table that contains the usual suspects. The user can login, enter their basic info, and even a blurb about themselves. Then they want to link their profile to various social sites. Simple enough, on the surface.</p>
+
+<p>Beyond deciding which sites to support, we have to decide how we want to handle things on the back end. Do we want to go the proper router and employ nested models, or do we cram everything into the user table?</p>
+
+<table border=1 cellpadding=0 cellspacing=0>
+    <tr><th>Monolithic</th><th>Nested</th></tr>
+    <tr><td>id</td><td>id</td></tr>
+    <tr><td>email</td><td>email</td></tr>
+    <tr><td>username</td><td>username</td></tr>
+    <tr><td>…</td><td>…</td></tr>
+    <tr><td>facebook</td><td>&nbsp;</td></tr>
+    <tr><td>flickr</td><td>&nbsp;</td></tr>
+    <tr><td>youtube</td><td>&nbsp;</td></tr>
+</table>
+
+
+<p>With the monolithc setup, that’s all you need. If the user wants to link to Facebook, they enter thier Facebook username and you store in the field apropriately called Facebook. Simple, straightforward, and ultimately the fastest since it requires no joins in the database.</p>
+
+<p>For the nested model method we’ll need to add two additional tables. One for our networks, and one for our associations between users and those networks.</p>
+
+<table border=1 cellpadding=0 cellspacing=0>
+    <tr><th>Networks</th><th>User_Networks</tr>
+    <tr><td>id</td><td>id</td></tr>
+    <tr><td>name</td><td>user_id</td></tr>
+    <tr><td>url</td><td>network_id</td></tr>
+    <tr><td>&nbsp;</td><td>username</td></tr>
+</table>
+
+
+<p>Nothing complex between these. Networks table has the name for each of our social sites and also the url to the profile page for each site. User_Networks has the association for each user to whichever social sites they’ve enabled and then their username for that site.</p>
+
+<p>The problem happens when you go to setup all the code that is required to use nested models on the front end. You first set up your associations in the models and then you have to setup your nested attributes. Once that’s done and Rails is able to link the models together, you need to set thigns up in your controller and views. That’s where I ran into problems. I was able to use the <code>cocoon</code> gem and get things working fairly well, however while I was able to add social sites to my profile, I was NOT able to add the username for each one. I had a drop down list for the various social sites but couldn’t determine how to add an input box that would allow a user to enter their username. In the end I reverted back to the monolithic method.</p>
+
+<p>As I stated earlier, the monolithic method has the bennefit of being faster. It’s impossible to get joins and associations to be as fast as having everything in one table. I don’t anticipate ever having thousands of concurrent users on this site, but in the event it gets popular, this decision here might really help me. Or at least that’s what I’m going to keep telling myself since I couldn’t get the other way working satisfactorily. :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Destroy Scaffold]]></title>
+    <link href="http://traffan.com/rails-destroy-scaffold/"/>
+    <updated>2013-04-16T06:37:51-04:00</updated>
+    <id>http://traffan.com/rails-destroy-scaffold</id>
+    <content type="html"><![CDATA[<p>Over the years I’ve generated a scaffold a time or two but until tonight the fact that you can reverse this with <code>rails destroy scaffold ModelName</code> had escaped me. Such a simple thing and quite the time saver. Combined with <code>rake db:rollback</code>, Rails makes it very easy to try new ideas and if they don’t work out, you can quickly reverse course.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -79,6 +79,9 @@
     <loc>http://traffan.com/</loc>
   </url>
   <url>
+    <loc>http://traffan.com/archives/tags.html</loc>
+  </url>
+  <url>
     <loc>http://traffan.com/categories/development/</loc>
   </url>
   <url>
@@ -89,6 +92,75 @@
   </url>
   <url>
     <loc>http://traffan.com/categories/apple/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/delayed-job/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/rails/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/ruby/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/apple/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/shiny/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/toys/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/brew/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/mac/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/mysql/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/postgresql/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/path/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/puma/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/appfog/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/coffeescript/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/jquery/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/features/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/gems/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/octopress/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/tapir/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/search/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/twitter/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/automation/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/tags/haml/</loc>
   </url>
   <url>
     <loc>http://traffan.com/2/</loc>

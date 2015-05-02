@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: automation | Ramblings on Rails]]></title>
+  <link href="http://traffan.com/tags/automation/atom.xml" rel="self"/>
+  <link href="http://traffan.com/"/>
+  <updated>2015-05-01T22:46:27-04:00</updated>
+  <id>http://traffan.com/</id>
+  <author>
+    <name><![CDATA[Gary Traffanstedt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Auto-Tweet Octopress Blog Posts Using IFTTT]]></title>
+    <link href="http://traffan.com/auto-tweet-octopress-blog-posts-using-ifttt/"/>
+    <updated>2013-04-21T09:06:42-04:00</updated>
+    <id>http://traffan.com/auto-tweet-octopress-blog-posts-using-ifttt</id>
+    <content type="html"><![CDATA[<p>When using a blogging platform such as Wordpress, you can typically find a plugin that will do pretty much anything. With Octopress you’re a bit more on your own. Thankfully there are services that assist with much of this. Today I setup an account on <a href="https://ifttt.com/">IFTTT</a> which stands for If This, Then That. Once you have an account on here, setting up automatic tweets is trivial.</p>
+
+<p><strong>Easy Steps:</strong></p>
+
+<ol>
+<li>Create a free account on <a href="https://ifttt.com/">IFTTT</a></li>
+<li>You’ll want to check your email and verify your email address by clicking the link in that email. I didn’t do this step initially and it took me a bit to figure out why my recipe wasn’t running.</li>
+<li>Click on Create a <code>recipe</code></li>
+<li>Click on <code>this</code> (only option on this page)</li>
+<li>We’re going to be using our <code>atom.xml</code> file so click <code>Feed</code></li>
+<li>Now click on <code>New feed item</code> so we get 1 tweet for each new blog post</li>
+<li><code>Feed URL</code> is the path to our <code>atom.xml</code> such as: <code>http://traffan.com/atom.xml</code></li>
+<li>Now click on <code>that</code> (only option on this page)</li>
+<li>Select <code>Twitter</code> since we are setting up a tweet.</li>
+<li>Here you’ll be asked to activate your Twitter account. This just means you are giving IFTTT access to post on your behalf. Don’t worry about this step. IFTTT is quite popular and well respected. They won’t do anything malicious.</li>
+<li>Now click on <code>Post a tweet</code></li>
+<li>Now you need to tell it what you want your tweets to look like. I’m using: `New blog post: ’ for mine, but you can put whatever you want in yours.</li>
+<li>Last step asks you to enter the description you want to use for your new task and then click <code>Create Recipe</code> to save your new masterpiece.</li>
+</ol>
+
+
+<p>Provided you set things up correctly and remembered to verify your email address, your new recipe should now be running every 15 minutes checking for new posts and tweeting about them.</p>
+]]></content>
+  </entry>
+  
+</feed>

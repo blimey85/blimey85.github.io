@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: search | Ramblings on Rails]]></title>
+  <link href="http://traffan.com/tags/search/atom.xml" rel="self"/>
+  <link href="http://traffan.com/"/>
+  <updated>2015-05-01T22:46:27-04:00</updated>
+  <id>http://traffan.com/</id>
+  <author>
+    <name><![CDATA[Gary Traffanstedt]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress Tapir]]></title>
+    <link href="http://traffan.com/octopress-tapir/"/>
+    <updated>2013-04-21T06:17:11-04:00</updated>
+    <id>http://traffan.com/octopress-tapir</id>
+    <content type="html"><![CDATA[<p><strong>Note:</strong> You can find the relevant files on GitHub here: <a href="https://github.com/blimey85/octopress-tapir">octopress-tapir</a></p>
+
+<p><a href="http://tapirgo.com/">Tapir</a> search for your <a href="http://octopress.org/">Octopress</a> blog!</p>
+
+<p>Tapir works by indexing your RSS feed. Only what is included within this file will be indexed. For RSS purposes you most likely only want the last 20 or so articles but for search, you want all of them included. To handle this, we simply create a second xml file to use for search.</p>
+
+<pre><code>atom.xml
+</code></pre>
+
+<ul>
+<li>the original file</li>
+<li>limited to 20 most recent posts</li>
+<li>we use this for RSS</li>
+</ul>
+
+
+<pre><code>atom_search.xml
+</code></pre>
+
+<ul>
+<li>the new file</li>
+<li>a modified version of atom.xml</li>
+<li>includes all posts</li>
+<li>added summary field</li>
+</ul>
+
+
+<p><strong>Install</strong></p>
+
+<ol>
+<li>Visit <a href="http://tapirgo.com/">Tapirgo.com</a> and enter the url to your <code>atom_search.xml</code> like: <code>http://yoursite.com/atom_search.xml</code>
+After you enter your email and click the big <code>GO</code> button, you’ll be given both a public and a private token.</li>
+<li>Open your <code>_config.yml</code> and include the public token: <code>tapir_token: your_id_here</code></li>
+<li>Copy <code>loading.gif</code> to your <code>source/images/</code> folder.</li>
+<li>Copy <code>jquery-tapir.js</code> to your <code>source/javascripts/</code> folder.</li>
+<li>Copy <code>search.html</code> to your <code>source/</code> folder.</li>
+<li>Open <code>source/_includes/navigation.html</code> and add:</li>
+</ol>
+
+
+<pre><code class="html">{% if site.tapir_token %}
+
+  &lt;form method="get" action="/search.html"&gt;
+    &lt;fieldset role="search"&gt;
+      &lt;input class="search" name="query" type="text" placeholder="Search..." x-webkit-speech /&gt;
+    &lt;/fieldset&gt;
+  &lt;/form&gt;
+
+{% endif %}
+</code></pre>
+
+<p>That’s all there is to it. You should now be able to search your content using the wonderful <a href="http://tapirgo.com/">Tapir</a> service. :)</p>
+]]></content>
+  </entry>
+  
+</feed>
