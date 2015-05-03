@@ -32,7 +32,6 @@
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 
 
-  
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 
   
@@ -102,14 +101,21 @@
         <div id="content">
           <div class="row">
   <div class="page-content col-md-8" itemscope itemtype="http://schema.org/Blog">
-    <meta itemprop="name" content="Ramblings on Rails" />
+    <meta itemprop="name" content="Ramblings on Rails"/>
     
-    <meta itemprop="url" content="http://traffan.com" />
+    <meta itemprop="url" content="http://traffan.com"/>
     <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
       
   <header class="page-header">
     
-      <p class="meta text-muted text-uppercase">
+      <h2 class="entry-title" itemprop="name headline">
+          <a>Defaulting to Puma
+          
+      </h2>
+    
+    <hr>
+    
+      <p class="meta meta_top text-muted">
         
 
 
@@ -123,15 +129,36 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-10T09:51:18-04:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 10 Apr 2013</time>
+<span class="date_block"><span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-10T09:51:18-04:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 10 Apr 2013</time></span>
+
         
+
+        
+
+<span class="category_block">
+<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/development/'>development</a>
+  
+</span>
+  </span>
+
+
+        
+
+
+  <span class="tag_block" style="position: absolute; right: 15px;">
+    <span class="glyphicon glyphicon-tags"></span>&nbsp;
+    <span class="tags">
+      
+        <a class='tag' href='/tags/puma/'>puma</a>, <a class='tag' href='/tags/rails/'>rails</a>
+      
+    </span>
+  </span>
+
+
       </p>
-    
-    
-    <h1 class="entry-title" itemprop="name headline">
-        Defaulting to Puma
-        
-    </h1>
     
   </header>
 
@@ -151,37 +178,6 @@ Rack::Handler::WEBrick = Rack::Handler.get(:puma)
 
 
       <footer>
-        <p class="meta text-muted">
-          
-  
-
-<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Gary Traffanstedt</span></span>
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-10T09:51:18-04:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 10 Apr 2013</time>
-          
-
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/categories/development/'>development</a>
-  
-</span>
-
-
-        </p>
         
           <div class="sharing">
   
@@ -193,10 +189,11 @@ Rack::Handler::WEBrick = Rack::Handler.get(:puma)
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/issues-with-my-path/" title="Previous Post: Issues With My Path">&laquo; Issues With My Path</a></li>
+              <li class="previous"><a href="/issues-with-my-path/" title="Previous: Issues With My Path">&larr;&nbsp;Previous</a></li>
             
+
             
-            <li class="next"><a href="/trying-appfog-for-project-deployment/" title="Next Post: Trying AppFog for Project Deployment.">Trying AppFog for Project Deployment. &raquo;</a></li>
+              <li class="next"><a href="/trying-appfog-for-project-deployment/" title="Next: Trying AppFog for Project Deployment.">Next&nbsp;&rarr;</a></li>
             
           </ul>
         
@@ -204,11 +201,10 @@ Rack::Handler::WEBrick = Rack::Handler.get(:puma)
     </article>
     
   </div>
-
   
-  <aside class="sidebar col-md-4">
-    
-      <section class="panel panel-default">
+    <aside class="sidebar col-md-4">
+      
+        <section class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Recent Posts</h3>
   </div>
@@ -465,8 +461,8 @@ Rack::Handler::WEBrick = Rack::Handler.get(:puma)
 </section>
 
 
-    
-  </aside>
+      
+    </aside>
   
 </div>
 

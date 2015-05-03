@@ -32,7 +32,6 @@
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 
 
-  
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 
   
@@ -102,14 +101,21 @@
         <div id="content">
           <div class="row">
   <div class="page-content col-md-8" itemscope itemtype="http://schema.org/Blog">
-    <meta itemprop="name" content="Ramblings on Rails" />
+    <meta itemprop="name" content="Ramblings on Rails"/>
     
-    <meta itemprop="url" content="http://traffan.com" />
+    <meta itemprop="url" content="http://traffan.com"/>
     <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
       
   <header class="page-header">
     
-      <p class="meta text-muted text-uppercase">
+      <h2 class="entry-title" itemprop="name headline">
+          <a>Counter Caching
+          
+      </h2>
+    
+    <hr>
+    
+      <p class="meta meta_top text-muted">
         
 
 
@@ -123,15 +129,36 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-24T08:54:13-04:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 24 Apr 2013</time>
+<span class="date_block"><span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-24T08:54:13-04:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 24 Apr 2013</time></span>
+
         
+
+        
+
+<span class="category_block">
+<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/development/'>development</a>
+  
+</span>
+  </span>
+
+
+        
+
+
+  <span class="tag_block" style="position: absolute; right: 15px;">
+    <span class="glyphicon glyphicon-tags"></span>&nbsp;
+    <span class="tags">
+      
+        <a class='tag' href='/tags/gems/'>gems</a>, <a class='tag' href='/tags/rails/'>rails</a>
+      
+    </span>
+  </span>
+
+
       </p>
-    
-    
-    <h1 class="entry-title" itemprop="name headline">
-        Counter Caching
-        
-    </h1>
     
   </header>
 
@@ -196,37 +223,6 @@
 
 
       <footer>
-        <p class="meta text-muted">
-          
-  
-
-<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Gary Traffanstedt</span></span>
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-24T08:54:13-04:00"  data-updated="true" itemprop="datePublished dateCreated">Wed 24 Apr 2013</time>
-          
-
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/categories/development/'>development</a>
-  
-</span>
-
-
-        </p>
         
           <div class="sharing">
   
@@ -238,10 +234,11 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/rails-counter-cache-frustrations/" title="Previous Post: Rails Counter_cache Frustrations">&laquo; Rails Counter_cache Frustrations</a></li>
+              <li class="previous"><a href="/rails-counter-cache-frustrations/" title="Previous: Rails Counter_cache Frustrations">&larr;&nbsp;Previous</a></li>
             
+
             
-            <li class="next"><a href="/haml-is-not-for-assets/" title="Next Post: HAML Is Not for ASSETS">HAML Is Not for ASSETS &raquo;</a></li>
+              <li class="next"><a href="/haml-is-not-for-assets/" title="Next: HAML Is Not for ASSETS">Next&nbsp;&rarr;</a></li>
             
           </ul>
         
@@ -249,11 +246,10 @@
     </article>
     
   </div>
-
   
-  <aside class="sidebar col-md-4">
-    
-      <section class="panel panel-default">
+    <aside class="sidebar col-md-4">
+      
+        <section class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Recent Posts</h3>
   </div>
@@ -510,8 +506,8 @@
 </section>
 
 
-    
-  </aside>
+      
+    </aside>
   
 </div>
 
