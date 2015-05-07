@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Development | Ramblings on Rails]]></title>
   <link href="http://traffan.com/categories/development/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-03T18:07:40-04:00</updated>
+  <updated>2015-05-07T01:09:35-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/bug-in-apples-command-line-tools-6-dot-3/"/>
     <updated>2015-04-21T02:38:07-04:00</updated>
     <id>http://traffan.com/bug-in-apples-command-line-tools-6-dot-3</id>
-    <content type="html"><![CDATA[<p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on [<a href="http://stackoverflow.com/a/29576048">http://stackoverflow.com/a/29576048</a>])(StackOverflow) found a workaround.</p>
+    <content type="html"><![CDATA[<p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on <a href="StackOverflow">http://stackoverflow.com/a/29576048</a> found a workaround.</p>
 
 <pre><code class="plain">echo '#define _LIBCPP_ASSERT(x, m) ((void)0)' | sudo tee -a /Library/Developer/CommandLineTools/usr/include/c++/v1/__debug &gt; /dev/null
 </code></pre>
