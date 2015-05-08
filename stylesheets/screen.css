@@ -1045,20 +1045,13 @@ hr {
   background-image: -o-linear-gradient(left, transparent, #337ab7, transparent);
 }
 
-/* line 45, ../../sass/custom/_styles.scss */
-.slide-in {
-  opacity: 0;
-}
-
-/* line 49, ../../sass/custom/_styles.scss */
+/* line 51, ../../sass/custom/_styles.scss */
 .come-in {
   animation: fadein 2s;
   -moz-animation: fadein 2s;
   /* Firefox */
   -webkit-animation: fadein 2s;
   /* Safari and Chrome */
-  -webkit-perspective: 1000;
-  -webkit-backface-visibility: hidden;
   -o-animation: fadein 2s;
   /* Opera */
 }
