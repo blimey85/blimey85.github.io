@@ -1045,7 +1045,12 @@ hr {
   background-image: -o-linear-gradient(left, transparent, #337ab7, transparent);
 }
 
-/* line 51, ../../sass/custom/_styles.scss */
+/* line 45, ../../sass/custom/_styles.scss */
+.slide-in {
+  opacity: 0;
+}
+
+/* line 49, ../../sass/custom/_styles.scss */
 .come-in {
   animation: fadein 2s;
   -moz-animation: fadein 2s;
@@ -1058,7 +1063,7 @@ hr {
   /* Opera */
 }
 
-/* line 60, ../../sass/custom/_styles.scss */
+/* line 58, ../../sass/custom/_styles.scss */
 .already-visible {
   animation: none;
   -moz-animation: none;
@@ -1104,7 +1109,7 @@ hr {
     opacity: 1;
   }
 }
-/* line 100, ../../sass/custom/_styles.scss */
+/* line 98, ../../sass/custom/_styles.scss */
 .fade-in {
   opacity: 0;
   /* make things invisible upon start */
@@ -1121,35 +1126,35 @@ hr {
   animation-duration: 1s;
 }
 
-/* line 115, ../../sass/custom/_styles.scss */
+/* line 113, ../../sass/custom/_styles.scss */
 .fade-in.one {
   -webkit-animation-delay: 0.7s;
   -moz-animation-delay: 0.7s;
   animation-delay: 0.7s;
 }
 
-/* line 121, ../../sass/custom/_styles.scss */
+/* line 119, ../../sass/custom/_styles.scss */
 .fade-in.two {
   -webkit-animation-delay: 1.2s;
   -moz-animation-delay: 1.2s;
   animation-delay: 1.2s;
 }
 
-/* line 127, ../../sass/custom/_styles.scss */
+/* line 125, ../../sass/custom/_styles.scss */
 .fade-in.three {
   -webkit-animation-delay: 1.7s;
   -moz-animation-delay: 1.7s;
   animation-delay: 1.7s;
 }
 
-/* line 133, ../../sass/custom/_styles.scss */
+/* line 131, ../../sass/custom/_styles.scss */
 .fade-in.four {
   -webkit-animation-delay: 2.2s;
   -moz-animation-delay: 2.2s;
   animation-delay: 2.2s;
 }
 
-/* line 139, ../../sass/custom/_styles.scss */
+/* line 137, ../../sass/custom/_styles.scss */
 .fade-in.five {
   -webkit-animation-delay: 2.7s;
   -moz-animation-delay: 2.7s;
