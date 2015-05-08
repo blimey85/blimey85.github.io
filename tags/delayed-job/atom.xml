@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: delayed_job | Ramblings on Rails]]></title>
   <link href="http://traffan.com/tags/delayed-job/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-07T01:09:35-04:00</updated>
+  <updated>2015-05-08T13:33:38-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/how-i-kinda-sorda-create-batches-for-delayed-job/"/>
     <updated>2013-04-06T03:05:41-04:00</updated>
     <id>http://traffan.com/how-i-kinda-sorda-create-batches-for-delayed-job</id>
-    <content type="html"><![CDATA[<p>For a recent project I found myself needing to batch process a large number of images twice per week. On average I’d be processing around 4,000 images and once processed, would need to tar these up and then upload them to the data center. Now we could debate the merits of this approach and I believe we’d be in complete agreement that there absolutely must, and is, many different ways to achieve the same end result, but that was beyond my control. My task was to process and upload the images.</p>
+    <content type="html"><![CDATA[<p>For a recent project I found myself needing to batch process a large number of images twice per week. On average I’d be processing around 4,000 images and once processed, would need to tar these up and then upload them to the data center. Now we could debate the merits of this approach and I believe we’d be in complete agreement that there absolutely must, and is, many different ways to achieve the same end result, but that was beyond my control. My task was to process and upload the images.<!-- more --></p>
 
 <p>The current setup was/is php and if you know me, you know that while I’m a php dev, I’ve never really cared for the language. I started this journey into code poetry with perl which I still to this day have much love and respect for. Well, to be honest, I started many years prior in other languages besides perl. Something on my Texas Instrument machine back in ‘81 or ‘82. Applesoft Basic around ‘87. Dabbled a bit with Pascal back then too. But anyway, Perl was the first language I really dug into and used professionally. When php came around I started using it and eventually it became my primary language for everything. This was a conscious decision I made, but then again, being a programmer was never a conscious choice I made either.</p>
 

@@ -2,7 +2,9 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Ramblings on Rails</title>
+  <title alt="Ramblings on Rails">
+    Ramblings on Rails
+  </title>
   <meta name="author" content="Gary Traffanstedt">
 
   
@@ -108,7 +110,7 @@
       
       
       
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
           
   <header class="page-header">
     
@@ -164,24 +166,19 @@
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on <a href="StackOverflow">http://stackoverflow.com/a/29576048</a> found a workaround.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>echo '#define _LIBCPP_ASSERT(x, m) ((void)0)' | sudo tee -a /Library/Developer/CommandLineTools/usr/include/c++/v1/__debug &gt; /dev/null</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Never one to be afraid of messing with my system because hey, it&rsquo;s 2am, I&rsquo;m tired, and furthermore, what could possibly go wrong? I ran the command, typed in my system password, and all seemed well. I then tried <code>gem install therubyracer</code> and it installed, finally.</p>
-
-<p>I don&rsquo;t use XCode much and didn&rsquo;t actually know the Command Line Tools were/are used by Ruby so that&rsquo;s something new to me. I also didn&rsquo;t knwo that the might Apple ever makes mistakes. Ok, I actually knew that part. They don&rsquo;t make a lot of mistakes, but not everything can be magical and just work. Thankfully I found a solution and was able to get the gems installed. Now back to my regularly scheduled late-night coding.</p>
-</div>
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on <a href="http://stackoverflow.com/a/29576048">StackOverflow</a> found a workaround. </div>
   
+  
+    <footer>
+      <a class="btn btn-default" href="/bug-in-apples-command-line-tools-6-dot-3/">Read on &rarr;</a>
+    </footer>
   
 
 
         </article>
       
       
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
           
   <header class="page-header">
     
@@ -237,22 +234,19 @@
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>After two years of taking a step back and trying other things, I&rsquo;ve returned to the land of the living and have dived head first back into all things technical. Too many years of mediocrity had taken their toll on the passion for programming I once had. First computer when I was three, second when I was eight, first website in &lsquo;96 when I was 18, and first programing job a couple years later. The journey from novice to professional was a quick one. I went from basic html to installing scripts, then to modifying scripts, then to writing custom code. From there it wasn&rsquo;t long until I was programming large sites and doing everything else involved in maintaining large high-traffic sites. I learned on the job and learned just enough as I needed it. Never getting to use the latest and greatest but always stuck with old PHP and Perl code. I knew PHP pretty well, Javascript less well, a bit of Linux, some FreeBSD, quite a bit of MySQL, and on and on. I knew enough and it got me by.</p>
-
-<p>Later I would leave the self-employed world for a jaunt on the corporate side of things, where what little passion I had left would die. Working on 10 year old code that had been touched by at least as many people. Cajoling it into doing things it was never designed to do. Never able to take the time for a decent rewrite because hey, it works well enough. Well, no, it doesn&rsquo;t. It has more bugs than a crack den in the ghetto but that&rsquo;s ok. I&rsquo;ll add in some new code and try my best to patch it together. Who care&rsquo;s about quality, right?</p>
-
-<p>But that was then, this is now, and a two year respite has allowed me to reset mentally. Thanks to sites like <a href="http://www.freecodecamp.com/learn-to-code">Free Code Camp</a>, <a href="http://www.codecademy.com/learn">Codecademy</a>, and <a href="http://www.theodinproject.com/">The Odin Project</a> I&rsquo;m all-in and learning very quickly. My overall plan includes the MEAN stack, Ruby, Rails, and then later Objective-C and Swift. Right now I&rsquo;m working through an Angular tutorial as well as the Learn You Node stuff. I like to work through two at the same time so I can switch back and forth to keep my mind fresh. I also take a quick walk if I get stuck to do a quick reset on my thinking and not just keep beating my head against a wall.</p>
-
-<p>That said, I&rsquo;ll end this here and see if I can get it posted. It&rsquo;s been two years since I&rsquo;ve attempted a blog post and I&rsquo;m having to relearn how to use Octopress. I have the source code to the page but not the source of my previous posts or how I had it set up. Yea, I&rsquo;m regretting deleting all of my programming stuff way back when. Would be nice to have it now.</p>
-</div>
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>After two years of taking a step back and trying other things, I&rsquo;ve returned to the land of the living and have dived head first back into all things technical. Too many years of mediocrity had taken their toll on the passion for programming I once had. First computer when I was three, second when I was eight, first website in &lsquo;96 when I was 18, and first programing job a couple years later. The journey from novice to professional was a quick one.</div>
   
+  
+    <footer>
+      <a class="btn btn-default" href="/the-return-of-the-great-white-hope/">Read on &rarr;</a>
+    </footer>
   
 
 
         </article>
       
       
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
           
   <header class="page-header">
     
@@ -308,41 +302,19 @@
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>So in my gem file I had gem &lsquo;haml&rsquo; inside my assets block like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">gem</span> <span class="s1">&#39;haml&#39;</span>
-</span><span class='line'>    <span class="o">---</span> <span class="n">other</span> <span class="n">gems</span> <span class="n">here</span> <span class="o">---</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This worked fine locally and all was well. Then I tried to push an update to AppFog and none of my HAML files loaded. Nothing showed up in the error log but there was an obvious problem. A site without any layout isn’t much of a site. I tried a few things but couldn’t get it to work so I bitched about it on Twitter:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Deff something up with @appfog not supporting haml. Works 
-</span><span class='line'>swimmingly on local but shits the bed after deploy. #frustrated</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Yea, I was a little frustrated. So converted my files over to erb and left it at that. Then I was contacted via Twitter by Alex Parkinson from AppFog who asked me about the issue. This prompted me to look into it a bit more and right off the bat I noticed my issue with the gem file. I tried moving the HAML gem outside of the assets block and what do you know? That worked.</p>
-
-<p>Thanks to GIT it was trivial to track down my previous files, merge in some changes I had made, and then push the latest up to AppFog and now all is well and I’m able to use HAML.</p>
-
-<p>I apologized to AppFog via Twitter and also Tweeted about my mistake. I have to admit, I’m impressed Mr. Parkinson took the time to Tweet me about this. Had he not I likely would have just stuck with erb files and would have presumed that AppFog had an issue with HAML when all along it was my own ignorance that was screwing me up.</p>
-</div>
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>Not being too familiar with HAML nor how the <code>group :assets</code> block works in a gemfile, I ran into a wall. Due to my own ignorance I initially theorized the blame must lay with AppFrog but further investigation lead me to where I had gone wrong and how to fix it.</div>
   
+  
+    <footer>
+      <a class="btn btn-default" href="/haml-is-not-for-assets/">Read on &rarr;</a>
+    </footer>
   
 
 
         </article>
       
       
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
           
   <header class="page-header">
     
@@ -398,71 +370,19 @@
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>As promised, a blog post detailing the proper way to handle your counter_cache columns. A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
-
-<p>So we decide to use a <code>counter_cache</code> column but discover that apparently the fine folks behind Rails don’t actually ever use this feature, or if they do, they are using it in some manner unbeknown to me as for my needs, I’m almost always going to need to know more than just one count on a particular model. Goals and completed goals or books and how many of those have been read or well, you get the idea.</p>
-
-<p>After a bit of time spent googling and researching this I came across a gem that is, as far as I can tell, exactly what should be in the Rails code itself. This is how it should work by default since the norm, again just my opinion is multiple columns rather than just one. The gem is called <a href="https://github.com/magnusvk/counter_culture">counter_culture</a> and if you have use for a <code>counter_cache</code> column, and I think a lot of you will, then you owe it to yourself to give this a try.</p>
-
-<p><strong>INSTALL</strong></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;counter_culture&#39;</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://github.com/magnusvk/counter_culture.git&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then run bundle install to install the new gem.</p>
-
-<p><strong>DATABASE</strong></p>
-
-<p>The standard rails migration generator is only going to get you so far on setting up your new files. You can go ahead and generate the migration scaffold but then you’ll need to manually add some code to that. For my needs I used:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:goals_count</span><span class="p">,</span> <span class="ss">:integer</span><span class="p">,</span> <span class="ss">:null</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:goals_completed_count</span><span class="p">,</span> <span class="ss">:integer</span><span class="p">,</span> <span class="ss">:null</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="mi">0</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We want the field(s) to be integers and for this to work properly, you need to set null to false and default them to 0. These settings are why the migration generator isn’t able to generate the entire thing for us. Once you have your migration setup, you’ll of course want to run <code>rake db:migrate</code> to get your new fields added.</p>
-
-<p><strong>CODE</strong></p>
-
-<p>Next you need to add some code to your model. This is as they say, where the magic happens.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">counter_culture</span> <span class="ss">:user</span><span class="p">,</span>
-</span><span class='line'>                <span class="ss">:column_name</span> <span class="o">=&gt;</span> <span class="s1">&#39;goals_count&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">counter_culture</span> <span class="ss">:user</span><span class="p">,</span>
-</span><span class='line'>                <span class="ss">:column_name</span> <span class="o">=&gt;</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span><span class="o">|</span><span class="n">model</span><span class="o">|</span> <span class="n">model</span><span class="o">.</span><span class="n">completed</span> <span class="p">?</span> <span class="s1">&#39;goals_completed_count&#39;</span> <span class="p">:</span> <span class="kp">nil</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The first line is our standard <code>belongs_to</code> and there’s nothing special about it here. Next we have my first <code>counter_cache</code> column being setup. This is the standard one that will give us the total count of goals for each user. We are calling <code>counter_culture</code> on the model and then giving it the column we want it to keep updated. Simple enough I think.</p>
-
-<p>The next block sets up my other <code>counter_cache</code> column and this one is a bit more involved. It starts the same with setting up the model followed by the column name, but when we define the column name we’re using a <code>Proc</code> so that we can dynamically determine when the column needs to be incremented or decremented. In this case <code>model.completed</code> is a boolean and will return true or false depending on whether or not this goal is completed. If you have a more complex situation, you can instead do something like <code>model.completed?</code> and then def <code>completed?</code> however you want. Just keep in mind that your <code>completed?</code> method needs to return true or false and it should work fine.</p>
-
-<p><strong>DONE</strong></p>
-
-<p>So there you have it. Simple once you get the hang of it. I actually had some trouble getting this setup initially and received assistance from <a href="https://twitter.com/magnusvk">@magnusvk</a>, the creator of the gem, who responded immediately and was quite helpful. I think you’d be hard pressed to find a friendlier community than what Rails has. People really seem to go out of their way to help each other and it’s because of that, Rails continues to thrive.</p>
-</div>
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>As promised, a blog post detailing the proper way to handle your counter_cache columns. </div>
   
+  
+    <footer>
+      <a class="btn btn-default" href="/counter-caching/">Read on &rarr;</a>
+    </footer>
   
 
 
         </article>
       
       
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
           
   <header class="page-header">
     
@@ -518,13 +438,347 @@
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>For my bucket list site I need to know how many goals each user has and of those, how many are completed. Doing this with eager loading is easy but less than optimal. After watching the RailsCast on the subject (<a href="http://railscasts.com/episodes/23-counter-cache-column">#23 Counter Cache Column - RailsCasts</a>), I was intrigued. This seemed like the ideal way to efficiently solve my problem.</p>
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>For my bucket list site I need to know how many goals each user has and of those, how many are completed. Doing this with eager loading is easy but less than optimal. After watching the RailsCast on the subject (<a href="http://railscasts.com/episodes/23-counter-cache-column">#23 Counter Cache Column - RailsCasts</a>), I was intrigued. This seemed like the ideal way to efficiently solve my problem.</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" href="/rails-counter-cache-frustrations/">Read on &rarr;</a>
+    </footer>
+  
 
-<p>I quickly set things up and for total goals, it worked perfect. Create a new goal and the counter would increment. Delete a goal and the counter would decrement. Get the count for goals for a particular user and it would only hit the user table. Nice, clean, efficient. Great, I was half way home. Went to do the same thing for the second column, the counter for completed goals and ran into a problem. You apparently can’t have more than one counter cache column like this.</p>
 
-<p>Normally you set up the counter cache column with the name and then <code>_count</code> so <code>goals_count</code> would be the name if you were getting the count for goals. I thought <code>goals_count</code> and <code>goals_completed_count</code> would be ideal but no dice.</p>
+        </article>
+      
+      
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/auto-tweet-octopress-blog-posts-using-ifttt/" itemprop="url">Auto-Tweet Octopress Blog Posts Using IFTTT</a></h2>
+    
+    <hr>
+    
+      <p class="meta meta_top text-muted">
+        
 
-<p>After a bit of research I found a gem that does exactly what I want. I’m still in the process of implementing this gem but expect a future blog post on how to use this gem in the next few days.</p>
+
+
+
+
+
+
+
+
+
+
+
+<span class="date_block"><span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-21T09:06:42-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sun 21 Apr 2013</time></span>
+
+        
+
+        
+
+<span class="category_block">
+<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/blogging/'>blogging</a>
+  
+</span>
+  </span>
+
+
+        
+
+
+  <span class="tag_block">
+    <span class="glyphicon glyphicon-tags"></span>&nbsp;
+    <span class="tags">
+      
+        <a class='tag' href='/tags/automation/'>automation</a>, <a class='tag' href='/tags/octopress/'>octopress</a>, <a class='tag' href='/tags/twitter/'>twitter</a>
+      
+    </span>
+  </span>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>When using a blogging platform such as Wordpress, you can typically find a plugin that will do pretty much anything. With Octopress you’re a bit more on your own. Thankfully there are services that assist with much of this. Today I setup an account on <a href="https://ifttt.com/">IFTTT</a> which stands for If This, Then That. Once you have an account on here, setting up automatic tweets is trivial.</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" href="/auto-tweet-octopress-blog-posts-using-ifttt/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/octopress-tapir/" itemprop="url">Octopress Tapir</a></h2>
+    
+    <hr>
+    
+      <p class="meta meta_top text-muted">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="date_block"><span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-21T06:17:11-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sun 21 Apr 2013</time></span>
+
+        
+
+        
+
+<span class="category_block">
+<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/blogging/'>blogging</a>
+  
+</span>
+  </span>
+
+
+        
+
+
+  <span class="tag_block">
+    <span class="glyphicon glyphicon-tags"></span>&nbsp;
+    <span class="tags">
+      
+        <a class='tag' href='/tags/octopress/'>octopress</a>, <a class='tag' href='/tags/search/'>search</a>, <a class='tag' href='/tags/tapir/'>tapir</a>
+      
+    </span>
+  </span>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>For those running Octopress and wanting to set up a full-text search of their site, something a little nicer than the stock Google Simple Search, Tapir is a valid option. It&rsquo;s a third party website that indexes your RSS feed and provides search tools against that data-set.</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" href="/octopress-tapir/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/gem-consistency-fail/" itemprop="url">Gem: Consistency_fail</a></h2>
+    
+    <hr>
+    
+      <p class="meta meta_top text-muted">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="date_block"><span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-20T09:24:09-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sat 20 Apr 2013</time></span>
+
+        
+
+        
+
+<span class="category_block">
+<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/development/'>development</a>
+  
+</span>
+  </span>
+
+
+        
+
+
+  <span class="tag_block">
+    <span class="glyphicon glyphicon-tags"></span>&nbsp;
+    <span class="tags">
+      
+        <a class='tag' href='/tags/gems/'>gems</a>
+      
+    </span>
+  </span>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>In rails it’s common to add a <code>validates_uniqueness_of</code> validation to models for any fields that you want to be unique. Most of the time this is sufficient and will catch when a record is submitted that already exists. But what if two submissions come in at the same time? What if a user while registering clicks the submit button multiple times? You could run into a case where rails checks for uniqueness multiple times before the first record has time to be saved in the database, sees that they are in fact, at that point in time, unique, and allows them to go through. The database doesn’t know you want them to be unique so it gladly accepts them, and now your formerly pristine database is pristine no more.</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" href="/gem-consistency-fail/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/nested-models-vs-monolithic/" itemprop="url">Nested Models vs Monolithic</a></h2>
+    
+    <hr>
+    
+      <p class="meta meta_top text-muted">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="date_block"><span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-16T09:29:29-04:00"  data-updated="true" itemprop="datePublished dateCreated">Tue 16 Apr 2013</time></span>
+
+        
+
+        
+
+<span class="category_block">
+<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/development/'>development</a>
+  
+</span>
+  </span>
+
+
+        
+
+
+  <span class="tag_block">
+    <span class="glyphicon glyphicon-tags"></span>&nbsp;
+    <span class="tags">
+      
+        <a class='tag' href='/tags/rails/'>rails</a>
+      
+    </span>
+  </span>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>When setting up a new database schema, one is faced with a multitude of choices and decisions that can directly impact both the performance and maintainability of said database. One decision regards Nested Models vs Monolithic Models. What are the differences and why is one better than the other?</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" href="/nested-models-vs-monolithic/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/rails-destroy-scaffold/" itemprop="url">Rails Destroy Scaffold</a></h2>
+    
+    <hr>
+    
+      <p class="meta meta_top text-muted">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="date_block"><span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-04-16T06:37:51-04:00"  data-updated="true" itemprop="datePublished dateCreated">Tue 16 Apr 2013</time></span>
+
+        
+
+        
+
+<span class="category_block">
+<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/development/'>development</a>
+  
+</span>
+  </span>
+
+
+        
+
+
+  <span class="tag_block">
+    <span class="glyphicon glyphicon-tags"></span>&nbsp;
+    <span class="tags">
+      
+        <a class='tag' href='/tags/rails/'>rails</a>
+      
+    </span>
+  </span>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>Over the years I’ve generated a scaffold a time or two but until tonight the fact that you can reverse this with <code>rails destroy scaffold ModelName</code> had escaped me. Such a simple thing and quite the time saver. Combined with <code>rake db:rollback</code>, Rails makes it very easy to try new ideas and if they don’t work out, you can quickly reverse course.</p>
 </div>
   
   
@@ -900,6 +1154,108 @@
       count: 0,
       skip_forks: true,
       target: '#gh_repos'
+    });
+
+    (function () {
+
+      // This function does the dirty work of finding the event type and setting the appropriate title
+      var updatePageTitle = function ( evt ) {
+        var v = $(document).find('title').attr('alt'), // The title when tab is visible
+            h = "Miss You :(", // The title when tab is hidden
+            evtMap = {
+              focus: v,
+              focusin: v,
+              pageshow: v,
+              blur: h,
+              focusout: h,
+              pagehide: h
+            }; // Map each title to the different events
+
+        evt = evt || window.event;
+
+        // If the event type exists in the map, set the right title
+        if ( evt.type in evtMap ) {
+          document.title = evtMap[ evt.type ];
+        } else {
+          // Last ditch attempt
+          if ( document.hidden ) {
+            document.title = h;
+          } else {
+            document.title = v;
+          }
+        }
+      };
+
+      // This sets the appropriate listeners so that everything works cross browser
+      var hidden = "hidden";
+
+      // Standards:
+      if ( hidden in document )
+        document.addEventListener( "visibilitychange", updatePageTitle );
+      else if ( ( hidden = "mozHidden" ) in document )
+        document.addEventListener( "mozvisibilitychange", updatePageTitle );
+      else if ( ( hidden = "webkitHidden" ) in document )
+        document.addEventListener( "webkitvisibilitychange", updatePageTitle );
+      else if ( ( hidden = "msHidden" ) in document )
+        document.addEventListener( "msvisibilitychange", updatePageTitle );
+      // IE 9 and lower:
+      else if ( "onfocusin" in document )
+        document.onfocusin = document.onfocusout = updatePageTitle;
+      // All others:
+      else
+        window.onpageshow = window.onpagehide = window.onfocus = window.onblur = updatePageTitle;
+
+    })();
+  });
+
+  (function($) {
+
+    /**
+     * Copyright 2012, Digital Fusion
+     * Licensed under the MIT license.
+     * http://teamdf.com/jquery-plugins/license/
+     *
+     * @author Sam Sehnert
+     * @desc A small plugin that checks whether elements are within
+     *     the user visible viewport of a web browser.
+     *     only accounts for vertical position, not horizontal.
+     */
+
+    $.fn.visible = function(partial) {
+
+      var $t            = $(this),
+          $w            = $(window),
+          viewTop       = $w.scrollTop(),
+          viewBottom    = viewTop + $w.height(),
+          _top          = $t.offset().top,
+          _bottom       = _top + $t.height(),
+          compareTop    = partial === true ? _bottom : _top,
+          compareBottom = partial === true ? _top : _bottom;
+
+      return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+    };
+
+  })(jQuery);
+
+  var win = $(window);
+
+  var allMods = $(".slide-in");
+
+  allMods.each(function(i, el) {
+    var el = $(el);
+    if (el.visible(true)) {
+      el.addClass("already-visible");
+    }
+  });
+
+  win.scroll(function(event) {
+
+    allMods.each(function(i, el) {
+      var el = $(el);
+      if (el.visible(true)) {
+        el.addClass("come-in");
+      }
     });
 
   });

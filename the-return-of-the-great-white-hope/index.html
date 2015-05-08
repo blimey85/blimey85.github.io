@@ -2,7 +2,9 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>The Return of the Great White Hope. - Ramblings on Rails</title>
+  <title alt="The Return of the Great White Hope. - Ramblings on Rails">
+    The Return of the Great White Hope. - Ramblings on Rails
+  </title>
   <meta name="author" content="Gary Traffanstedt">
 
   
@@ -163,7 +165,7 @@
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><p>After two years of taking a step back and trying other things, I&rsquo;ve returned to the land of the living and have dived head first back into all things technical. Too many years of mediocrity had taken their toll on the passion for programming I once had. First computer when I was three, second when I was eight, first website in &lsquo;96 when I was 18, and first programing job a couple years later. The journey from novice to professional was a quick one. I went from basic html to installing scripts, then to modifying scripts, then to writing custom code. From there it wasn&rsquo;t long until I was programming large sites and doing everything else involved in maintaining large high-traffic sites. I learned on the job and learned just enough as I needed it. Never getting to use the latest and greatest but always stuck with old PHP and Perl code. I knew PHP pretty well, Javascript less well, a bit of Linux, some FreeBSD, quite a bit of MySQL, and on and on. I knew enough and it got me by.</p>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>After two years of taking a step back and trying other things, I&rsquo;ve returned to the land of the living and have dived head first back into all things technical. Too many years of mediocrity had taken their toll on the passion for programming I once had. First computer when I was three, second when I was eight, first website in &lsquo;96 when I was 18, and first programing job a couple years later. The journey from novice to professional was a quick one.<!-- more --> I went from basic html to installing scripts, then to modifying scripts, then to writing custom code. From there it wasn&rsquo;t long until I was programming large sites and doing everything else involved in maintaining large high-traffic sites. I learned on the job and learned just enough as I needed it. Never getting to use the latest and greatest but always stuck with old PHP and Perl code. I knew PHP pretty well, Javascript less well, a bit of Linux, some FreeBSD, quite a bit of MySQL, and on and on. I knew enough and it got me by.</p>
 
 <p>Later I would leave the self-employed world for a jaunt on the corporate side of things, where what little passion I had left would die. Working on 10 year old code that had been touched by at least as many people. Cajoling it into doing things it was never designed to do. Never able to take the time for a decent rewrite because hey, it works well enough. Well, no, it doesn&rsquo;t. It has more bugs than a crack den in the ghetto but that&rsquo;s ok. I&rsquo;ll add in some new code and try my best to patch it together. Who care&rsquo;s about quality, right?</p>
 
@@ -552,6 +554,108 @@
       count: 0,
       skip_forks: true,
       target: '#gh_repos'
+    });
+
+    (function () {
+
+      // This function does the dirty work of finding the event type and setting the appropriate title
+      var updatePageTitle = function ( evt ) {
+        var v = $(document).find('title').attr('alt'), // The title when tab is visible
+            h = "Miss You :(", // The title when tab is hidden
+            evtMap = {
+              focus: v,
+              focusin: v,
+              pageshow: v,
+              blur: h,
+              focusout: h,
+              pagehide: h
+            }; // Map each title to the different events
+
+        evt = evt || window.event;
+
+        // If the event type exists in the map, set the right title
+        if ( evt.type in evtMap ) {
+          document.title = evtMap[ evt.type ];
+        } else {
+          // Last ditch attempt
+          if ( document.hidden ) {
+            document.title = h;
+          } else {
+            document.title = v;
+          }
+        }
+      };
+
+      // This sets the appropriate listeners so that everything works cross browser
+      var hidden = "hidden";
+
+      // Standards:
+      if ( hidden in document )
+        document.addEventListener( "visibilitychange", updatePageTitle );
+      else if ( ( hidden = "mozHidden" ) in document )
+        document.addEventListener( "mozvisibilitychange", updatePageTitle );
+      else if ( ( hidden = "webkitHidden" ) in document )
+        document.addEventListener( "webkitvisibilitychange", updatePageTitle );
+      else if ( ( hidden = "msHidden" ) in document )
+        document.addEventListener( "msvisibilitychange", updatePageTitle );
+      // IE 9 and lower:
+      else if ( "onfocusin" in document )
+        document.onfocusin = document.onfocusout = updatePageTitle;
+      // All others:
+      else
+        window.onpageshow = window.onpagehide = window.onfocus = window.onblur = updatePageTitle;
+
+    })();
+  });
+
+  (function($) {
+
+    /**
+     * Copyright 2012, Digital Fusion
+     * Licensed under the MIT license.
+     * http://teamdf.com/jquery-plugins/license/
+     *
+     * @author Sam Sehnert
+     * @desc A small plugin that checks whether elements are within
+     *     the user visible viewport of a web browser.
+     *     only accounts for vertical position, not horizontal.
+     */
+
+    $.fn.visible = function(partial) {
+
+      var $t            = $(this),
+          $w            = $(window),
+          viewTop       = $w.scrollTop(),
+          viewBottom    = viewTop + $w.height(),
+          _top          = $t.offset().top,
+          _bottom       = _top + $t.height(),
+          compareTop    = partial === true ? _bottom : _top,
+          compareBottom = partial === true ? _top : _bottom;
+
+      return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+    };
+
+  })(jQuery);
+
+  var win = $(window);
+
+  var allMods = $(".slide-in");
+
+  allMods.each(function(i, el) {
+    var el = $(el);
+    if (el.visible(true)) {
+      el.addClass("already-visible");
+    }
+  });
+
+  win.scroll(function(event) {
+
+    allMods.each(function(i, el) {
+      var el = $(el);
+      if (el.visible(true)) {
+        el.addClass("come-in");
+      }
     });
 
   });

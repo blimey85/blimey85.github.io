@@ -2,7 +2,9 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Rails Counter_cache Frustrations - Ramblings on Rails</title>
+  <title alt="Rails Counter_cache Frustrations - Ramblings on Rails">
+    Rails Counter_cache Frustrations - Ramblings on Rails
+  </title>
   <meta name="author" content="Gary Traffanstedt">
 
   
@@ -163,7 +165,7 @@
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><p>For my bucket list site I need to know how many goals each user has and of those, how many are completed. Doing this with eager loading is easy but less than optimal. After watching the RailsCast on the subject (<a href="http://railscasts.com/episodes/23-counter-cache-column">#23 Counter Cache Column - RailsCasts</a>), I was intrigued. This seemed like the ideal way to efficiently solve my problem.</p>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>For my bucket list site I need to know how many goals each user has and of those, how many are completed. Doing this with eager loading is easy but less than optimal. After watching the RailsCast on the subject (<a href="http://railscasts.com/episodes/23-counter-cache-column">#23 Counter Cache Column - RailsCasts</a>), I was intrigued. This seemed like the ideal way to efficiently solve my problem.<!-- more --></p>
 
 <p>I quickly set things up and for total goals, it worked perfect. Create a new goal and the counter would increment. Delete a goal and the counter would decrement. Get the count for goals for a particular user and it would only hit the user table. Nice, clean, efficient. Great, I was half way home. Went to do the same thing for the second column, the counter for completed goals and ran into a problem. You apparently can’t have more than one counter cache column like this.</p>
 
@@ -552,6 +554,108 @@
       count: 0,
       skip_forks: true,
       target: '#gh_repos'
+    });
+
+    (function () {
+
+      // This function does the dirty work of finding the event type and setting the appropriate title
+      var updatePageTitle = function ( evt ) {
+        var v = $(document).find('title').attr('alt'), // The title when tab is visible
+            h = "Miss You :(", // The title when tab is hidden
+            evtMap = {
+              focus: v,
+              focusin: v,
+              pageshow: v,
+              blur: h,
+              focusout: h,
+              pagehide: h
+            }; // Map each title to the different events
+
+        evt = evt || window.event;
+
+        // If the event type exists in the map, set the right title
+        if ( evt.type in evtMap ) {
+          document.title = evtMap[ evt.type ];
+        } else {
+          // Last ditch attempt
+          if ( document.hidden ) {
+            document.title = h;
+          } else {
+            document.title = v;
+          }
+        }
+      };
+
+      // This sets the appropriate listeners so that everything works cross browser
+      var hidden = "hidden";
+
+      // Standards:
+      if ( hidden in document )
+        document.addEventListener( "visibilitychange", updatePageTitle );
+      else if ( ( hidden = "mozHidden" ) in document )
+        document.addEventListener( "mozvisibilitychange", updatePageTitle );
+      else if ( ( hidden = "webkitHidden" ) in document )
+        document.addEventListener( "webkitvisibilitychange", updatePageTitle );
+      else if ( ( hidden = "msHidden" ) in document )
+        document.addEventListener( "msvisibilitychange", updatePageTitle );
+      // IE 9 and lower:
+      else if ( "onfocusin" in document )
+        document.onfocusin = document.onfocusout = updatePageTitle;
+      // All others:
+      else
+        window.onpageshow = window.onpagehide = window.onfocus = window.onblur = updatePageTitle;
+
+    })();
+  });
+
+  (function($) {
+
+    /**
+     * Copyright 2012, Digital Fusion
+     * Licensed under the MIT license.
+     * http://teamdf.com/jquery-plugins/license/
+     *
+     * @author Sam Sehnert
+     * @desc A small plugin that checks whether elements are within
+     *     the user visible viewport of a web browser.
+     *     only accounts for vertical position, not horizontal.
+     */
+
+    $.fn.visible = function(partial) {
+
+      var $t            = $(this),
+          $w            = $(window),
+          viewTop       = $w.scrollTop(),
+          viewBottom    = viewTop + $w.height(),
+          _top          = $t.offset().top,
+          _bottom       = _top + $t.height(),
+          compareTop    = partial === true ? _bottom : _top,
+          compareBottom = partial === true ? _top : _bottom;
+
+      return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+    };
+
+  })(jQuery);
+
+  var win = $(window);
+
+  var allMods = $(".slide-in");
+
+  allMods.each(function(i, el) {
+    var el = $(el);
+    if (el.visible(true)) {
+      el.addClass("already-visible");
+    }
+  });
+
+  win.scroll(function(event) {
+
+    allMods.each(function(i, el) {
+      var el = $(el);
+      if (el.visible(true)) {
+        el.addClass("come-in");
+      }
     });
 
   });

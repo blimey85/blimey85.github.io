@@ -4,7 +4,7 @@
   <title><![CDATA[Ramblings on Rails]]></title>
   <link href="http://traffan.com/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-07T01:09:35-04:00</updated>
+  <updated>2015-05-08T13:33:38-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/bug-in-apples-command-line-tools-6-dot-3/"/>
     <updated>2015-04-21T02:38:07-04:00</updated>
     <id>http://traffan.com/bug-in-apples-command-line-tools-6-dot-3</id>
-    <content type="html"><![CDATA[<p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on <a href="StackOverflow">http://stackoverflow.com/a/29576048</a> found a workaround.</p>
+    <content type="html"><![CDATA[<p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on <a href="http://stackoverflow.com/a/29576048">StackOverflow</a> found a workaround. <!-- more --></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>echo '#define _LIBCPP_ASSERT(x, m) ((void)0)' | sudo tee -a /Library/Developer/CommandLineTools/usr/include/c++/v1/__debug &gt; /dev/null</span></code></pre></td></tr></table></div></figure>
@@ -35,7 +35,7 @@
     <link href="http://traffan.com/the-return-of-the-great-white-hope/"/>
     <updated>2015-04-15T14:25:27-04:00</updated>
     <id>http://traffan.com/the-return-of-the-great-white-hope</id>
-    <content type="html"><![CDATA[<p>After two years of taking a step back and trying other things, I&rsquo;ve returned to the land of the living and have dived head first back into all things technical. Too many years of mediocrity had taken their toll on the passion for programming I once had. First computer when I was three, second when I was eight, first website in &lsquo;96 when I was 18, and first programing job a couple years later. The journey from novice to professional was a quick one. I went from basic html to installing scripts, then to modifying scripts, then to writing custom code. From there it wasn&rsquo;t long until I was programming large sites and doing everything else involved in maintaining large high-traffic sites. I learned on the job and learned just enough as I needed it. Never getting to use the latest and greatest but always stuck with old PHP and Perl code. I knew PHP pretty well, Javascript less well, a bit of Linux, some FreeBSD, quite a bit of MySQL, and on and on. I knew enough and it got me by.</p>
+    <content type="html"><![CDATA[<p>After two years of taking a step back and trying other things, I&rsquo;ve returned to the land of the living and have dived head first back into all things technical. Too many years of mediocrity had taken their toll on the passion for programming I once had. First computer when I was three, second when I was eight, first website in &lsquo;96 when I was 18, and first programing job a couple years later. The journey from novice to professional was a quick one.<!-- more --> I went from basic html to installing scripts, then to modifying scripts, then to writing custom code. From there it wasn&rsquo;t long until I was programming large sites and doing everything else involved in maintaining large high-traffic sites. I learned on the job and learned just enough as I needed it. Never getting to use the latest and greatest but always stuck with old PHP and Perl code. I knew PHP pretty well, Javascript less well, a bit of Linux, some FreeBSD, quite a bit of MySQL, and on and on. I knew enough and it got me by.</p>
 
 <p>Later I would leave the self-employed world for a jaunt on the corporate side of things, where what little passion I had left would die. Working on 10 year old code that had been touched by at least as many people. Cajoling it into doing things it was never designed to do. Never able to take the time for a decent rewrite because hey, it works well enough. Well, no, it doesn&rsquo;t. It has more bugs than a crack den in the ghetto but that&rsquo;s ok. I&rsquo;ll add in some new code and try my best to patch it together. Who care&rsquo;s about quality, right?</p>
 
@@ -50,7 +50,9 @@
     <link href="http://traffan.com/haml-is-not-for-assets/"/>
     <updated>2013-04-26T08:45:00-04:00</updated>
     <id>http://traffan.com/haml-is-not-for-assets</id>
-    <content type="html"><![CDATA[<p>So in my gem file I had gem &lsquo;haml&rsquo; inside my assets block like this:</p>
+    <content type="html"><![CDATA[<p>Not being too familiar with HAML nor how the <code>group :assets</code> block works in a gemfile, I ran into a wall. Due to my own ignorance I initially theorized the blame must lay with AppFrog but further investigation lead me to where I had gone wrong and how to fix it.<!-- more --></p>
+
+<p>So in my gem file I had gem &lsquo;haml&rsquo; inside my assets block like this:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -84,7 +86,7 @@
     <link href="http://traffan.com/counter-caching/"/>
     <updated>2013-04-24T08:54:13-04:00</updated>
     <id>http://traffan.com/counter-caching</id>
-    <content type="html"><![CDATA[<p>As promised, a blog post detailing the proper way to handle your counter_cache columns. A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
+    <content type="html"><![CDATA[<p>As promised, a blog post detailing the proper way to handle your counter_cache columns. <!-- more --> A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
 
 <p>So we decide to use a <code>counter_cache</code> column but discover that apparently the fine folks behind Rails don’t actually ever use this feature, or if they do, they are using it in some manner unbeknown to me as for my needs, I’m almost always going to need to know more than just one count on a particular model. Goals and completed goals or books and how many of those have been read or well, you get the idea.</p>
 
@@ -148,7 +150,7 @@
     <link href="http://traffan.com/rails-counter-cache-frustrations/"/>
     <updated>2013-04-23T09:04:16-04:00</updated>
     <id>http://traffan.com/rails-counter-cache-frustrations</id>
-    <content type="html"><![CDATA[<p>For my bucket list site I need to know how many goals each user has and of those, how many are completed. Doing this with eager loading is easy but less than optimal. After watching the RailsCast on the subject (<a href="http://railscasts.com/episodes/23-counter-cache-column">#23 Counter Cache Column - RailsCasts</a>), I was intrigued. This seemed like the ideal way to efficiently solve my problem.</p>
+    <content type="html"><![CDATA[<p>For my bucket list site I need to know how many goals each user has and of those, how many are completed. Doing this with eager loading is easy but less than optimal. After watching the RailsCast on the subject (<a href="http://railscasts.com/episodes/23-counter-cache-column">#23 Counter Cache Column - RailsCasts</a>), I was intrigued. This seemed like the ideal way to efficiently solve my problem.<!-- more --></p>
 
 <p>I quickly set things up and for total goals, it worked perfect. Create a new goal and the counter would increment. Delete a goal and the counter would decrement. Get the count for goals for a particular user and it would only hit the user table. Nice, clean, efficient. Great, I was half way home. Went to do the same thing for the second column, the counter for completed goals and ran into a problem. You apparently can’t have more than one counter cache column like this.</p>
 
@@ -163,7 +165,7 @@
     <link href="http://traffan.com/auto-tweet-octopress-blog-posts-using-ifttt/"/>
     <updated>2013-04-21T09:06:42-04:00</updated>
     <id>http://traffan.com/auto-tweet-octopress-blog-posts-using-ifttt</id>
-    <content type="html"><![CDATA[<p>When using a blogging platform such as Wordpress, you can typically find a plugin that will do pretty much anything. With Octopress you’re a bit more on your own. Thankfully there are services that assist with much of this. Today I setup an account on <a href="https://ifttt.com/">IFTTT</a> which stands for If This, Then That. Once you have an account on here, setting up automatic tweets is trivial.</p>
+    <content type="html"><![CDATA[<p>When using a blogging platform such as Wordpress, you can typically find a plugin that will do pretty much anything. With Octopress you’re a bit more on your own. Thankfully there are services that assist with much of this. Today I setup an account on <a href="https://ifttt.com/">IFTTT</a> which stands for If This, Then That. Once you have an account on here, setting up automatic tweets is trivial.<!-- more --></p>
 
 <p><strong>Easy Steps:</strong></p>
 
@@ -193,7 +195,9 @@
     <link href="http://traffan.com/octopress-tapir/"/>
     <updated>2013-04-21T06:17:11-04:00</updated>
     <id>http://traffan.com/octopress-tapir</id>
-    <content type="html"><![CDATA[<p><strong>Note:</strong> You can find the relevant files on GitHub here: <a href="https://github.com/blimey85/octopress-tapir">octopress-tapir</a></p>
+    <content type="html"><![CDATA[<p>For those running Octopress and wanting to set up a full-text search of their site, something a little nicer than the stock Google Simple Search, Tapir is a valid option. It&rsquo;s a third party website that indexes your RSS feed and provides search tools against that data-set.<!-- more --></p>
+
+<p><strong>Note:</strong> You can find the relevant files on GitHub here: <a href="https://github.com/blimey85/octopress-tapir">octopress-tapir</a></p>
 
 <p><a href="http://tapirgo.com/">Tapir</a> search for your <a href="http://octopress.org/">Octopress</a> blog!</p>
 
@@ -265,7 +269,7 @@ After you enter your email and click the big <code>GO</code> button, you’ll be
     <link href="http://traffan.com/gem-consistency-fail/"/>
     <updated>2013-04-20T09:24:09-04:00</updated>
     <id>http://traffan.com/gem-consistency-fail</id>
-    <content type="html"><![CDATA[<p>In rails it’s common to add a <code>validates_uniqueness_of</code> validation to models for any fields that you want to be unique. Most of the time this is sufficient and will catch when a record is submitted that already exists. But what if two submissions come in at the same time? What if a user while registering clicks the submit button multiple times? You could run into a case where rails checks for uniqueness multiple times before the first record has time to be saved in the database, sees that they are in fact, at that point in time, unique, and allows them to go through. The database doesn’t know you want them to be unique so it gladly accepts them, and now your formerly pristine database is pristine no more.</p>
+    <content type="html"><![CDATA[<p>In rails it’s common to add a <code>validates_uniqueness_of</code> validation to models for any fields that you want to be unique. Most of the time this is sufficient and will catch when a record is submitted that already exists. But what if two submissions come in at the same time? What if a user while registering clicks the submit button multiple times? You could run into a case where rails checks for uniqueness multiple times before the first record has time to be saved in the database, sees that they are in fact, at that point in time, unique, and allows them to go through. The database doesn’t know you want them to be unique so it gladly accepts them, and now your formerly pristine database is pristine no more.<!-- more --></p>
 
 <p>Enter this nifty little gem: <a href="https://github.com/trptcolin/consistency_fail">consistency_fail</a>.</p>
 
@@ -322,7 +326,9 @@ After you enter your email and click the big <code>GO</code> button, you’ll be
     <link href="http://traffan.com/nested-models-vs-monolithic/"/>
     <updated>2013-04-16T09:29:29-04:00</updated>
     <id>http://traffan.com/nested-models-vs-monolithic</id>
-    <content type="html"><![CDATA[<p>We start with a user table that contains the usual suspects. The user can login, enter their basic info, and even a blurb about themselves. Then they want to link their profile to various social sites. Simple enough, on the surface.</p>
+    <content type="html"><![CDATA[<p>When setting up a new database schema, one is faced with a multitude of choices and decisions that can directly impact both the performance and maintainability of said database. One decision regards Nested Models vs Monolithic Models. What are the differences and why is one better than the other?<!-- more --></p>
+
+<p>We start with a user table that contains the usual suspects. The user can login, enter their basic info, and even a blurb about themselves. Then they want to link their profile to various social sites. Simple enough, on the surface.</p>
 
 <p>Beyond deciding which sites to support, we have to decide how we want to handle things on the back end. Do we want to go the proper router and employ nested models, or do we cram everything into the user table?</p>
 
@@ -373,7 +379,7 @@ After you enter your email and click the big <code>GO</code> button, you’ll be
     <link href="http://traffan.com/who-died-and-left-you-brew-master/"/>
     <updated>2013-04-15T09:39:44-04:00</updated>
     <id>http://traffan.com/who-died-and-left-you-brew-master</id>
-    <content type="html"><![CDATA[<p>I’ve recently started a new project and I’m finding the most difficult aspect has nothing to do with the actual coding but instead, is deciding which features to include and/or how to include them. It’s the top-level stuff that is difficult, not the nitty gritty. You want to be able to login via Facebook? That’s an easy thing to add but with adding that comes the question of what other sites should we integrate with? Twitter? Google? Bob’s House of BBQ? I opted for the big three: Facebook, Twitter, and Google. And with Google came the question of do I include <em>just</em> Google or also Google+? What about Google Apps? Apparently these three all have different authentication methods.</p>
+    <content type="html"><![CDATA[<p>I’ve recently started a new project and I’m finding the most difficult aspect has nothing to do with the actual coding but instead, is deciding which features to include and/or how to include them. It’s the top-level stuff that is difficult, not the nitty gritty. You want to be able to login via Facebook? That’s an easy thing to add but with adding that comes the question of what other sites should we integrate with? Twitter? Google? Bob’s House of BBQ?<!-- more --> I opted for the big three: Facebook, Twitter, and Google. And with Google came the question of do I include <em>just</em> Google or also Google+? What about Google Apps? Apparently these three all have different authentication methods.</p>
 
 <p>When setting up the profile page I had a bunch of questions about what I should include. Do I include Gender? If so, what options do I want to have? Male, Female, Other? But other might offend some people. While considering this particular question I did a quick Google and found that there are actually a LOT of people that are offended by the term other in this context. So what then? And do I add an option saying they didn’t want to say? Or maybe I make it so you can hide your gender so others can’t see it.</p>
 
@@ -390,7 +396,7 @@ After you enter your email and click the big <code>GO</code> button, you’ll be
     <link href="http://traffan.com/the-joys-of-coffeescript/"/>
     <updated>2013-04-12T09:41:56-04:00</updated>
     <id>http://traffan.com/the-joys-of-coffeescript</id>
-    <content type="html"><![CDATA[<p>I just used Coffeescript for the first time. I’ve copied and pasted Coffeescript code before, of course, but this was the first time I had used it with my own code. And I’ll admit I cheated. I started with JQuery and then ran it through a converter (<a href="http://js2coffee.org/">http://js2coffee.org/</a>).</p>
+    <content type="html"><![CDATA[<p>I just used Coffeescript for the first time. I’ve copied and pasted Coffeescript code before, of course, but this was the first time I had used it with my own code. And I’ll admit I cheated. I started with JQuery and then ran it through a converter (<a href="http://js2coffee.org/">http://js2coffee.org/</a>).<!-- more --></p>
 
 <p><strong>JQuery</strong>:</p>
 
@@ -421,7 +427,7 @@ After you enter your email and click the big <code>GO</code> button, you’ll be
     <link href="http://traffan.com/trying-appfog-for-project-deployment/"/>
     <updated>2013-04-11T09:45:15-04:00</updated>
     <id>http://traffan.com/trying-appfog-for-project-deployment</id>
-    <content type="html"><![CDATA[<p>I’ve been playing around with Node.js a bit and was wanting to find a hosting service where I could deploy my little test apps for testing and for showing friends. I read some good things about AppFog and felt the price was right (they offer a free intro-level service that lets you get your feet wet with minimal financial risk). Signup took just a minute and I had my basic Rails app deployed five minutes later.</p>
+    <content type="html"><![CDATA[<p>I’ve been playing around with Node.js a bit and was wanting to find a hosting service where I could deploy my little test apps for testing and for showing friends. I read some good things about AppFog and felt the price was right (they offer a free intro-level service that lets you get your feet wet with minimal financial risk). Signup took just a minute and I had my basic Rails app deployed five minutes later.<!-- more --></p>
 
 <p>Interesting how they handle databases. My deploy happened entirely on the command line:</p>
 
@@ -450,7 +456,7 @@ rake assets:precompile --trace RAILS_ENV=production
     <link href="http://traffan.com/defaulting-to-puma/"/>
     <updated>2013-04-10T09:51:18-04:00</updated>
     <id>http://traffan.com/defaulting-to-puma</id>
-    <content type="html"><![CDATA[<p>For whatever reason I’ve switched from Webrick to Puma as my default development server. At one time I was getting some odd errors with Webrick and my cursory Google searches indicated it was an issue with Webrick itself. I assume since Webrick is bundled with Rails that it’s decent but I really haven’t heard any compelling reason to run it. Whatever the case, I made the switch to Puma but found that when I would type <code>rails s</code> Puma wouldn’t boot. I had to instead type <code>bundle exec puma</code> which of course was completely unacceptable!</p>
+    <content type="html"><![CDATA[<p>For whatever reason I’ve switched from Webrick to Puma as my default development server. At one time I was getting some odd errors with Webrick and my cursory Google searches indicated it was an issue with Webrick itself. I assume since Webrick is bundled with Rails that it’s decent but I really haven’t heard any compelling reason to run it. Whatever the case, I made the switch to Puma but found that when I would type <code>rails s</code> Puma wouldn’t boot. I had to instead type <code>bundle exec puma</code> which of course was completely unacceptable!<!-- more --></p>
 
 <p>If like me, you’d rather be able to use the shorter command, do this:</p>
 
@@ -469,7 +475,7 @@ Rack::Handler::WEBrick = Rack::Handler.get(:puma)
     <link href="http://traffan.com/issues-with-my-path/"/>
     <updated>2013-04-07T09:55:32-04:00</updated>
     <id>http://traffan.com/issues-with-my-path</id>
-    <content type="html"><![CDATA[<p>When you modify your path and add things to it, do the items read first or last take precedence? By this I mean, if I have a set of say 5 items, and they are read in order from left to right, does the first item take precedence over the last, or does the last overwrite the first? If I had a variable and defined it twice, the second one would take precedence but it appears that when defining your path, it works in reverse. Whatever is defined first is what gets used.</p>
+    <content type="html"><![CDATA[<p>When you modify your path and add things to it, do the items read first or last take precedence? By this I mean, if I have a set of say 5 items, and they are read in order from left to right, does the first item take precedence over the last, or does the last overwrite the first? If I had a variable and defined it twice, the second one would take precedence but it appears that when defining your path, it works in reverse. Whatever is defined first is what gets used.<!-- more --></p>
 
 <p>Yesterday I had issues getting the PostgreSQL commands to work on the command line. I was hitting the ones in <code>/usr/bin/</code> or <code>/usr/local/bin</code> and since I had installed the PostgresAPP, I wanted to use the commnads that come with that. I thought by appending the new location to my path this would override anything already loaded. Instead I needed to prepend the new location. Once I did that, it worked perfectly.</p>
 
@@ -482,7 +488,7 @@ Rack::Handler::WEBrick = Rack::Handler.get(:puma)
     <link href="http://traffan.com/installing-reinstalling-and-then-reinstalling-again/"/>
     <updated>2013-04-06T09:59:13-04:00</updated>
     <id>http://traffan.com/installing-reinstalling-and-then-reinstalling-again</id>
-    <content type="html"><![CDATA[<p>When setting up any development environment, you strive to get everying working just right. I’ve only had my mac for around five weeks now and in that time, I’ve installed and reinstalled things more often than I care to admit. I think tonight I may have finally succeeded in getting a workable setup accomplished.</p>
+    <content type="html"><![CDATA[<p>When setting up any development environment, you strive to get everying working just right. I’ve only had my mac for around five weeks now and in that time, I’ve installed and reinstalled things more often than I care to admit. I think tonight I may have finally succeeded in getting a workable setup accomplished.<!-- more --></p>
 
 <p>Since I’m using Octopress rather than Wordpress, I no longer have a need for Mamp so I’ve gone ahead and removed that. I was then able to go back to useing the MySQL that is installed via Brew. By switching back, I resolved the issues I was having previously with both command line tools not always working just right, and sockets not being utilized. Tools wanted to use /tmp/mysql.sock by default but the MAMP version had it’s own location for files, and it’s own way of doing things. Now I don’t fault MAMP for this and in fact feel it’s the right way for them do it. This keeps what they are installing completely separate from everything else, minimizing the possibility of conflicts. If you have the experience and know-how to integrate the install with the rest of the system, adding the new path to your existing path and so on, then you shouldn’t have any issues. I, however, had some issues with doing that.</p>
 
@@ -505,6 +511,8 @@ Rack::Handler::WEBrick = Rack::Handler.get(:puma)
     <id>http://traffan.com/apple-15-inch-macbook-pro-with-retina-display</id>
     <content type="html"><![CDATA[<p><img src="http://traffan.com/images/macbook-pro-with-retina-display.jpg" alt="image" /></p>
 
+<p>Why I didn&rsquo;t walk but ran towards the promised-land that is all things Apple.<!-- more --></p>
+
 <p>After lots of fun trying to get Windows to work well with my Ruby on Rails development setup, I ended up facing not one, but two hardware failures. My Dell all-in-one machine decided it no longer wanted to turn on. Pushing the power button did absolutely nothing. No sound, no flashing lights, no dancing, singing, or putting on any kind of show. I took it to a local repair shop, thinking it’s most likely just the power switch and should be a cheap and easy fix. Nope. Because it’s an all-in-one machine, it’s nearly impossible to repair, apparently. So I called up Dell, re-upped my warranty which had expired a month or so back, and they dispatched parts and a repair man. Couple days later, we were back up and running. Six days after this, the train once again derailed. Same exact problem. Push the power button and nada. Zilch. No song and dance. So back on the phone to Dell and once again they dispatched parts and a repair man.</p>
 
 <p>This was not the first time I had encountered the dark-side of Dell. I had previously purchased a nice 17” laptop form them and it eventually had a screen failure. Sent it in, they replaced the screen, and all was well for about 9 months until the screen failed in the exact same manner. Of course the second failure was after the warranty had expired and so now it serves as my media center pc, connected to my tv so the monitor isn’t needed.</p>
@@ -520,7 +528,7 @@ Rack::Handler::WEBrick = Rack::Handler.get(:puma)
     <link href="http://traffan.com/how-i-kinda-sorda-create-batches-for-delayed-job/"/>
     <updated>2013-04-06T03:05:41-04:00</updated>
     <id>http://traffan.com/how-i-kinda-sorda-create-batches-for-delayed-job</id>
-    <content type="html"><![CDATA[<p>For a recent project I found myself needing to batch process a large number of images twice per week. On average I’d be processing around 4,000 images and once processed, would need to tar these up and then upload them to the data center. Now we could debate the merits of this approach and I believe we’d be in complete agreement that there absolutely must, and is, many different ways to achieve the same end result, but that was beyond my control. My task was to process and upload the images.</p>
+    <content type="html"><![CDATA[<p>For a recent project I found myself needing to batch process a large number of images twice per week. On average I’d be processing around 4,000 images and once processed, would need to tar these up and then upload them to the data center. Now we could debate the merits of this approach and I believe we’d be in complete agreement that there absolutely must, and is, many different ways to achieve the same end result, but that was beyond my control. My task was to process and upload the images.<!-- more --></p>
 
 <p>The current setup was/is php and if you know me, you know that while I’m a php dev, I’ve never really cared for the language. I started this journey into code poetry with perl which I still to this day have much love and respect for. Well, to be honest, I started many years prior in other languages besides perl. Something on my Texas Instrument machine back in ‘81 or ‘82. Applesoft Basic around ‘87. Dabbled a bit with Pascal back then too. But anyway, Perl was the first language I really dug into and used professionally. When php came around I started using it and eventually it became my primary language for everything. This was a conscious decision I made, but then again, being a programmer was never a conscious choice I made either.</p>
 

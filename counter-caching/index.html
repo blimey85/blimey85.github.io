@@ -2,7 +2,9 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Counter Caching - Ramblings on Rails</title>
+  <title alt="Counter Caching - Ramblings on Rails">
+    Counter Caching - Ramblings on Rails
+  </title>
   <meta name="author" content="Gary Traffanstedt">
 
   
@@ -163,7 +165,7 @@
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><p>As promised, a blog post detailing the proper way to handle your counter_cache columns. A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>As promised, a blog post detailing the proper way to handle your counter_cache columns. <!-- more --> A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
 
 <p>So we decide to use a <code>counter_cache</code> column but discover that apparently the fine folks behind Rails don’t actually ever use this feature, or if they do, they are using it in some manner unbeknown to me as for my needs, I’m almost always going to need to know more than just one count on a particular model. Goals and completed goals or books and how many of those have been read or well, you get the idea.</p>
 
@@ -601,6 +603,108 @@
       count: 0,
       skip_forks: true,
       target: '#gh_repos'
+    });
+
+    (function () {
+
+      // This function does the dirty work of finding the event type and setting the appropriate title
+      var updatePageTitle = function ( evt ) {
+        var v = $(document).find('title').attr('alt'), // The title when tab is visible
+            h = "Miss You :(", // The title when tab is hidden
+            evtMap = {
+              focus: v,
+              focusin: v,
+              pageshow: v,
+              blur: h,
+              focusout: h,
+              pagehide: h
+            }; // Map each title to the different events
+
+        evt = evt || window.event;
+
+        // If the event type exists in the map, set the right title
+        if ( evt.type in evtMap ) {
+          document.title = evtMap[ evt.type ];
+        } else {
+          // Last ditch attempt
+          if ( document.hidden ) {
+            document.title = h;
+          } else {
+            document.title = v;
+          }
+        }
+      };
+
+      // This sets the appropriate listeners so that everything works cross browser
+      var hidden = "hidden";
+
+      // Standards:
+      if ( hidden in document )
+        document.addEventListener( "visibilitychange", updatePageTitle );
+      else if ( ( hidden = "mozHidden" ) in document )
+        document.addEventListener( "mozvisibilitychange", updatePageTitle );
+      else if ( ( hidden = "webkitHidden" ) in document )
+        document.addEventListener( "webkitvisibilitychange", updatePageTitle );
+      else if ( ( hidden = "msHidden" ) in document )
+        document.addEventListener( "msvisibilitychange", updatePageTitle );
+      // IE 9 and lower:
+      else if ( "onfocusin" in document )
+        document.onfocusin = document.onfocusout = updatePageTitle;
+      // All others:
+      else
+        window.onpageshow = window.onpagehide = window.onfocus = window.onblur = updatePageTitle;
+
+    })();
+  });
+
+  (function($) {
+
+    /**
+     * Copyright 2012, Digital Fusion
+     * Licensed under the MIT license.
+     * http://teamdf.com/jquery-plugins/license/
+     *
+     * @author Sam Sehnert
+     * @desc A small plugin that checks whether elements are within
+     *     the user visible viewport of a web browser.
+     *     only accounts for vertical position, not horizontal.
+     */
+
+    $.fn.visible = function(partial) {
+
+      var $t            = $(this),
+          $w            = $(window),
+          viewTop       = $w.scrollTop(),
+          viewBottom    = viewTop + $w.height(),
+          _top          = $t.offset().top,
+          _bottom       = _top + $t.height(),
+          compareTop    = partial === true ? _bottom : _top,
+          compareBottom = partial === true ? _top : _bottom;
+
+      return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+    };
+
+  })(jQuery);
+
+  var win = $(window);
+
+  var allMods = $(".slide-in");
+
+  allMods.each(function(i, el) {
+    var el = $(el);
+    if (el.visible(true)) {
+      el.addClass("already-visible");
+    }
+  });
+
+  win.scroll(function(event) {
+
+    allMods.each(function(i, el) {
+      var el = $(el);
+      if (el.visible(true)) {
+        el.addClass("come-in");
+      }
     });
 
   });

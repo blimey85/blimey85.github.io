@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: gems | Ramblings on Rails]]></title>
   <link href="http://traffan.com/tags/gems/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-07T01:09:35-04:00</updated>
+  <updated>2015-05-08T13:33:38-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,9 @@
     <link href="http://traffan.com/haml-is-not-for-assets/"/>
     <updated>2013-04-26T08:45:00-04:00</updated>
     <id>http://traffan.com/haml-is-not-for-assets</id>
-    <content type="html"><![CDATA[<p>So in my gem file I had gem &lsquo;haml&rsquo; inside my assets block like this:</p>
+    <content type="html"><![CDATA[<p>Not being too familiar with HAML nor how the <code>group :assets</code> block works in a gemfile, I ran into a wall. Due to my own ignorance I initially theorized the blame must lay with AppFrog but further investigation lead me to where I had gone wrong and how to fix it.<!-- more --></p>
+
+<p>So in my gem file I had gem &lsquo;haml&rsquo; inside my assets block like this:</p>
 
 <pre><code class="ruby">group :assets do
     gem 'haml'
@@ -45,7 +47,7 @@ swimmingly on local but shits the bed after deploy. #frustrated
     <link href="http://traffan.com/counter-caching/"/>
     <updated>2013-04-24T08:54:13-04:00</updated>
     <id>http://traffan.com/counter-caching</id>
-    <content type="html"><![CDATA[<p>As promised, a blog post detailing the proper way to handle your counter_cache columns. A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
+    <content type="html"><![CDATA[<p>As promised, a blog post detailing the proper way to handle your counter_cache columns. <!-- more --> A bit of a recap before we delve into the new stuff: I have a need to know how many goals a user has and of those goals, how many are completed. So I have a users table and a goals table. The goals table has a user_id field and a completed field. I join the two models together with <code>user has_many :goals</code> and then <code>goals belongs_to :user</code>. From that we can query how many goals a user has, and then how many goals are completed. We can improve this a bit with eager loading however when using eager loading, we’re loading a lot more data than we really need. All we care about is the total count and the completed count. Loading titles, descriptions, and all the other data in the goals table is very inefficient.</p>
 
 <p>So we decide to use a <code>counter_cache</code> column but discover that apparently the fine folks behind Rails don’t actually ever use this feature, or if they do, they are using it in some manner unbeknown to me as for my needs, I’m almost always going to need to know more than just one count on a particular model. Goals and completed goals or books and how many of those have been read or well, you get the idea.</p>
 
@@ -96,7 +98,7 @@ counter_culture :user,
     <link href="http://traffan.com/gem-consistency-fail/"/>
     <updated>2013-04-20T09:24:09-04:00</updated>
     <id>http://traffan.com/gem-consistency-fail</id>
-    <content type="html"><![CDATA[<p>In rails it’s common to add a <code>validates_uniqueness_of</code> validation to models for any fields that you want to be unique. Most of the time this is sufficient and will catch when a record is submitted that already exists. But what if two submissions come in at the same time? What if a user while registering clicks the submit button multiple times? You could run into a case where rails checks for uniqueness multiple times before the first record has time to be saved in the database, sees that they are in fact, at that point in time, unique, and allows them to go through. The database doesn’t know you want them to be unique so it gladly accepts them, and now your formerly pristine database is pristine no more.</p>
+    <content type="html"><![CDATA[<p>In rails it’s common to add a <code>validates_uniqueness_of</code> validation to models for any fields that you want to be unique. Most of the time this is sufficient and will catch when a record is submitted that already exists. But what if two submissions come in at the same time? What if a user while registering clicks the submit button multiple times? You could run into a case where rails checks for uniqueness multiple times before the first record has time to be saved in the database, sees that they are in fact, at that point in time, unique, and allows them to go through. The database doesn’t know you want them to be unique so it gladly accepts them, and now your formerly pristine database is pristine no more.<!-- more --></p>
 
 <p>Enter this nifty little gem: <a href="https://github.com/trptcolin/consistency_fail">consistency_fail</a>.</p>
 

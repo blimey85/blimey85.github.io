@@ -2,7 +2,9 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Bug in Apple&#8217;s Command Line Tools 6.3 - Ramblings on Rails</title>
+  <title alt="Bug in Apple's Command Line Tools 6.3 - Ramblings on Rails">
+    Bug in Apple&#8217;s Command Line Tools 6.3 - Ramblings on Rails
+  </title>
   <meta name="author" content="Gary Traffanstedt">
 
   
@@ -163,7 +165,7 @@
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on <a href="StackOverflow">http://stackoverflow.com/a/29576048</a> found a workaround.</p>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on <a href="http://stackoverflow.com/a/29576048">StackOverflow</a> found a workaround. <!-- more --></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>echo '#define _LIBCPP_ASSERT(x, m) ((void)0)' | sudo tee -a /Library/Developer/CommandLineTools/usr/include/c++/v1/__debug &gt; /dev/null</span></code></pre></td></tr></table></div></figure>
@@ -554,6 +556,108 @@
       count: 0,
       skip_forks: true,
       target: '#gh_repos'
+    });
+
+    (function () {
+
+      // This function does the dirty work of finding the event type and setting the appropriate title
+      var updatePageTitle = function ( evt ) {
+        var v = $(document).find('title').attr('alt'), // The title when tab is visible
+            h = "Miss You :(", // The title when tab is hidden
+            evtMap = {
+              focus: v,
+              focusin: v,
+              pageshow: v,
+              blur: h,
+              focusout: h,
+              pagehide: h
+            }; // Map each title to the different events
+
+        evt = evt || window.event;
+
+        // If the event type exists in the map, set the right title
+        if ( evt.type in evtMap ) {
+          document.title = evtMap[ evt.type ];
+        } else {
+          // Last ditch attempt
+          if ( document.hidden ) {
+            document.title = h;
+          } else {
+            document.title = v;
+          }
+        }
+      };
+
+      // This sets the appropriate listeners so that everything works cross browser
+      var hidden = "hidden";
+
+      // Standards:
+      if ( hidden in document )
+        document.addEventListener( "visibilitychange", updatePageTitle );
+      else if ( ( hidden = "mozHidden" ) in document )
+        document.addEventListener( "mozvisibilitychange", updatePageTitle );
+      else if ( ( hidden = "webkitHidden" ) in document )
+        document.addEventListener( "webkitvisibilitychange", updatePageTitle );
+      else if ( ( hidden = "msHidden" ) in document )
+        document.addEventListener( "msvisibilitychange", updatePageTitle );
+      // IE 9 and lower:
+      else if ( "onfocusin" in document )
+        document.onfocusin = document.onfocusout = updatePageTitle;
+      // All others:
+      else
+        window.onpageshow = window.onpagehide = window.onfocus = window.onblur = updatePageTitle;
+
+    })();
+  });
+
+  (function($) {
+
+    /**
+     * Copyright 2012, Digital Fusion
+     * Licensed under the MIT license.
+     * http://teamdf.com/jquery-plugins/license/
+     *
+     * @author Sam Sehnert
+     * @desc A small plugin that checks whether elements are within
+     *     the user visible viewport of a web browser.
+     *     only accounts for vertical position, not horizontal.
+     */
+
+    $.fn.visible = function(partial) {
+
+      var $t            = $(this),
+          $w            = $(window),
+          viewTop       = $w.scrollTop(),
+          viewBottom    = viewTop + $w.height(),
+          _top          = $t.offset().top,
+          _bottom       = _top + $t.height(),
+          compareTop    = partial === true ? _bottom : _top,
+          compareBottom = partial === true ? _top : _bottom;
+
+      return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+    };
+
+  })(jQuery);
+
+  var win = $(window);
+
+  var allMods = $(".slide-in");
+
+  allMods.each(function(i, el) {
+    var el = $(el);
+    if (el.visible(true)) {
+      el.addClass("already-visible");
+    }
+  });
+
+  win.scroll(function(event) {
+
+    allMods.each(function(i, el) {
+      var el = $(el);
+      if (el.visible(true)) {
+        el.addClass("come-in");
+      }
     });
 
   });

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: puma | Ramblings on Rails]]></title>
   <link href="http://traffan.com/tags/puma/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-07T01:09:35-04:00</updated>
+  <updated>2015-05-08T13:33:38-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/defaulting-to-puma/"/>
     <updated>2013-04-10T09:51:18-04:00</updated>
     <id>http://traffan.com/defaulting-to-puma</id>
-    <content type="html"><![CDATA[<p>For whatever reason I’ve switched from Webrick to Puma as my default development server. At one time I was getting some odd errors with Webrick and my cursory Google searches indicated it was an issue with Webrick itself. I assume since Webrick is bundled with Rails that it’s decent but I really haven’t heard any compelling reason to run it. Whatever the case, I made the switch to Puma but found that when I would type <code>rails s</code> Puma wouldn’t boot. I had to instead type <code>bundle exec puma</code> which of course was completely unacceptable!</p>
+    <content type="html"><![CDATA[<p>For whatever reason I’ve switched from Webrick to Puma as my default development server. At one time I was getting some odd errors with Webrick and my cursory Google searches indicated it was an issue with Webrick itself. I assume since Webrick is bundled with Rails that it’s decent but I really haven’t heard any compelling reason to run it. Whatever the case, I made the switch to Puma but found that when I would type <code>rails s</code> Puma wouldn’t boot. I had to instead type <code>bundle exec puma</code> which of course was completely unacceptable!<!-- more --></p>
 
 <p>If like me, you’d rather be able to use the shorter command, do this:</p>
 

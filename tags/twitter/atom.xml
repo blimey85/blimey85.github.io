@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: twitter | Ramblings on Rails]]></title>
   <link href="http://traffan.com/tags/twitter/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-07T01:09:35-04:00</updated>
+  <updated>2015-05-08T13:33:38-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/auto-tweet-octopress-blog-posts-using-ifttt/"/>
     <updated>2013-04-21T09:06:42-04:00</updated>
     <id>http://traffan.com/auto-tweet-octopress-blog-posts-using-ifttt</id>
-    <content type="html"><![CDATA[<p>When using a blogging platform such as Wordpress, you can typically find a plugin that will do pretty much anything. With Octopress you’re a bit more on your own. Thankfully there are services that assist with much of this. Today I setup an account on <a href="https://ifttt.com/">IFTTT</a> which stands for If This, Then That. Once you have an account on here, setting up automatic tweets is trivial.</p>
+    <content type="html"><![CDATA[<p>When using a blogging platform such as Wordpress, you can typically find a plugin that will do pretty much anything. With Octopress you’re a bit more on your own. Thankfully there are services that assist with much of this. Today I setup an account on <a href="https://ifttt.com/">IFTTT</a> which stands for If This, Then That. Once you have an account on here, setting up automatic tweets is trivial.<!-- more --></p>
 
 <p><strong>Easy Steps:</strong></p>
 

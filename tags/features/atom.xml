@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: features | Ramblings on Rails]]></title>
   <link href="http://traffan.com/tags/features/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-07T01:09:35-04:00</updated>
+  <updated>2015-05-08T13:33:38-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/who-died-and-left-you-brew-master/"/>
     <updated>2013-04-15T09:39:44-04:00</updated>
     <id>http://traffan.com/who-died-and-left-you-brew-master</id>
-    <content type="html"><![CDATA[<p>I’ve recently started a new project and I’m finding the most difficult aspect has nothing to do with the actual coding but instead, is deciding which features to include and/or how to include them. It’s the top-level stuff that is difficult, not the nitty gritty. You want to be able to login via Facebook? That’s an easy thing to add but with adding that comes the question of what other sites should we integrate with? Twitter? Google? Bob’s House of BBQ? I opted for the big three: Facebook, Twitter, and Google. And with Google came the question of do I include <em>just</em> Google or also Google+? What about Google Apps? Apparently these three all have different authentication methods.</p>
+    <content type="html"><![CDATA[<p>I’ve recently started a new project and I’m finding the most difficult aspect has nothing to do with the actual coding but instead, is deciding which features to include and/or how to include them. It’s the top-level stuff that is difficult, not the nitty gritty. You want to be able to login via Facebook? That’s an easy thing to add but with adding that comes the question of what other sites should we integrate with? Twitter? Google? Bob’s House of BBQ?<!-- more --> I opted for the big three: Facebook, Twitter, and Google. And with Google came the question of do I include <em>just</em> Google or also Google+? What about Google Apps? Apparently these three all have different authentication methods.</p>
 
 <p>When setting up the profile page I had a bunch of questions about what I should include. Do I include Gender? If so, what options do I want to have? Male, Female, Other? But other might offend some people. While considering this particular question I did a quick Google and found that there are actually a LOT of people that are offended by the term other in this context. So what then? And do I add an option saying they didn’t want to say? Or maybe I make it so you can hide your gender so others can’t see it.</p>
 

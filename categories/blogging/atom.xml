@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Blogging | Ramblings on Rails]]></title>
   <link href="http://traffan.com/categories/blogging/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-07T01:09:35-04:00</updated>
+  <updated>2015-05-08T13:33:38-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/the-return-of-the-great-white-hope/"/>
     <updated>2015-04-15T14:25:27-04:00</updated>
     <id>http://traffan.com/the-return-of-the-great-white-hope</id>
-    <content type="html"><![CDATA[<p>After two years of taking a step back and trying other things, I&rsquo;ve returned to the land of the living and have dived head first back into all things technical. Too many years of mediocrity had taken their toll on the passion for programming I once had. First computer when I was three, second when I was eight, first website in &lsquo;96 when I was 18, and first programing job a couple years later. The journey from novice to professional was a quick one. I went from basic html to installing scripts, then to modifying scripts, then to writing custom code. From there it wasn&rsquo;t long until I was programming large sites and doing everything else involved in maintaining large high-traffic sites. I learned on the job and learned just enough as I needed it. Never getting to use the latest and greatest but always stuck with old PHP and Perl code. I knew PHP pretty well, Javascript less well, a bit of Linux, some FreeBSD, quite a bit of MySQL, and on and on. I knew enough and it got me by.</p>
+    <content type="html"><![CDATA[<p>After two years of taking a step back and trying other things, I&rsquo;ve returned to the land of the living and have dived head first back into all things technical. Too many years of mediocrity had taken their toll on the passion for programming I once had. First computer when I was three, second when I was eight, first website in &lsquo;96 when I was 18, and first programing job a couple years later. The journey from novice to professional was a quick one.<!-- more --> I went from basic html to installing scripts, then to modifying scripts, then to writing custom code. From there it wasn&rsquo;t long until I was programming large sites and doing everything else involved in maintaining large high-traffic sites. I learned on the job and learned just enough as I needed it. Never getting to use the latest and greatest but always stuck with old PHP and Perl code. I knew PHP pretty well, Javascript less well, a bit of Linux, some FreeBSD, quite a bit of MySQL, and on and on. I knew enough and it got me by.</p>
 
 <p>Later I would leave the self-employed world for a jaunt on the corporate side of things, where what little passion I had left would die. Working on 10 year old code that had been touched by at least as many people. Cajoling it into doing things it was never designed to do. Never able to take the time for a decent rewrite because hey, it works well enough. Well, no, it doesn&rsquo;t. It has more bugs than a crack den in the ghetto but that&rsquo;s ok. I&rsquo;ll add in some new code and try my best to patch it together. Who care&rsquo;s about quality, right?</p>
 
@@ -33,7 +33,7 @@
     <link href="http://traffan.com/auto-tweet-octopress-blog-posts-using-ifttt/"/>
     <updated>2013-04-21T09:06:42-04:00</updated>
     <id>http://traffan.com/auto-tweet-octopress-blog-posts-using-ifttt</id>
-    <content type="html"><![CDATA[<p>When using a blogging platform such as Wordpress, you can typically find a plugin that will do pretty much anything. With Octopress you’re a bit more on your own. Thankfully there are services that assist with much of this. Today I setup an account on <a href="https://ifttt.com/">IFTTT</a> which stands for If This, Then That. Once you have an account on here, setting up automatic tweets is trivial.</p>
+    <content type="html"><![CDATA[<p>When using a blogging platform such as Wordpress, you can typically find a plugin that will do pretty much anything. With Octopress you’re a bit more on your own. Thankfully there are services that assist with much of this. Today I setup an account on <a href="https://ifttt.com/">IFTTT</a> which stands for If This, Then That. Once you have an account on here, setting up automatic tweets is trivial.<!-- more --></p>
 
 <p><strong>Easy Steps:</strong></p>
 
@@ -63,7 +63,9 @@
     <link href="http://traffan.com/octopress-tapir/"/>
     <updated>2013-04-21T06:17:11-04:00</updated>
     <id>http://traffan.com/octopress-tapir</id>
-    <content type="html"><![CDATA[<p><strong>Note:</strong> You can find the relevant files on GitHub here: <a href="https://github.com/blimey85/octopress-tapir">octopress-tapir</a></p>
+    <content type="html"><![CDATA[<p>For those running Octopress and wanting to set up a full-text search of their site, something a little nicer than the stock Google Simple Search, Tapir is a valid option. It&rsquo;s a third party website that indexes your RSS feed and provides search tools against that data-set.<!-- more --></p>
+
+<p><strong>Note:</strong> You can find the relevant files on GitHub here: <a href="https://github.com/blimey85/octopress-tapir">octopress-tapir</a></p>
 
 <p><a href="http://tapirgo.com/">Tapir</a> search for your <a href="http://octopress.org/">Octopress</a> blog!</p>
 

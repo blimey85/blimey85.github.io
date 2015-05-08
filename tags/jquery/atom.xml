@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: jquery | Ramblings on Rails]]></title>
   <link href="http://traffan.com/tags/jquery/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-07T01:09:35-04:00</updated>
+  <updated>2015-05-08T13:33:38-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/the-joys-of-coffeescript/"/>
     <updated>2013-04-12T09:41:56-04:00</updated>
     <id>http://traffan.com/the-joys-of-coffeescript</id>
-    <content type="html"><![CDATA[<p>I just used Coffeescript for the first time. I’ve copied and pasted Coffeescript code before, of course, but this was the first time I had used it with my own code. And I’ll admit I cheated. I started with JQuery and then ran it through a converter (<a href="http://js2coffee.org/">http://js2coffee.org/</a>).</p>
+    <content type="html"><![CDATA[<p>I just used Coffeescript for the first time. I’ve copied and pasted Coffeescript code before, of course, but this was the first time I had used it with my own code. And I’ll admit I cheated. I started with JQuery and then ran it through a converter (<a href="http://js2coffee.org/">http://js2coffee.org/</a>).<!-- more --></p>
 
 <p><strong>JQuery</strong>:</p>
 

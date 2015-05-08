@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: appfog | Ramblings on Rails]]></title>
   <link href="http://traffan.com/tags/appfog/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-07T01:09:35-04:00</updated>
+  <updated>2015-05-08T13:33:38-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/trying-appfog-for-project-deployment/"/>
     <updated>2013-04-11T09:45:15-04:00</updated>
     <id>http://traffan.com/trying-appfog-for-project-deployment</id>
-    <content type="html"><![CDATA[<p>I’ve been playing around with Node.js a bit and was wanting to find a hosting service where I could deploy my little test apps for testing and for showing friends. I read some good things about AppFog and felt the price was right (they offer a free intro-level service that lets you get your feet wet with minimal financial risk). Signup took just a minute and I had my basic Rails app deployed five minutes later.</p>
+    <content type="html"><![CDATA[<p>I’ve been playing around with Node.js a bit and was wanting to find a hosting service where I could deploy my little test apps for testing and for showing friends. I read some good things about AppFog and felt the price was right (they offer a free intro-level service that lets you get your feet wet with minimal financial risk). Signup took just a minute and I had my basic Rails app deployed five minutes later.<!-- more --></p>
 
 <p>Interesting how they handle databases. My deploy happened entirely on the command line:</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: apple | Ramblings on Rails]]></title>
   <link href="http://traffan.com/tags/apple/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-07T01:09:35-04:00</updated>
+  <updated>2015-05-08T13:33:38-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,7 @@
     <link href="http://traffan.com/bug-in-apples-command-line-tools-6-dot-3/"/>
     <updated>2015-04-21T02:38:07-04:00</updated>
     <id>http://traffan.com/bug-in-apples-command-line-tools-6-dot-3</id>
-    <content type="html"><![CDATA[<p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on <a href="StackOverflow">http://stackoverflow.com/a/29576048</a> found a workaround.</p>
+    <content type="html"><![CDATA[<p>While trying to install <code>therubyracer</code> gem I ran into a problem where it couldn&rsquo;t find a debug file and would not build the native extension. Google reported that there is a bug in CLT 6.3 where a file is missing which is present in version 6.2. I couldn&rsquo;t seem to downgrade because I don&rsquo;t have a paid developer account so I thought I was stuck. A kind soul on <a href="http://stackoverflow.com/a/29576048">StackOverflow</a> found a workaround. <!-- more --></p>
 
 <pre><code class="plain">echo '#define _LIBCPP_ASSERT(x, m) ((void)0)' | sudo tee -a /Library/Developer/CommandLineTools/usr/include/c++/v1/__debug &gt; /dev/null
 </code></pre>
@@ -35,6 +35,8 @@
     <updated>2013-04-06T06:03:00-04:00</updated>
     <id>http://traffan.com/apple-15-inch-macbook-pro-with-retina-display</id>
     <content type="html"><![CDATA[<p><img src="/images/macbook-pro-with-retina-display.jpg" alt="image" /></p>
+
+<p>Why I didn&rsquo;t walk but ran towards the promised-land that is all things Apple.<!-- more --></p>
 
 <p>After lots of fun trying to get Windows to work well with my Ruby on Rails development setup, I ended up facing not one, but two hardware failures. My Dell all-in-one machine decided it no longer wanted to turn on. Pushing the power button did absolutely nothing. No sound, no flashing lights, no dancing, singing, or putting on any kind of show. I took it to a local repair shop, thinking it’s most likely just the power switch and should be a cheap and easy fix. Nope. Because it’s an all-in-one machine, it’s nearly impossible to repair, apparently. So I called up Dell, re-upped my warranty which had expired a month or so back, and they dispatched parts and a repair man. Couple days later, we were back up and running. Six days after this, the train once again derailed. Same exact problem. Push the power button and nada. Zilch. No song and dance. So back on the phone to Dell and once again they dispatched parts and a repair man.</p>
 
