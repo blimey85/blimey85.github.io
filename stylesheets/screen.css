@@ -1047,17 +1047,27 @@ hr {
 
 /* line 51, ../../sass/custom/_styles.scss */
 .come-in {
-  animation: fadein 2s;
-  -moz-animation: fadein 2s;
+  opacity: 0;
+  animation: fadeIn ease-in 1;
+  -moz-animation: fadein 1;
   /* Firefox */
-  -webkit-animation: fadein 2s;
+  -webkit-animation: fadein ease-in  1;
   /* Safari and Chrome */
-  -o-animation: fadein 2s;
+  -o-animation: fadein ease-in  1;
   /* Opera */
+  animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  -o-animation-duration: 1.5s;
 }
 
-/* line 58, ../../sass/custom/_styles.scss */
+/* line 69, ../../sass/custom/_styles.scss */
 .already-visible {
+  opacity: 1;
   animation: none;
   -moz-animation: none;
   /* Firefox */
@@ -1102,7 +1112,7 @@ hr {
     opacity: 1;
   }
 }
-/* line 98, ../../sass/custom/_styles.scss */
+/* line 110, ../../sass/custom/_styles.scss */
 .fade-in {
   opacity: 0;
   /* make things invisible upon start */
@@ -1119,35 +1129,35 @@ hr {
   animation-duration: 1s;
 }
 
-/* line 113, ../../sass/custom/_styles.scss */
+/* line 125, ../../sass/custom/_styles.scss */
 .fade-in.one {
   -webkit-animation-delay: 0.7s;
   -moz-animation-delay: 0.7s;
   animation-delay: 0.7s;
 }
 
-/* line 119, ../../sass/custom/_styles.scss */
+/* line 131, ../../sass/custom/_styles.scss */
 .fade-in.two {
   -webkit-animation-delay: 1.2s;
   -moz-animation-delay: 1.2s;
   animation-delay: 1.2s;
 }
 
-/* line 125, ../../sass/custom/_styles.scss */
+/* line 137, ../../sass/custom/_styles.scss */
 .fade-in.three {
   -webkit-animation-delay: 1.7s;
   -moz-animation-delay: 1.7s;
   animation-delay: 1.7s;
 }
 
-/* line 131, ../../sass/custom/_styles.scss */
+/* line 143, ../../sass/custom/_styles.scss */
 .fade-in.four {
   -webkit-animation-delay: 2.2s;
   -moz-animation-delay: 2.2s;
   animation-delay: 2.2s;
 }
 
-/* line 137, ../../sass/custom/_styles.scss */
+/* line 149, ../../sass/custom/_styles.scss */
 .fade-in.five {
   -webkit-animation-delay: 2.7s;
   -moz-animation-delay: 2.7s;
