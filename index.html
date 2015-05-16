@@ -115,6 +115,76 @@
           
   <header class="page-header">
     
+      <h2 class="entry-title" itemprop="name headline"><a href="/issues-with-caching/" itemprop="url">Issues With Caching</a></h2>
+    
+    <hr>
+    
+      <div class="post_meta">
+        <ul>
+          <li class="time">
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;<time datetime="2015-05-16T08:13:25-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sat 16 May 2015</time></li>
+          <li class="categories">
+
+
+<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/categories/blogging/'>blogging</a>
+  
+</span>
+
+
+</li>
+          <li class="tags">
+
+
+
+    <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
+    <span class="tags">
+      
+        Not Tagged
+      
+    </span>
+
+
+</li>
+        </ul>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>In an effort to make this site load as fast as possible I&rsquo;ve been using tools such as <a href="http://yslow.org/">YSlow</a> and <a href="https://developers.google.com/speed/pagespeed/">PageSpeed</a>. These tools analyze your page and give you insights into how to improve the loading speed. Things such as minifying your files, using compression such as deflate or gzip, putting your js includes at the bottom of the page so that everything else loads first, and so on. I&rsquo;ve done most of these things and have seen some improvement.</p>
+
+<p>The latest tweak I&rsquo;ve attempted has to do with minifying the html on this site. The site is powered by <a href="http://octopress.org/">Octopress</a> and I came across a layout that someone had created, that aims to minify the html code that gets generated. This is something I hadn&rsquo;t considered. Stripping all white space when generating files seems so simple, yet it reduces, albeit slightly, the whitespace within files and subsequently the file size. You may only gain a few k here and there but when it&rsquo;s such a simple change, and you see an actual verifiable gain in file size reduction, you might as well implement it.</p>
+
+<p>After a bit more research I came across a well supported plugin for Octopress that does the same thing, but through a gem. You can find the gem here: <a href="https://github.com/octopress/minify-html">Octopress Minify HTML</a>. The gem has the added benefit of using an environment variable. When set to production it will compress your html, when set to development it leaves the html alone. This is an excellent way to be able to work on your site, yet keep the site as small as possible in production. I currently have Compass set to only concateneate my CSS in development but for production it also strips all comments and minifies the files.</p>
+
+<p>Beyond what we do with the files as far as compression, stripping white space, etc., we need to be able to rely on browswers to properly cache our files. When a user hits the first page, certain thigns like CSS and JS files should be loaded once and then stored so that any subsequent pages load much quicker. I currently have an issue on this site where that isn&rsquo;t happening. As stated within PageSpeed: <em>Setting an expiry date or a maximum age in the HTTP headers for static resources instructs the browser to load previously downloaded resources from local disk rather than over the network.</em> I have yet to find a way to do that without having control of the actual server. In the past when I ran my own servers, I could set this up in Apache and I&rsquo;d also enable gzip or deflate for compression, being careful to NOT enable compression for IE as it couldn&rsquo;t handle it. Took me two days to discover what was causing my site to crash IE 7 way back when. Had turned on compression without any check for particular browsers. Worked great in Firefox and made a site I was working on much faster, but had the side-effect of actually crashing IE. It&rsquo;s one thing to not load properly in a particular browser but this actually crashed the browser. Good ol&#8217; IE.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
       <h2 class="entry-title" itemprop="name headline"><a href="/bug-in-apples-command-line-tools-6-dot-3/" itemprop="url">Bug in Apple&#8217;s Command Line Tools 6.3</a></h2>
     
     <hr>
@@ -713,70 +783,6 @@
 
         </article>
       
-      
-        <article class="post slide-in" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/rails-destroy-scaffold/" itemprop="url">Rails Destroy Scaffold</a></h2>
-    
-    <hr>
-    
-      <div class="post_meta">
-        <ul>
-          <li class="time">
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;<time datetime="2013-04-16T06:37:51-04:00"  data-updated="true" itemprop="datePublished dateCreated">Tue 16 Apr 2013</time></li>
-          <li class="categories">
-
-
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/categories/development/'>development</a>
-  
-</span>
-
-
-</li>
-          <li class="tags">
-
-
-
-    <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
-    <span class="tags">
-      
-        <a class='tag' href='/tags/rails/'>rails</a>
-      
-    </span>
-
-
-</li>
-        </ul>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>Over the years I’ve generated a scaffold a time or two but until tonight the fact that you can reverse this with <code>rails destroy scaffold ModelName</code> had escaped me. Such a simple thing and quite the time saver. Combined with <code>rake db:rollback</code>, Rails makes it very easy to try new ideas and if they don’t work out, you can quickly reverse course.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -798,7 +804,7 @@
     <h3 class="panel-title">About Gary Traffanstedt</h3>
   </div>
   <p class="profile">
-    <img class="profile" src="https://pbs.twimg.com/profile_images/513531246316904448/uv-jL6ND.jpeg">
+    <img class="profile" src="/images/profile.jpeg">
     I am Gary Traffanstedt, a former and apsiring web programmer. On this site you can find my ramblings about Ruby on
     Rails, Javascript, and other things I find interesting on my adventure to hone my skills and re-enter the world of
     code poetry.
@@ -811,6 +817,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/issues-with-caching/">Issues With Caching</a>
+    
     <a class="list-group-item " href="/bug-in-apples-command-line-tools-6-dot-3/">Bug in Apple&#8217;s Command Line Tools 6.3</a>
     
     <a class="list-group-item " href="/the-return-of-the-great-white-hope/">The Return of the Great White Hope.</a>
@@ -818,8 +826,6 @@
     <a class="list-group-item " href="/haml-is-not-for-assets/">HAML Is Not for ASSETS</a>
     
     <a class="list-group-item " href="/counter-caching/">Counter Caching</a>
-    
-    <a class="list-group-item " href="/rails-counter-cache-frustrations/">Rails Counter_cache Frustrations</a>
     
   </div>
 </section>
@@ -843,7 +849,7 @@
     
     
     <a class="list-group-item " href="/categories/blogging/index.html">
-      <span class="badge">3</span>
+      <span class="badge">4</span>
       blogging
     </a>
     

@@ -2,12 +2,12 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title alt="Tag: Rails - Ramblings on Rails">
-    Tag: Rails - Ramblings on Rails
+  <title alt="Issues With Caching - Ramblings on Rails">
+    Issues With Caching - Ramblings on Rails
   </title>
   <meta name="author" content="Gary Traffanstedt">
 
-  <meta name="description" content="Tag: rails">
+  
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -16,16 +16,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://traffan.com/tags/rails/">
+  <link rel="canonical" href="http://traffan.com/issues-with-caching/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Ramblings on Rails" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://traffan.com/tags/rails/">
-  <meta property="og:title" content="Tag: Rails - Ramblings on Rails">
-  <meta property="og:description" content="Tag: rails">
+  <meta property="og:url" content="http://traffan.com/issues-with-caching/">
+  <meta property="og:title" content="Issues With Caching - Ramblings on Rails">
+  
 
   
 
@@ -55,7 +55,7 @@
 
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li >
+          <li class="active">
           <a rel="index" href="/">Blog</a>
           </li>
           <li >
@@ -103,354 +103,102 @@
 
       <div id="content">
         <div class="row">
-  <div class="page-content col-md-8">
-    <article role="article">
+  <div class="page-content col-md-8" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Ramblings on Rails"/>
+    
+    <meta itemprop="url" content="http://traffan.com"/>
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
       
-        <header class="page-header">
+  <header class="page-header">
+    
+      <h2 class="entry-title" itemprop="name headline">
+          <a>Issues With Caching
           
-          
-            <h1 class="entry-title">
-              Tag: Rails
-              
-            </h1>
-          
-          <hr>
-        </header>
-      
-      <div class="entry-content">
-        <div id="blog-archives" class="tag">
+      </h2>
+    
+    <hr>
+    
+      <div class="post_meta">
+        <ul>
+          <li class="time">
 
 
 
-  
-  <h2>2013</h2>
-
-<article>
-  
 
 
 
-  <article>
-    <h1><a href="/haml-is-not-for-assets/">HAML Is Not for ASSETS</a></h1>
-    <time datetime="2013-04-26T08:45:00-04:00" pubdate><span class='month'>Apr</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-    <footer>
-      <span class="categories">
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;<time datetime="2015-05-16T08:13:25-04:00"  data-updated="true" itemprop="datePublished dateCreated">Sat 16 May 2015</time></li>
+          <li class="categories">
 
 
 <span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
 <span class="categories">
   
-    <a class='category' href='/categories/development/'>development</a>
+    <a class='category' href='/categories/blogging/'>blogging</a>
   
 </span>
 
 
- 
+</li>
+          <li class="tags">
 
 
 
     <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
     <span class="tags">
       
-        <a class='tag' href='/tags/gems/'>gems</a>, <a class='tag' href='/tags/haml/'>haml</a>, <a class='tag' href='/tags/rails/'>rails</a>
+        Not Tagged
       
     </span>
 
 
-</span>
-    </footer>
-  </article>
+</li>
+        </ul>
+      </div>
+    
+  </header>
 
-</article>
 
+<div class="entry-content clearfix" itemprop="articleBody description"><p>In an effort to make this site load as fast as possible I&rsquo;ve been using tools such as <a href="http://yslow.org/">YSlow</a> and <a href="https://developers.google.com/speed/pagespeed/">PageSpeed</a>. These tools analyze your page and give you insights into how to improve the loading speed. Things such as minifying your files, using compression such as deflate or gzip, putting your js includes at the bottom of the page so that everything else loads first, and so on. I&rsquo;ve done most of these things and have seen some improvement.</p>
 
+<p>The latest tweak I&rsquo;ve attempted has to do with minifying the html on this site. The site is powered by <a href="http://octopress.org/">Octopress</a> and I came across a layout that someone had created, that aims to minify the html code that gets generated. This is something I hadn&rsquo;t considered. Stripping all white space when generating files seems so simple, yet it reduces, albeit slightly, the whitespace within files and subsequently the file size. You may only gain a few k here and there but when it&rsquo;s such a simple change, and you see an actual verifiable gain in file size reduction, you might as well implement it.</p>
 
-<article>
-  
+<p>After a bit more research I came across a well supported plugin for Octopress that does the same thing, but through a gem. You can find the gem here: <a href="https://github.com/octopress/minify-html">Octopress Minify HTML</a>. The gem has the added benefit of using an environment variable. When set to production it will compress your html, when set to development it leaves the html alone. This is an excellent way to be able to work on your site, yet keep the site as small as possible in production. I currently have Compass set to only concateneate my CSS in development but for production it also strips all comments and minifies the files.</p>
 
-
-
-  <article>
-    <h1><a href="/counter-caching/">Counter Caching</a></h1>
-    <time datetime="2013-04-24T08:54:13-04:00" pubdate><span class='month'>Apr</span> <span class='day'>24</span> <span class='year'>2013</span></time>
-    <footer>
-      <span class="categories">
-
-
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/categories/development/'>development</a>
-  
-</span>
-
-
- 
-
-
-
-    <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
-    <span class="tags">
-      
-        <a class='tag' href='/tags/gems/'>gems</a>, <a class='tag' href='/tags/rails/'>rails</a>
-      
-    </span>
-
-
-</span>
-    </footer>
-  </article>
-
-</article>
-
-
-
-<article>
-  
-
-
-
-  <article>
-    <h1><a href="/rails-counter-cache-frustrations/">Rails Counter_cache Frustrations</a></h1>
-    <time datetime="2013-04-23T09:04:16-04:00" pubdate><span class='month'>Apr</span> <span class='day'>23</span> <span class='year'>2013</span></time>
-    <footer>
-      <span class="categories">
-
-
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/categories/development/'>development</a>
-  
-</span>
-
-
- 
-
-
-
-    <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
-    <span class="tags">
-      
-        <a class='tag' href='/tags/rails/'>rails</a>
-      
-    </span>
-
-
-</span>
-    </footer>
-  </article>
-
-</article>
-
-
-
-<article>
-  
-
-
-
-  <article>
-    <h1><a href="/nested-models-vs-monolithic/">Nested Models vs Monolithic</a></h1>
-    <time datetime="2013-04-16T09:29:29-04:00" pubdate><span class='month'>Apr</span> <span class='day'>16</span> <span class='year'>2013</span></time>
-    <footer>
-      <span class="categories">
-
-
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/categories/development/'>development</a>
-  
-</span>
-
-
- 
-
-
-
-    <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
-    <span class="tags">
-      
-        <a class='tag' href='/tags/rails/'>rails</a>
-      
-    </span>
-
-
-</span>
-    </footer>
-  </article>
-
-</article>
-
-
-
-<article>
-  
-
-
-
-  <article>
-    <h1><a href="/rails-destroy-scaffold/">Rails Destroy Scaffold</a></h1>
-    <time datetime="2013-04-16T06:37:51-04:00" pubdate><span class='month'>Apr</span> <span class='day'>16</span> <span class='year'>2013</span></time>
-    <footer>
-      <span class="categories">
-
-
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/categories/development/'>development</a>
-  
-</span>
-
-
- 
-
-
-
-    <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
-    <span class="tags">
-      
-        <a class='tag' href='/tags/rails/'>rails</a>
-      
-    </span>
-
-
-</span>
-    </footer>
-  </article>
-
-</article>
-
-
-
-<article>
-  
-
-
-
-  <article>
-    <h1><a href="/trying-appfog-for-project-deployment/">Trying AppFog for Project Deployment.</a></h1>
-    <time datetime="2013-04-11T09:45:15-04:00" pubdate><span class='month'>Apr</span> <span class='day'>11</span> <span class='year'>2013</span></time>
-    <footer>
-      <span class="categories">
-
-
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/categories/development/'>development</a>
-  
-</span>
-
-
- 
-
-
-
-    <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
-    <span class="tags">
-      
-        <a class='tag' href='/tags/appfog/'>appfog</a>, <a class='tag' href='/tags/rails/'>rails</a>
-      
-    </span>
-
-
-</span>
-    </footer>
-  </article>
-
-</article>
-
-
-
-<article>
-  
-
-
-
-  <article>
-    <h1><a href="/defaulting-to-puma/">Defaulting to Puma</a></h1>
-    <time datetime="2013-04-10T09:51:18-04:00" pubdate><span class='month'>Apr</span> <span class='day'>10</span> <span class='year'>2013</span></time>
-    <footer>
-      <span class="categories">
-
-
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/categories/development/'>development</a>
-  
-</span>
-
-
- 
-
-
-
-    <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
-    <span class="tags">
-      
-        <a class='tag' href='/tags/puma/'>puma</a>, <a class='tag' href='/tags/rails/'>rails</a>
-      
-    </span>
-
-
-</span>
-    </footer>
-  </article>
-
-</article>
-
-
-
-<article>
-  
-
-
-
-  <article>
-    <h1><a href="/how-i-kinda-sorda-create-batches-for-delayed-job/">How I Kinda Sorda Create Batches for Delayed_job.</a></h1>
-    <time datetime="2013-04-06T03:05:41-04:00" pubdate><span class='month'>Apr</span> <span class='day'>06</span> <span class='year'>2013</span></time>
-    <footer>
-      <span class="categories">
-
-
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/categories/development/'>development</a>
-  
-</span>
-
-
- 
-
-
-
-    <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
-    <span class="tags">
-      
-        <a class='tag' href='/tags/delayed-job/'>delayed_job</a>, <a class='tag' href='/tags/rails/'>rails</a>, <a class='tag' href='/tags/ruby/'>ruby</a>
-      
-    </span>
-
-
-</span>
-    </footer>
-  </article>
-
-</article>
-
+<p>Beyond what we do with the files as far as compression, stripping white space, etc., we need to be able to rely on browswers to properly cache our files. When a user hits the first page, certain thigns like CSS and JS files should be loaded once and then stored so that any subsequent pages load much quicker. I currently have an issue on this site where that isn&rsquo;t happening. As stated within PageSpeed: <em>Setting an expiry date or a maximum age in the HTTP headers for static resources instructs the browser to load previously downloaded resources from local disk rather than over the network.</em> I have yet to find a way to do that without having control of the actual server. In the past when I ran my own servers, I could set this up in Apache and I&rsquo;d also enable gzip or deflate for compression, being careful to NOT enable compression for IE as it couldn&rsquo;t handle it. Took me two days to discover what was causing my site to crash IE 7 way back when. Had turned on compression without any check for particular browsers. Worked great in Firefox and made a site I was working on much faster, but had the side-effect of actually crashing IE. It&rsquo;s one thing to not load properly in a particular browser but this actually crashed the browser. Good ol&#8217; IE.</p>
 </div>
 
-      </div>
-      
+
+      <footer>
+        
+          <div class="sharing">
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+              <li class="previous"><a href="/bug-in-apples-command-line-tools-6-dot-3/" title="Previous: Bug in Apple's Command Line Tools 6.3">&larr;&nbsp;Previous</a></li>
+            
+
+            
+              <li class="next disabled"><a href="#">Next&nbsp;&rarr;</a></li>
+            
+          </ul>
+        
+      </footer>
     </article>
     
   </div>
-
   
     <aside class="sidebar col-md-4">
       
@@ -472,7 +220,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/issues-with-caching/">Issues With Caching</a>
+    <a class="list-group-item active" href="/issues-with-caching/">Issues With Caching</a>
     
     <a class="list-group-item " href="/bug-in-apples-command-line-tools-6-dot-3/">Bug in Apple&#8217;s Command Line Tools 6.3</a>
     

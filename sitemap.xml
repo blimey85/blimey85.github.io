@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://traffan.com/issues-with-caching/</loc>
+    <lastmod>2015-05-16T08:13:25-04:00</lastmod>
+  </url>
+  <url>
     <loc>http://traffan.com/bug-in-apples-command-line-tools-6-dot-3/</loc>
     <lastmod>2015-04-21T02:38:07-04:00</lastmod>
   </url>
@@ -85,15 +89,6 @@
     <loc>http://traffan.com/archives/tags.html</loc>
   </url>
   <url>
-    <loc>http://traffan.com/categories/development/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/hardware/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/blogging/</loc>
-  </url>
-  <url>
     <loc>http://traffan.com/tags/delayed-job/</loc>
   </url>
   <url>
@@ -148,18 +143,30 @@
     <loc>http://traffan.com/tags/octopress/</loc>
   </url>
   <url>
-    <loc>http://traffan.com/tags/search/</loc>
-  </url>
-  <url>
     <loc>http://traffan.com/tags/tapir/</loc>
   </url>
   <url>
-    <loc>http://traffan.com/tags/automation/</loc>
+    <loc>http://traffan.com/tags/search/</loc>
   </url>
   <url>
     <loc>http://traffan.com/tags/twitter/</loc>
   </url>
   <url>
+    <loc>http://traffan.com/tags/automation/</loc>
+  </url>
+  <url>
     <loc>http://traffan.com/tags/haml/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/categories/development/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/categories/hardware/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/categories/blogging/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/2/</loc>
   </url>
 </urlset>

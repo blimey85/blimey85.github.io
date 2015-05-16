@@ -4,7 +4,7 @@
   <title><![CDATA[Ramblings on Rails]]></title>
   <link href="http://traffan.com/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-15T01:27:58-04:00</updated>
+  <updated>2015-05-16T08:44:49-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Issues With Caching]]></title>
+    <link href="http://traffan.com/issues-with-caching/"/>
+    <updated>2015-05-16T08:13:25-04:00</updated>
+    <id>http://traffan.com/issues-with-caching</id>
+    <content type="html"><![CDATA[<p>In an effort to make this site load as fast as possible I&rsquo;ve been using tools such as <a href="http://yslow.org/">YSlow</a> and <a href="https://developers.google.com/speed/pagespeed/">PageSpeed</a>. These tools analyze your page and give you insights into how to improve the loading speed. Things such as minifying your files, using compression such as deflate or gzip, putting your js includes at the bottom of the page so that everything else loads first, and so on. I&rsquo;ve done most of these things and have seen some improvement.</p>
+
+<p>The latest tweak I&rsquo;ve attempted has to do with minifying the html on this site. The site is powered by <a href="http://octopress.org/">Octopress</a> and I came across a layout that someone had created, that aims to minify the html code that gets generated. This is something I hadn&rsquo;t considered. Stripping all white space when generating files seems so simple, yet it reduces, albeit slightly, the whitespace within files and subsequently the file size. You may only gain a few k here and there but when it&rsquo;s such a simple change, and you see an actual verifiable gain in file size reduction, you might as well implement it.</p>
+
+<p>After a bit more research I came across a well supported plugin for Octopress that does the same thing, but through a gem. You can find the gem here: <a href="https://github.com/octopress/minify-html">Octopress Minify HTML</a>. The gem has the added benefit of using an environment variable. When set to production it will compress your html, when set to development it leaves the html alone. This is an excellent way to be able to work on your site, yet keep the site as small as possible in production. I currently have Compass set to only concateneate my CSS in development but for production it also strips all comments and minifies the files.</p>
+
+<p>Beyond what we do with the files as far as compression, stripping white space, etc., we need to be able to rely on browswers to properly cache our files. When a user hits the first page, certain thigns like CSS and JS files should be loaded once and then stored so that any subsequent pages load much quicker. I currently have an issue on this site where that isn&rsquo;t happening. As stated within PageSpeed: <em>Setting an expiry date or a maximum age in the HTTP headers for static resources instructs the browser to load previously downloaded resources from local disk rather than over the network.</em> I have yet to find a way to do that without having control of the actual server. In the past when I ran my own servers, I could set this up in Apache and I&rsquo;d also enable gzip or deflate for compression, being careful to NOT enable compression for IE as it couldn&rsquo;t handle it. Took me two days to discover what was causing my site to crash IE 7 way back when. Had turned on compression without any check for particular browsers. Worked great in Firefox and made a site I was working on much faster, but had the side-effect of actually crashing IE. It&rsquo;s one thing to not load properly in a particular browser but this actually crashed the browser. Good ol&#8217; IE.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Bug in Apple's Command Line Tools 6.3]]></title>
