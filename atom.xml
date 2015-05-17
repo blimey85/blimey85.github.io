@@ -4,7 +4,7 @@
   <title><![CDATA[Ramblings on Rails]]></title>
   <link href="http://traffan.com/atom.xml" rel="self"/>
   <link href="http://traffan.com/"/>
-  <updated>2015-05-16T20:17:43-04:00</updated>
+  <updated>2015-05-16T20:19:36-04:00</updated>
   <id>http://traffan.com/</id>
   <author>
     <name><![CDATA[Gary Traffanstedt]]></name>
@@ -18,7 +18,10 @@
     <link href="http://traffan.com/issues-with-caching/"/>
     <updated>2015-05-16T08:13:25-04:00</updated>
     <id>http://traffan.com/issues-with-caching</id>
-    <content type="html"><![CDATA[<p>In an effort to make this site load as fast as possible I&rsquo;ve been using tools such as <a href="http://yslow.org/">YSlow</a> and <a href="https://developers.google.com/speed/pagespeed/">PageSpeed</a>. These tools analyze your page and give you insights into how to improve the loading speed. Things such as minifying your files, using compression such as deflate or gzip, putting your js includes at the bottom of the page so that everything else loads first, and so on. I&rsquo;ve done most of these things and have seen some improvement.<!-- more --></p>
+    <content type="html"><![CDATA[<p>In an effort to make this site load as fast as possible I&rsquo;ve been using tools such as <a href="http://yslow.org/">YSlow</a> and <a href="https://developers.google.com/speed/pagespeed/">PageSpeed</a>. These tools analyze your page and give you insights into how to improve the loading speed. Things such as minifying your files, using compression such as deflate or gzip, putting your js includes at the bottom of the page so that everything else loads first, and so on. I&rsquo;ve done most of these things and have seen some improvement.</p>
+
+<!-- more -->
+
 
 <p>The latest tweak I&rsquo;ve attempted has to do with minifying the html on this site. The site is powered by <a href="http://octopress.org/">Octopress</a> and I came across a layout that someone had created, that aims to minify the html code that gets generated. This is something I hadn&rsquo;t considered. Stripping all white space when generating files seems so simple, yet it reduces, albeit slightly, the whitespace within files and subsequently the file size. You may only gain a few k here and there but when it&rsquo;s such a simple change, and you see an actual verifiable gain in file size reduction, you might as well implement it.</p>
 
