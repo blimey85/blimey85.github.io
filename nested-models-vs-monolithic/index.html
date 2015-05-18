@@ -29,21 +29,10 @@
 
 
 
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 
   
-   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-40029059-1', 'auto');
-    ga('send', 'pageview');
-
-  </script>
-
 
 
 
@@ -74,12 +63,6 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
-              <span class="visible-xs">RSS</span>
-              <img class="hidden-xs" src="/images/rss.png" alt="RSS">
-            </a>
-          </li>
           
           
             <li>
@@ -144,11 +127,11 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;<time datetime="2013-04-16T09:29:29-04:00"  data-updated="true" itemprop="datePublished dateCreated">Tue 16 Apr 2013</time></li>
+<i class="fa fa-calendar"></i>&nbsp;<time datetime="2013-04-16T09:29:29-04:00"  data-updated="true" itemprop="datePublished dateCreated">Tue 16 Apr 2013</time></li>
           <li class="categories">
 
 
-<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;
+<i class="fa fa-list"></i>&nbsp;
 <span class="categories">
   
     <a class='category' href='/categories/development/'>development</a>
@@ -161,7 +144,7 @@
 
 
 
-    <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
+<i class="fa fa-tags"></i>&nbsp;
     <span class="tags">
       
         <a class='tag' href='/tags/rails/'>rails</a>
@@ -244,18 +227,17 @@
       
         <section class="panel panel-default clearfix">
   <div class="panel-heading">
-    <h3 class="panel-title">About Gary Traffanstedt</h3>
+    <h3 class="panel-title"><i class="fa fa-user-secret"></i>&nbsp;&nbsp;About Gary Traffanstedt</h3>
   </div>
   <p class="profile">
     <img class="profile" src="/images/profile.jpeg">
-    I am Gary Traffanstedt, a former and apsiring web programmer. On this site you can find my ramblings about Ruby on
-    Rails, Javascript, and other things I find interesting on my adventure to hone my skills and re-enter the world of
-    code poetry.
+    A former and apsiring web programmer who is often rambling incessantly about Ruby on
+    Rails, Javascript, and other things nobody else cares about. This blog takes place between the past and the present. Posts occur in real time.
   </p>
 </section>
 <section class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Recent Posts</h3>
+    <h3 class="panel-title"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Recent Posts</h3>
   </div>
   
   <div id="recent_posts" class="list-group">
@@ -274,7 +256,7 @@
 </section>
 <section class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Categories</h3>
+    <h3 class="panel-title"><i class="fa fa-list"></i>&nbsp;&nbsp;Categories</h3>
   </div>
   <div class="list-group">
     
@@ -299,7 +281,7 @@
   </div>
 </section><section class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Tag Cloud</h3>
+    <h3 class="panel-title"><i class="fa fa-1_2x fa-tags"></i>&nbsp;&nbsp;Tag Cloud</h3>
   </div>
   <div class="list-group">
     <div id="myCanvasContainer" style="text-align: center;">
@@ -454,22 +436,22 @@
 </section>
 <section class="panel panel-default clearfix">
   <div class="panel-heading">
-    <h3 class="panel-title">
-      <a class="customisable-highlight" href="https://twitter.com/blimey85" title="Tweets from Twitter API">Tweets</a>
-      <a class="follow-button profile" href="https://twitter.com/blimey85" role="button" data-scribe="component:followbutton" title="Follow Twitter API on Twitter"><span class="glyphicon glyphicon-bird"></span>Follow @blimey85</a>
-    </h3>
+    <h3 class="panel-title"><i class="fa fa-1_2x fa-twitter"></i>&nbsp;&nbsp;Tweets</h3>
   </div>
   <a class="twitter-timeline" height="450px" width="100%" data-chrome="noheader nofooter noborders noscrollbar" data-dnt="true" href="https://twitter.com/blimey85" data-widget-id="595102305114005504">Tweets by @blimey85</a>
   <script>
     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
   </script>
+  <div class="twitter-user gh-profile-link pull-right text-muted">
+    <a href="https://twitter.com/blimey85">@blimey85</a> on Twitter
+  </div>
 </section>
 
 
 <section class="panel panel-default clearfix">
   <div class="panel-heading">
-      <h3 class="panel-title">GitHub Repos</h3>
+      <h3 class="panel-title"><i class="fa fa-1_2x fa-github"></i>&nbsp;&nbsp;GitHub Repos</h3>
   </div>
   <div class="list-group" id="gh_repos">
     <p class="loading">Status updating&#8230;</p>
@@ -522,184 +504,7 @@
 
 
 
-<script src="/javascripts/modernizr.js"></script>
-<script src="/js/search.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/javascripts/jquery.tagcanvas.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-  var hideTwitterAttempts = 0;
-  function hideTwitterBoxElements() {
-    setTimeout( function() {
-      if ( $('[id*=twitter]').length ) {
-        $('[id*=twitter]').each( function(){
-          var ibody = $(this).contents().find( 'body' );
-
-          if (ibody.find('.timeline .stream .h-feed li.tweet').length) {
-            ibody.find('li.h-entry.tweet.customisable-border').css('border-bottom', '1px solid #ddd');
-          } else {
-            $(this).hide();
-          }
-        });
-      }
-      hideTwitterAttempts++;
-      if ( hideTwitterAttempts < 3 ) {
-        hideTwitterBoxElements();
-      }
-    }, 500);
-  }
-
-  // lunr search
-  $(function () {
-    $('#search-query').lunrSearch({
-      indexUrl: '/js/index.json',   // Url for the .json file containing search index data
-      results: '#search-results',  // selector for containing search results element
-      entries: '.entries',         // selector for search entries containing element (contained within results above)
-      template: '#search-results-template'  // selector for Mustache.js template
-    });
-  });
-
-  $(document).ready(function () {
-    // Twitter - add borders between tweets
-    hideTwitterBoxElements();
-
-    // Tag Cloud
-    if (!$('#myCanvas').tagcanvas({
-          textColour: '#157ab5',
-          outlineMethod: 'none',
-          reverse: true,
-          depth: 0.8,
-          weight: true,
-          weightSizeMin: 10,
-          weightSizeMax: 40,
-          wheelZoom: false,
-          maxSpeed: 0.03
-        }, 'tags')) {
-      // something went wrong, hide the canvas container
-      $('#myCanvasContainer').hide();
-    }
-
-    // github repos
-    if (!window.jXHR) {
-      var jxhr = document.createElement('script');
-      jxhr.type = 'text/javascript';
-      jxhr.src = '/javascripts/libs/jXHR.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(jxhr, s);
-    }
-    github.showRepos({
-      user: 'blimey85',
-      count: 0,
-      skip_forks: true,
-      target: '#gh_repos'
-    });
-
-    (function () {
-
-      // This function does the dirty work of finding the event type and setting the appropriate title
-      var updatePageTitle = function ( evt ) {
-        var v = $(document).find('title').attr('alt'), // The title when tab is visible
-            h = "Miss You :(", // The title when tab is hidden
-            evtMap = {
-              focus: v,
-              focusin: v,
-              pageshow: v,
-              blur: h,
-              focusout: h,
-              pagehide: h
-            }; // Map each title to the different events
-
-        evt = evt || window.event;
-
-        // If the event type exists in the map, set the right title
-        if ( evt.type in evtMap ) {
-          document.title = evtMap[ evt.type ];
-        } else {
-          // Last ditch attempt
-          if ( document.hidden ) {
-            document.title = h;
-          } else {
-            document.title = v;
-          }
-        }
-      };
-
-      // This sets the appropriate listeners so that everything works cross browser
-      var hidden = "hidden";
-
-      // Standards:
-      if ( hidden in document )
-        document.addEventListener( "visibilitychange", updatePageTitle );
-      else if ( ( hidden = "mozHidden" ) in document )
-        document.addEventListener( "mozvisibilitychange", updatePageTitle );
-      else if ( ( hidden = "webkitHidden" ) in document )
-        document.addEventListener( "webkitvisibilitychange", updatePageTitle );
-      else if ( ( hidden = "msHidden" ) in document )
-        document.addEventListener( "msvisibilitychange", updatePageTitle );
-      // IE 9 and lower:
-      else if ( "onfocusin" in document )
-        document.onfocusin = document.onfocusout = updatePageTitle;
-      // All others:
-      else
-        window.onpageshow = window.onpagehide = window.onfocus = window.onblur = updatePageTitle;
-
-    })();
-  });
-
-  (function($) {
-
-    /**
-     * Copyright 2012, Digital Fusion
-     * Licensed under the MIT license.
-     * http://teamdf.com/jquery-plugins/license/
-     *
-     * @author Sam Sehnert
-     * @desc A small plugin that checks whether elements are within
-     *     the user visible viewport of a web browser.
-     *     only accounts for vertical position, not horizontal.
-     */
-
-    $.fn.visible = function(partial) {
-
-      var $t            = $(this),
-          $w            = $(window),
-          viewTop       = $w.scrollTop(),
-          viewBottom    = viewTop + $w.height(),
-          _top          = $t.offset().top,
-          _bottom       = _top + $t.height(),
-          compareTop    = partial === true ? _bottom : _top,
-          compareBottom = partial === true ? _top : _bottom;
-
-      return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
-
-    };
-
-  })(jQuery);
-
-  var win = $(window);
-
-  var allMods = $(".slide-in");
-
-  allMods.each(function(i, el) {
-    var el = $(el);
-    if (el.visible(true)) {
-      el.addClass("already-visible");
-    }
-  });
-
-  win.scroll(function(event) {
-
-    allMods.each(function(i, el) {
-      var el = $(el);
-      if (el.visible(true)) {
-        el.addClass("come-in");
-      }
-    });
-
-  });
-</script>
-
-<script src="/javascripts/github.js" type="text/javascript"></script>
-<script src="/javascripts/twitter.js" type="text/javascript"> </script>
+<script src="/assets/app-69b78addf77897708d61d705c97cc2df.js"></script>
 
 
 <script id="search-results-template" type="text/mustache">
