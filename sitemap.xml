@@ -89,15 +89,6 @@
     <loc>http://traffan.com/archives/tags.html</loc>
   </url>
   <url>
-    <loc>http://traffan.com/categories/development/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/hardware/</loc>
-  </url>
-  <url>
-    <loc>http://traffan.com/categories/blogging/</loc>
-  </url>
-  <url>
     <loc>http://traffan.com/tags/delayed-job/</loc>
   </url>
   <url>
@@ -152,19 +143,28 @@
     <loc>http://traffan.com/tags/octopress/</loc>
   </url>
   <url>
-    <loc>http://traffan.com/tags/search/</loc>
-  </url>
-  <url>
     <loc>http://traffan.com/tags/tapir/</loc>
   </url>
   <url>
-    <loc>http://traffan.com/tags/automation/</loc>
+    <loc>http://traffan.com/tags/search/</loc>
   </url>
   <url>
     <loc>http://traffan.com/tags/twitter/</loc>
   </url>
   <url>
+    <loc>http://traffan.com/tags/automation/</loc>
+  </url>
+  <url>
     <loc>http://traffan.com/tags/haml/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/categories/development/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/categories/hardware/</loc>
+  </url>
+  <url>
+    <loc>http://traffan.com/categories/blogging/</loc>
   </url>
   <url>
     <loc>http://traffan.com/2/</loc>
